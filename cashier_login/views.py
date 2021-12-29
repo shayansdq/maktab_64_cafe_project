@@ -10,9 +10,10 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    fullname = db.Column(db.String, unique=True, nullable=False)
+    fullname = db.Column(db.String, unique=False, nullable=False)
+    national_id = db.Column(db.String, unique=True, nullable=False)
     username = db.Column(db.String, unique=True, nullable=False)
-    password = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, unique=False, nullable=False)
 
 
 def login_page():
@@ -53,6 +54,13 @@ def check_data(username, password):
         return False
 
 
+def forget_password(username, new_value):
+    user_data = User.query.filter_by(username=username).first()
+    user_data.password = new_value
+    db.session.commit()
+    return True
+
+
 def register(fullname, username, password):
     db.session.add(User(fullname=fullname, username=username, password=password))
     db.session.commit()
@@ -64,7 +72,3 @@ def log_out(username):
     db.session.commit()
     return True
 
-
-# register("mobin atashi", "phoenix2", "mobin1234")
-# print(log_out("Flask"))
-# check_data("phoenix", "mobin1hbhjeav")
