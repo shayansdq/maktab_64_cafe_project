@@ -47,9 +47,13 @@ def register_page():
 
 ########################################################db_part#########################################################
 def check_data(username, password):
-    real_password = User.query.filter_by(username=username).first().password
-    if password == real_password:
-        return True
+    user_info = User.query.filter_by(username=username).first()
+    if user_info:
+        real_password = user_info.password
+        if password == real_password:
+            return True
+        else:
+            return False
     else:
         return False
 
@@ -71,4 +75,3 @@ def log_out(username):
     User.query.filter_by(username=username).delete()
     db.session.commit()
     return True
-
