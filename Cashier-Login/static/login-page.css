@@ -1,7 +1,9 @@
 html, body {
     height: 100%;
 }
-
+.bg-img-bg{
+    background-size: cover;
+}
 .global-container {
     height: 100%;
     display: flex;
