@@ -16,9 +16,8 @@
         <div class="card-body">
             <h3 class="card-title text-center">Log in to panel</h3>
             <div class="card-text">
-                <form>
+                <form method="POST">
                     {{ form.hidden_tag() }}
-
                     <div class="form-group">
                         {{ wtf.form_field(form.username) }}
                     </div>
@@ -26,7 +25,6 @@
                         {{ wtf.form_field(form.password) }}
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-
                     <div class="sign-up">
                         Forget Your Password ? <a href="{{ url_for("signup") }}">Reset It</a>
                     </div>

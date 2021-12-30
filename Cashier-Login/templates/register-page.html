@@ -16,7 +16,7 @@
         <div class="card-body">
             <h3 class="card-title text-center">RESET PASSWORD</h3>
             <div class="card-text">
-                <form>
+                <form method="POST">
                     {{ form.hidden_tag() }}
                     <div class="form-group">
                         {{ wtf.form_field(form.email) }}
