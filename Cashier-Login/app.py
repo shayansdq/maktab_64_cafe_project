@@ -10,6 +10,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY_SECRET_KEY'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://backdoor:123456789@localhost/cafe_login'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
