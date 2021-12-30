@@ -11,10 +11,10 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div class="global-container">
+<div class="global-container bg-img-bg" style="background-image: url({{ url_for('static',filename='4.jpg') }})">
     <div class="card login-form">
         <div class="card-body">
-            <h3 class="card-title text-center">RESET PASSWORD</h3>
+            <h3 class="card-title text-center">Reset Password</h3>
             <div class="card-text">
                 <form method="POST">
                     {{ form.hidden_tag() }}
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         {{ wtf.form_field(form.password) }}
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    <button type="submit" class="btn btn-primary btn-block">Reset</button>
                 </form>
             </div>
         </div>

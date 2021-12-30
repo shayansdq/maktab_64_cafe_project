@@ -2,19 +2,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>LOGIN-PANEL</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../static/login-page.css">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div class="global-container">
+<div class="global-container bg-img-bg" style="background-image: url({{ url_for('static',filename='3.jpg') }})">
     <div class="card login-form">
         <div class="card-body">
-            <h3 class="card-title text-center">Log in to panel</h3>
+            <h3 class="card-title text-center">Log-In to panel</h3>
             <div class="card-text">
                 <form method="POST">
                     {{ form.hidden_tag() }}
@@ -24,7 +23,7 @@
                     <div class="form-group">
                         {{ wtf.form_field(form.password) }}
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    <button type="submit" class="btn btn-primary btn-block">Log-In</button>
                     <div class="sign-up">
                         Forget Your Password ? <a href="{{ url_for("signup") }}">Reset It</a>
                     </div>
