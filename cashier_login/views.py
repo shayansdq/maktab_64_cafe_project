@@ -1,8 +1,8 @@
-from flask import Flask, render_template, url_for, session, request
+from flask import Flask, render_template, url_for, session, request, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.secret_key = "FLASK_DJANGO"
+app.secret_key = "SECRET_KEY_SECRET_KEY"
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://backdoor:123456789@localhost/test"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
