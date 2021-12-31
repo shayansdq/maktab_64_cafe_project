@@ -10,7 +10,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div class="global-container bg-img-bg" style="background-image: url({{ url_for('static',filename='3.jpg') }})">
+<div class="global-container bg-img-bg" style="background-image: url({{ url_for('static', filename='images/3.jpg') }})">
     <div class="card login-form">
         <div class="card-body">
             <h3 class="card-title text-center">Log-In to panel</h3>
@@ -24,9 +24,12 @@
                         {{ wtf.form_field(form.password) }}
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Log-In</button>
-{#                    <div class="sign-up">#}
-{#                        Forget Your Password ? <a href="{{ url_for("signup") }}">Reset It</a>#}
-{#                    </div>#}
+                    {#
+                    <div class="sign-up">#}
+                        {# Forget Your Password ? <a href="{{ url_for(" signup") }}">Reset It</a>#}
+                        {#
+                    </div>
+                    #}
                 </form>
             </div>
         </div>
