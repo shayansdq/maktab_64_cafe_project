@@ -5,7 +5,7 @@ from abc import ABC
 import psycopg2
 import psycopg2.extras
 from psycopg2._psycopg import connection, cursor
-
+from app import Cashier
 
 # def create(args):
 #     conn: connection = psycopg2.connect(dbname="flash_cards", user="mohammadreza", host="localhost", port=5432, password=7985)
@@ -38,5 +38,5 @@ if __name__ == "__main__":
     print('step1')
     username = args.username
     password = args.password
-    user = Users(username=username, password=password)
+
     user.create()
