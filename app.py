@@ -66,7 +66,7 @@ def login():
 @app.route('/dashboard')
 def dashboard():
     user_id = request.cookies.get("aetvbhuoaetv")
-    user_name = user_id
+    user_name = Cashier.get_by_id(user_id)
     resp = make_response(render_template("dashboard.html", name=str(user_name)))
     return resp
 
