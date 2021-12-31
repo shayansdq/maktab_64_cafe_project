@@ -12,7 +12,7 @@ from os import urandom
 app = Flask(__name__)
 app.config['SECRET_KEY'] = urandom(24)
 app.config.from_pyfile('config.cfg')
-
+bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -66,7 +66,7 @@ def login():
 @app.route('/dashboard')
 def dashboard():
     user_id = request.cookies.get("aetvbhuoaetv")
-    user_name = Cashier.get_by_id(user_id)
+    user_name = Cashier.get_by_id(user_id).username
     resp = make_response(render_template("dashboard.html", name=str(user_name)))
     return resp
 
