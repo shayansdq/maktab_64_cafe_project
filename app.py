@@ -6,7 +6,6 @@ from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from os import urandom
 
 app = Flask(__name__)
@@ -14,9 +13,6 @@ app.config['SECRET_KEY'] = urandom(24)
 app.config.from_pyfile('config.cfg')
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
 
 
 # def create_app():
@@ -29,10 +25,6 @@ login_manager.login_view = 'login'
 #         db.create_all()
 #     return app
 
-
-@login_manager.user_loader
-def load_user(user_id):
-    return Cashier.check_user(int(user_id))
 
 
 class LoginForm(FlaskForm):
@@ -78,7 +70,7 @@ def logout():
     return resp
 
 
-class Cashier(UserMixin, db.Model):
+class Cashier(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))
