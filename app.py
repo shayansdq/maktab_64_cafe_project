@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, Response, make_response, request
 from database import db
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -39,11 +39,14 @@ class RegisterForm(FlaskForm):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    print(form.username.data)
-    if form.validate_on_submit():
+    if request.cookies.get("aetvbhuoaetv"):
+        return redirect(url_for('dashboard'))
+    elif form.validate_on_submit():
         user = Cashier.check_user(form.username.data)
         if user:
             if user.verify_password(form.password.data):
+                resp = make_response(redirect(url_for('dashboard')))
+                resp.set_cookie("aetvbhuoaetv", form.username.data)
                 return redirect(url_for('dashboard'))
         return '<h1>Invalid username or password</h1>'
     return render_template('login-page.html', form=form)
