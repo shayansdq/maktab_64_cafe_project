@@ -58,10 +58,10 @@ def dashboard():
 
 
 @app.route('/logout')
-@login_required
 def logout():
-    logout_user()
-    return redirect(url_for('index'))
+    resp = make_response(redirect(url_for('home')))
+    resp.delete_cookie('aetvbhuoaetv')
+    return resp
 
 
 # def create_app():
@@ -215,7 +215,7 @@ class Category(db.Model):
 
 
 @app.route('/')
-def hello_world():
+def home():
     return render_template('index.html')
 
 
