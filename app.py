@@ -54,7 +54,10 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html', name='shayan20')
+    user_id = request.cookies.get("aetvbhuoaetv")
+    user_name = user_id
+    resp = make_response(render_template("dashboard.html", name=str(user_name)))
+    return resp
 
 
 @app.route('/logout')
