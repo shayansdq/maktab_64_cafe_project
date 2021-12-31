@@ -46,8 +46,8 @@ def login():
         if user:
             if user.verify_password(form.password.data):
                 resp = make_response(redirect(url_for('dashboard')))
-                resp.set_cookie("aetvbhuoaetv", form.username.data)
-                return redirect(url_for('dashboard'))
+                resp.set_cookie("aetvbhuoaetv", str(user.id))
+                return resp
         return '<h1>Invalid username or password</h1>'
     return render_template('login-page.html', form=form)
 
@@ -104,6 +104,9 @@ class Cashier(UserMixin, db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def get_id(self):
+        return self.id
+
     def __repr__(self):
         return '<Cashier: %r>' % self.username
 
@@ -134,7 +137,6 @@ class Menuitem(db.Model):
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     table_name = db.Column(db.String(32), unique=True)
-    table_number = db.Column(db.Integer, unique=True)
     cafe_space_position = db.Column(db.String(16), unique=True)
     receipts = db.relationship('Receipt', backref='table', lazy='dynamic')
     orders = db.relationship('Order', backref='table', lazy='dynamic')
@@ -162,7 +164,7 @@ class Order(db.Model):
 
     @staticmethod
     def find_orders(table_id):
-        return Table.query.filter_by(table_id=table_id).all()
+        return Table.query.filter_by(id=table_id).all()
 
     def create(self):
         db.session.add(self)
@@ -191,7 +193,7 @@ class Receipt(db.Model):
         return Receipt.query.filter_by(table_id=table_id).first()
 
     def __repr__(self):
-        return '<receipt: %r>' % self.word
+        return '<receipt: %r>' % self.table_id
 
 
 class Category(db.Model):
