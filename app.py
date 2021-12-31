@@ -26,7 +26,6 @@ db = SQLAlchemy(app)
 #     return app
 
 
-
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
@@ -58,9 +57,12 @@ def login():
 @app.route('/dashboard')
 def dashboard():
     user_id = request.cookies.get("aetvbhuoaetv")
-    user_name = Cashier.get_by_id(user_id).username
-    resp = make_response(render_template("dashboard.html", name=str(user_name)))
-    return resp
+    if Cashier.get_by_id(user_id):
+        user_name = Cashier.get_by_id(user_id).username
+        resp = make_response(render_template("dashboard.html", name=str(user_name)))
+        return resp
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/logout')
