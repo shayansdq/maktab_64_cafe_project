@@ -12,11 +12,22 @@ from os import urandom
 app = Flask(__name__)
 app.config['SECRET_KEY'] = urandom(24)
 app.config.from_pyfile('config.cfg')
-bootstrap = Bootstrap(app)
+
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+
+# def create_app():
+#     app = Flask(__name__)
+#     app.secret_key = urandom(24)
+#     app.config.from_pyfile('config.cfg')
+#     bootstrap = Bootstrap(app)
+#     db.init_app(app)
+#     with app.test_request_context():
+#         db.create_all()
+#     return app
 
 
 @login_manager.user_loader
@@ -64,16 +75,6 @@ def logout():
     return resp
 
 
-# def create_app():
-#     app = Flask(__name__)
-#     app.secret_key = urandom(24)
-#     app.config.from_pyfile('config.cfg')
-#     db.init_app(app)
-#     with app.test_request_context():
-#         db.create_all()
-#     return app
-
-
 class Cashier(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(32))
@@ -104,8 +105,9 @@ class Cashier(UserMixin, db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def get_id(self):
-        return self.id
+    @staticmethod
+    def get_by_id(user_id):
+        return Cashier.query.filter_by(id=user_id).first()
 
     def __repr__(self):
         return '<Cashier: %r>' % self.username
