@@ -224,7 +224,8 @@ a:hover{
 /* desktop nav */
 .desktop-menu{
     background-color: rgba(255, 255, 255, 0.137);
-    background-image: url('{{  }}');
+    background-image: url('/static/img/coffee.png');
+    /*background-image: url({ { url_for } });*/
     background-repeat: no-repeat;
     display: flex;
     flex-direction: row;
