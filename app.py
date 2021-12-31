@@ -19,14 +19,6 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
-##############
-# class User(UserMixin, db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String(15), unique=True)
-#     email = db.Column(db.String(50), unique=True)
-#     password = db.Column(db.String(128))
-
-
 @login_manager.user_loader
 def load_user(user_id):
     return Cashier.check_user(int(user_id))
@@ -53,21 +45,8 @@ def login():
         if user:
             if user.verify_password(form.password.data):
                 return redirect(url_for('dashboard'))
-                # return 'ok'
         return '<h1>Invalid username or password</h1>'
     return render_template('login-page.html', form=form)
-
-
-# @app.route('/signup', methods=['GET', 'POST'])
-# def signup():
-#     form = RegisterForm()
-#     if form.validate_on_submit():
-#         hashed_password = generate_password_hash(form.password.data, method='sha256')
-#         new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-#         db.session.add(new_user)
-#         db.session.commit()
-#         return '<h1>New user has been created!</h1>'
-#     return render_template('register-page.html', form=form)
 
 
 @app.route('/dashboard')
@@ -231,7 +210,7 @@ class Category(db.Model):
 
 
 @app.route('/')
-def hello_world():  # put application's code here
+def hello_world():
     return render_template('index.html')
 
 
