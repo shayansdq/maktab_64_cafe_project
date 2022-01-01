@@ -36,4 +36,5 @@ def logout():
 
 
 def home():
-    return render_template('index.html')
+    tables = Table.query.all()
+    return render_template('index.html',tables=tables)
