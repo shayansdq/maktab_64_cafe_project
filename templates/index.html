@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shizuru&family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/res-modal-style.css') }}">
     <title>Caffe Flask</title>
 </head>
 <body>
@@ -37,7 +38,7 @@
         <a href="#about">About</a>
         <a href="#contactus">Contact Us</a>
     </ul>
-    <button>Reservation</button>
+    <button data-bs-toggle="modal" data-bs-target="#exampleModal">Reservation</button>
 </nav>
 <div class="head-slider text-white text-center">
     <div class="swiper">
@@ -85,7 +86,7 @@
         <div class="swiper-button-next"></div> -->
       </div>
 </div>
-
+{% include 'layouts/reservation-modal.html' %}
 </body>
 
 
