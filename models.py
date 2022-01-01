@@ -68,7 +68,7 @@ class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     table_name = db.Column(db.String(32), unique=True)
     cafe_space_position = db.Column(db.String(16), unique=True)
-    reserved = db.Column(db.Boolean,default=False)
+    reserved = db.Column(db.Boolean, default=False)
     receipts = db.relationship('Receipt', backref='table', lazy='dynamic')
     orders = db.relationship('Order', backref='table', lazy='dynamic')
 

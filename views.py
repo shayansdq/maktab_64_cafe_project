@@ -44,4 +44,5 @@ def home():
         if table_id:
             table = Table.get_by_id(table_id)
             table.reserved = True
+            table.create()
             return table_id
