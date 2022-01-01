@@ -1,32 +1,33 @@
-.custom-modal-body{
-    background-color: rgba(255, 255, 255, 0.137);
+.modal-dialog{
+    background-color: rgba(255, 255, 255, 0.137) !important;
+    display: flex;
 }
-  .fuselage {
-    border-right: 5px solid #d8d8d8;
-    border-left: 5px solid #d8d8d8;
-  }
-
   ol {
+    display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
+  #reservation_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .seats {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .seat {
     display: flex;
-    flex: 0 0 14.2857142857%;
+    width:90px;
     padding: 5px;
     position: relative;
-  }
-  .seat:nth-child(3) {
-    margin-right: 14.2857142857%;
   }
   .seat input[type=checkbox] {
     position: absolute;
