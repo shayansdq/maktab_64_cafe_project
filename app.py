@@ -25,7 +25,7 @@ app.add_url_rule('/dashboard', 'dashboard', dashboard, )
 
 app.add_url_rule('/logout', 'logout', logout)
 
-app.add_url_rule('/', 'home', home)
+app.add_url_rule('/', 'home', home, methods=["GET", "POST"])
 
 if __name__ == '__main__':
     app.run()

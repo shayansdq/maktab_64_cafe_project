@@ -3,7 +3,6 @@ from app import Cashier
 import argparse
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--first_name", required=True)
@@ -22,5 +21,6 @@ if __name__ == "__main__":
     email = args.email
     password_hash = generate_password_hash(args.password_hash, method='sha256')
 
-    user = Cashier(first_name=first_name, last_name=last_name, username=username, phone_number=phone_number, email=email, password_hash=password_hash)
+    user = Cashier(first_name=first_name, last_name=last_name, username=username, phone_number=phone_number,
+                   email=email, password_hash=password_hash)
     user.create()
