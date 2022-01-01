@@ -10,11 +10,20 @@
             <form class="my-2" id="reservation_form" action="{{ url_for('home') }}" method="POST">
                 <ol class="seats" type="A">
                     {% for table in tables %}
+                    {% if not table.reserved %}
+                    <li class="seat">
+                        <input disabled class="unique_table" onclick="tablesHandler()" type="checkbox" name="table_id"
+                               value="{{ table.id }}" id="{{ table.id }}"/>
+                        <label for="{{ table.id }}">{{ table.table_name }}</label>
+                    </li>
+                    {% endif %}
+
                     <li class="seat">
                         <input class="unique_table" onclick="tablesHandler()" type="checkbox" name="table_id"
                                value="{{ table.id }}" id="{{ table.id }}"/>
                         <label for="{{ table.id }}">{{ table.table_name }}</label>
                     </li>
+
                     {% endfor %}
                 </ol>
                 <div class="w-100 d-flex justify-content-center my-3">
