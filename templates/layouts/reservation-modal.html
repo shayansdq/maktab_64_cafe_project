@@ -10,10 +10,10 @@
                         <ol class="seats" type="A">
                             {% for table in tables %}
                             <li class="seat">
-                            <input class="unique_table" onclick="tablesHandler()" type="checkbox" id="1A" />
-                            <label for="1A">1</label>
+                            <input class="unique_table" onclick="tablesHandler()" type="checkbox" id="{{ table.id }}" />
+                            <label for="1A">{{ table.table_name }}</label>
                             </li>
-                            {% for table in tables %}
+                            {% endfor %}
                         </ol>
                     <div class="w-100 d-flex justify-content-center my-3">
                         <button type="submit" class="">Book Your Table</button>
