@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/res-modal-style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Caffe Flask</title>
 </head>
 <body>
@@ -40,6 +42,17 @@
     </ul>
     <button data-bs-toggle="modal" data-bs-target="#exampleModal">Reservation</button>
 </nav>
+    {% if get_flashed_messages() %}
+        <script>
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '{{msg}}',
+              showConfirmButton: false,
+              timer: 3500
+            })
+        </script>
+    {% endif %}
 <div class="head-slider text-white text-center">
     <div class="swiper">
         <!-- Additional required wrapper -->
@@ -93,7 +106,7 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TimelineMax.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
 {#<script  src="./script.js"></script>#}
