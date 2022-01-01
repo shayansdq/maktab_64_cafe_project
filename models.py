@@ -76,6 +76,10 @@ class Table(db.Model):
         db.session.commit()
 
     @staticmethod
+    def get_by_id(table_id):
+        return Table.query.filter_by(id=table_id).first()
+
+    @staticmethod
     def find_table(id):
         return Table.query.filter_by(id=id).first()
 
@@ -142,5 +146,3 @@ class Category(db.Model):
 
     def __repr__(self):
         return '<category number: %r>' % self.id
-
-

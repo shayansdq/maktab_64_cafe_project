@@ -41,4 +41,7 @@ def home():
         return render_template('index.html', tables=tables)
     elif request.method == "POST":
         table_id = request.values.get("table_id")
-        return table_id
+        if table_id:
+            table = Table.get_by_id(table_id)
+            table.reserved = True
+            return table_id
