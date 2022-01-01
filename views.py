@@ -41,3 +41,4 @@ def home():
         return render_template('index.html', tables=tables)
     elif request.method == "POST":
         table_id = request.values.get("table_id")
+        return table_id

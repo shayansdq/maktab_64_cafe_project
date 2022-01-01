@@ -1,26 +1,27 @@
 <!-- Reservation Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header border-0">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <h3 class="text-dark text-center d-flex justify-content-center align-items-center">Select Your Table<i class='material-icons fs-2 mx-1'>table_restaurant</i></h3>
-                 <form class="my-2" id="reservation_form" action="" method="POST">
-                        <ol class="seats" type="A">
-                            {% for table in tables %}
-                            <li class="seat">
-                            <input class="unique_table" onclick="tablesHandler()" type="checkbox" id="{{ table.id }}" />
-                            <label for="1A">{{ table.table_name }}</label>
-                            </li>
-                            {% endfor %}
-                        </ol>
-                    <div class="w-100 d-flex justify-content-center my-3">
-                        <button type="submit" class="">Book Your Table</button>
-                      </div>
-                 </form>
-
-              </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </div>
+            <h3 class="text-dark text-center d-flex justify-content-center align-items-center">Select Your Table<i
+                    class='material-icons fs-2 mx-1'>table_restaurant</i></h3>
+            <form class="my-2" id="reservation_form" action="{{ url_for('home') }}" method="POST">
+                <ol class="seats" type="A">
+                    {% for table in tables %}
+                    <li class="seat">
+                        <input class="unique_table" onclick="tablesHandler()" type="checkbox" name="table_id"
+                               value="{{ table.id }}" id="{{ table.id }}"/>
+                        <label for="{{ table.id }}">{{ table.table_name }}</label>
+                    </li>
+                    {% endfor %}
+                </ol>
+                <div class="w-100 d-flex justify-content-center my-3">
+                    <button type="submit" class="">Book Your Table</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
