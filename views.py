@@ -37,14 +37,17 @@ def logout():
 
 def home():
     if request.method == "GET":
+        table_id = request.cookies.get('Table')
+        msg = f'Congrats! your table id is {table_id}'
         tables = Table.query.all()
-        return render_template('index.html', tables=tables)
+        return render_template('index.html', tables=tables,msg=msg)
     elif request.method == "POST":
         table_id = request.values.get("table_id")
         if table_id:
             table = Table.get_by_id(table_id)
             table.reserved = True
             table.create()
+            flash(f'Congrats! your table id is {table_id}')
             resp = make_response(redirect(url_for("home")))
             resp.set_cookie("Table", f"{table.id}")
             return resp
