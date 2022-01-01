@@ -36,5 +36,8 @@ def logout():
 
 
 def home():
-    tables = Table.query.all()
-    return render_template('index.html',tables=tables)
+    if request.method == "GET":
+        tables = Table.query.all()
+        return render_template('index.html', tables=tables)
+    elif request.method == "POST":
+        table_id = request.values.get("table_id")
