@@ -46,3 +46,6 @@ def home():
             table.reserved = True
             table.create()
             return table_id
+        return "bad request"
+    else:
+        return "bad request"
