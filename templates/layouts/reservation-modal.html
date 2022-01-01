@@ -12,13 +12,13 @@
                     {% for table in tables %}
                     {% if table.reserved %}
                     <li class="seat">
-                        <input disabled class="unique_table" onclick="tablesHandler()" type="checkbox" name="table_id"
+                        <input disabled  class="unique_table" onclick="tablesHandler()" type="radio" name="table_id"
                                value="{{ table.id }}" id="{{ table.id }}"/>
                         <label for="{{ table.id }}">{{ table.table_name }}</label>
                     </li>
                     {% else %}
                     <li class="seat">
-                        <input class="unique_table" onclick="tablesHandler()" type="checkbox" name="table_id"
+                        <input class="unique_table" onclick="tablesHandler()" type="radio" name="table_id"
                                value="{{ table.id }}" id="{{ table.id }}"/>
                         <label for="{{ table.id }}">{{ table.table_name }}</label>
                     </li>
