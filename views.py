@@ -1,6 +1,6 @@
 from models import *
 from database import db
-from flask import request, redirect, url_for, make_response, render_template
+from flask import request, redirect, url_for, make_response, render_template, flash
 from forms import *
 
 
@@ -45,7 +45,7 @@ def home():
             table = Table.get_by_id(table_id)
             table.reserved = True
             table.create()
-            return table_id
+            return redirect(url_for("home"))
         return "bad request"
     else:
         return "bad request"
