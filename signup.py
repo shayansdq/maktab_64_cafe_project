@@ -1,5 +1,5 @@
 from database import db
-from app import Cashier
+from models import Cashier
 import argparse
 from werkzeug.security import generate_password_hash, check_password_hash
 
