@@ -10,18 +10,28 @@
             <form class="my-2" id="reservation_form" action="{{ url_for('home') }}" method="POST">
                 <ol class="seats" type="A">
                     {% for table in tables %}
-                    {% if table.reserved %}
+                    {% if table.id | string in data['chose-table'] %}
+                    <li class="seat">
+                        <input class="unique_table choosed-seat" onclick="tablesHandler()" type="radio" name="table_id"
+                               value="{{ table.id }}" id="{{ table.id }}"/>
+                        <label for="{{ table.id }}">Your table:<br>{{ table.table_name }}</label>
+                    </li>
+                    {% elif table.reserved %}
+
                     <li class="seat">
                         <input disabled  class="unique_table" onclick="tablesHandler()" type="radio" name="table_id"
                                value="{{ table.id }}" id="{{ table.id }}"/>
                         <label for="{{ table.id }}">{{ table.table_name }}</label>
                     </li>
+
                     {% else %}
+
                     <li class="seat">
                         <input class="unique_table" onclick="tablesHandler()" type="radio" name="table_id"
                                value="{{ table.id }}" id="{{ table.id }}"/>
                         <label for="{{ table.id }}">{{ table.table_name }}</label>
                     </li>
+
                     {% endif %}
                     {% endfor %}
                 </ol>
