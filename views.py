@@ -63,7 +63,7 @@ def home():
         msg = f'Congrats! your table number is: {table_id}'
         tables = Table.query.all()
         if table_id:
-            data['reserve-button']['content'] = f'Table id {table_id}'
+            data['reserve-button']['content'] = f'Your table id : {table_id}'
             data['chose-table'] = [f'{table_id}']
         return render_template('index.html', tables=tables, data=data,msg=msg)
     elif request.method == "POST":
