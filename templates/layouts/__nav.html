@@ -15,12 +15,14 @@
     <img src="{{ url_for('static',filename='img/abs.svg') }}" style="position: absolute; left: 0;top: 0;">
     <!-- desktop nav -->
 <nav class="desktop-menu">
-   <h3>Caffe Flask</h3>
+   <h3 style="font-family: 'Shizuru',sans-serif; color: rgba(199, 138, 58, 0.795);font-weight: bold;font-size:3rem;">
+       Caffe Dark
+   </h3>
     <ul>
         <a href="#home">Home</a>
         <a href="#orders">Orders List</a>
         <a href="#about">About</a>
         <a href="#contactus">Contact Us</a>
     </ul>
-    <button data-bs-toggle="modal" data-bs-target="#exampleModal">Reservation</button>
+    <button data-bs-toggle="modal" data-bs-target="#exampleModal">{{ data['reserve-button']['content'] }}</button>
 </nav>
