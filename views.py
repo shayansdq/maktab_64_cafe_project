@@ -5,6 +5,8 @@ from forms import *
 
 
 def login():
+    from datetime import datetime, timedelta
+    now = datetime.now()
     form = LoginForm()
     if request.cookies.get("aetvbhuoaetv"):
         return redirect(url_for('dashboard'))
@@ -13,7 +15,7 @@ def login():
         if user:
             if user.verify_password(form.password.data):
                 resp = make_response(redirect(url_for('dashboard')))
-                resp.set_cookie("aetvbhuoaetv", str(user.id))
+                resp.set_cookie("aetvbhuoaetv", str(user.id), expires=now + timedelta(hours=3))
                 return resp
         return '<h1>Invalid username or password</h1>'
     return render_template('login-page.html', form=form)
@@ -40,7 +42,7 @@ def home():
         table_id = request.cookies.get('Table')
         msg = f'Congrats! your table id is {table_id}'
         tables = Table.query.all()
-        return render_template('index.html', tables=tables,msg=msg)
+        return render_template('index.html', tables=tables, msg=msg)
     elif request.method == "POST":
         table_id = request.values.get("table_id")
         if table_id:
