@@ -1,0 +1,26 @@
+<!-- mobile nav -->
+    <div class="mobile-menu">
+        <input id="toggle" type="checkbox">
+        <label class="toggle-container" for="toggle">
+          <span class="button button-toggle"></span>
+        </label>
+        <!-- The Nav Menu -->
+        <nav class="nav">
+          <a class="nav-item" href="">Home</a>
+          <a class="nav-item" href="">Order List</a>
+          <a class="nav-item" href="">About</a>
+          <a class="nav-item" href="">Contact Us</a>
+        </nav>
+      </div>
+    <img src="{{ url_for('static',filename='img/abs.svg') }}" style="position: absolute; left: 0;top: 0;">
+    <!-- desktop nav -->
+<nav class="desktop-menu">
+   <h3>Caffe Flask</h3>
+    <ul>
+        <a href="#home">Home</a>
+        <a href="#orders">Orders List</a>
+        <a href="#about">About</a>
+        <a href="#contactus">Contact Us</a>
+    </ul>
+    <button data-bs-toggle="modal" data-bs-target="#exampleModal">Reservation</button>
+</nav>
