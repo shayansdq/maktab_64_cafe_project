@@ -163,10 +163,13 @@ a:hover{
   .nav-item {
     position: relative;
     display: inline-block;
+    border-radius: 30%;
+    border: 1px solid #983838;
+    background-color: rgba(245, 242, 242, 0.92) !important;
     float: left;
     clear: both;
     color: transparent;
-    font-size: 17px;
+    font-size: 1.08rem;
     letter-spacing: -6.2px;
     height: 7px;
     line-height: 7px;
