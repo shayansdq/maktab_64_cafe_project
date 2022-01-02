@@ -29,12 +29,13 @@
 
   .seat {
     display: flex;
-    width:90px;
+    min-width:5.5rem;
     padding: 5px;
     position: relative;
   }
   .seat input[type=radio] {
     position: absolute;
+    padding: 5rem .3rem;
     opacity: 0;
   }
   .seat input[type=radio]:checked + label {
