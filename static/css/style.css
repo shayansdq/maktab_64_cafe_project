@@ -163,6 +163,7 @@ a:hover{
   .nav-item {
     position: relative;
     display: inline-block;
+    box-shadow: inset .1em .25em #b45050;
     border-radius: 30%;
     border: 1px solid #983838;
     background-color: rgba(245, 242, 242, 0.92) !important;
