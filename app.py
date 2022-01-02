@@ -2,7 +2,6 @@ from flask import Flask, render_template, redirect, url_for, Response, make_resp
 from database import db
 from flask_bootstrap import Bootstrap
 from os import urandom
-
 from views import *
 
 
