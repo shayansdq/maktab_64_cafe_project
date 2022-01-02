@@ -1,0 +1,12 @@
+{% include 'layouts/__nav.html' %}
+    {% if get_flashed_messages() %}
+        <script>
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '{{msg}}',
+              showConfirmButton: false,
+              timer: 3500
+            })
+        </script>
+    {% endif %}
