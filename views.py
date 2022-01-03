@@ -10,7 +10,7 @@ base_variables = {
         "title": 'main'
     },
     'reserve-button': {
-        'content':'Reservation'
+        'content': 'Reservation'
     }
 }
 
@@ -20,17 +20,17 @@ def login():
     data = base_variables
     form = LoginForm()
     if request.cookies.get("aetvbhuoaetv"):
-        return redirect(url_for('dashboard',data=data))
+        return redirect(url_for('dashboard', data=data))
     elif form.validate_on_submit():
         user = Cashier.check_user(form.username.data)
         if user:
             if user.verify_password(form.password.data):
                 base_variables['page']['title'] = 'Dashboard'
-                resp = make_response(redirect(url_for('dashboard',data=data)))
+                resp = make_response(redirect(url_for('dashboard', data=data)))
                 resp.set_cookie("aetvbhuoaetv", str(user.id))
                 return resp
         return '<h1 style="color:red">Invalid Username/Password</h1>'
-    return render_template('login-page.html', data=data,form=form)
+    return render_template('login-page.html', data=data, form=form)
 
 
 def dashboard():
@@ -39,12 +39,12 @@ def dashboard():
         base_variables['page']['title'] = 'Dashboard'
         data = base_variables
         user_name = Cashier.get_by_id(user_id).username
-        resp = make_response(render_template("dashboard.html", data=data,name=str(user_name)))
+        resp = make_response(render_template("dashboard.html", data=data, name=str(user_name)))
         return resp
     else:
         base_variables['page']['title'] = 'Login'
         data = base_variables
-        return redirect(url_for('login',data=data))
+        return redirect(url_for('login', data=data))
 
 
 def logout():
@@ -65,7 +65,7 @@ def home():
         if table_id:
             data['reserve-button']['content'] = f'Your table id : {table_id}'
             data['chose-table'] = [f'{table_id}']
-        return render_template('index.html', tables=tables, data=data,msg=msg)
+        return render_template('index.html', tables=tables, data=data, msg=msg)
     elif request.method == "POST":
         table_id = request.values.get("table_id")
         if table_id:
