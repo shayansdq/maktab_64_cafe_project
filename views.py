@@ -26,9 +26,7 @@ def menu():
             return render_template("menu.html")
         else:
             check_reserve = True
-            tables = Table.query.all()
-            return render_template('index.html', check_reserve_msg="shayan khar ast", check_reserve=check_reserve,
-                                   tables=tables, data=data)
+            return redirect(url_for("home"))
     elif request.method == "POST":
         table_id = request.cookies.get("Table")
         orders = request.values.get("")
