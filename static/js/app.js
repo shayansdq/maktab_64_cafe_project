@@ -18,12 +18,6 @@ const swiper = new Swiper('.swiper', {
   });
 
 
-
-
-
-
-
-
 // steam js code
 $(document).ready(function() {
     var steamGrp = [steamLeft, steamRight, steamMid],
@@ -45,12 +39,40 @@ $(document).ready(function() {
   });
 
 
-  new Maplace({
-    locations: LocsA,
-    map_div: '#gmap-polygon',
-    controls_div: '#controls-polygon',
-    controls_type: 'list',
-    show_markers: false,
-    type: 'polygon',
-    draggable: true
-}).Load(); 
+  const iconFeature = new ol.Feature({
+  geometry: new ol.geom.Point(
+    ol.proj.fromLonLat([51.37021008190133, 35.73501442579978])
+  ),
+  name: "Somewhere near Nottingham",
+});
+
+const map = new ol.Map({
+  target: "map",
+  key: "web.5EAHhge5tbEecvsbcaQkO2LJrak46QXoAG7zgQBN",
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.OSM(),
+    }),
+    new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [iconFeature],
+      }),
+      style: new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.5, 46],
+          anchorXUnits: "fraction",
+          anchorYUnits: "pixels",
+          src: "http://labs.google.com/ridefinder/images/mm_20_red.png",
+        }),
+      }),
+    }),
+  ],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([51.37021008190133, 35.73501442579978]),
+    zoom: 15,
+  }),
+});
+
+$(".check_reserve").on("click", () => {
+    console.log('asda')
+})
