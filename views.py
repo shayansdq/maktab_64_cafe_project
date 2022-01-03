@@ -19,7 +19,9 @@ def menu():
     if request.method == "GET":
         return render_template("menu.html")
     elif request.method == "POST":
-        return "IT IS POST METHOD"
+        table_id = request.cookies.get("Table")
+        orders = request.values.get("")
+        return f"{table_id} , {orders}"
 
 
 def login():
