@@ -15,6 +15,10 @@ base_variables = {
 }
 
 
+def menu():
+    return render_template("menu.html")
+
+
 def login():
     base_variables['page']['title'] = 'Cashier Login'
     data = base_variables
