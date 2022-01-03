@@ -226,6 +226,3 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
-$(".check_reserve").on("click", () => {
-    $(".swal2-container").css("display", "none");
-})
