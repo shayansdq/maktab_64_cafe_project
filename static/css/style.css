@@ -319,10 +319,6 @@ svg {
     background: white;
 }
 
-.check_reserve {
-    display: none;
-}
-
 @media (max-width: 750px) {
     .desktop-menu {
         display: none;
