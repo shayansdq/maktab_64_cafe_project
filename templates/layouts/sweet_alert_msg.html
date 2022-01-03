@@ -13,11 +13,10 @@
 {% if check_reserve %}
     <script>
         Swal.fire({
-            position: 'center',
             icon: 'error',
-            title: '{{msg}}',
-            showConfirmButton: false,
-            timer: 2100
+            title: 'Oops...',
+            text: '{{ msg }}',
+            footer: '<button class="swal2-confirm" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ data['reserve-button']['content'] }}</button'
         })
     </script>
 {% endif %}
