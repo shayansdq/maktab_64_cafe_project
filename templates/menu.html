@@ -1,489 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>menu List</title>
     <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+            integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+            crossorigin="anonymous"
     />
     <script
-      src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-      integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-      crossorigin="anonymous"
+            src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-      integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-      crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"
     ></script>
     <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-      integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-      crossorigin="anonymous"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <link
-    rel="stylesheet"
-    href="https://unpkg.com/swiper/swiper-bundle.min.css"
-  />
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
 
-    <link rel="stylesheet" href="{{url_for('static', filename='css/menu.css')}}"/>
-  </head>
-  <body>
-    <!-- partial:index.partial.html -->
-    <!-- Nav -->
-    <nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
-      <div class="row">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"/>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- Nav -->
+<nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
+    <div class="row">
         <div class="col">
-          <button
-            type="button"
-            class="btn btn-success mx-1"
-            data-toggle="modal"
-            data-target="#cart"
-          >
-          <i class="fas fa-mug-hot"></i>
-            Cart (<span class="total-count"></span>)
-          </button>
-          <button class="clear-cart btn btn-danger mx-1">
-            <i class="fas fa-trash-alt"></i>
-            Clear Cart</button>
+            <button
+                    type="button"
+                    class="btn btn-success mx-1"
+                    data-toggle="modal"
+                    data-target="#cart"
+            >
+                <i class="fas fa-mug-hot"></i>
+                Cart (<span class="total-count"></span>)
+            </button>
+            <button class="clear-cart btn btn-danger mx-1">
+                <i class="fas fa-trash-alt"></i>
+                Clear Cart
+            </button>
         </div>
-      </div>
-    </nav>
-
-
-
-
+    </div>
+</nav>
 
 
 <!-- tea -->
-    <div class="swiper mySwiper text-center">
-      <h1 class="text-white">Tea</h1>
-      <div class="swiper-wrapper">
+<div class="swiper mySwiper text-center">
+    <h1 class="text-white">Tea</h1>
+    <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/tea.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/tea.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Black Tea</h4>
+                    <p class="card-text">Price: $0.5</p>
+                    <a
+                            href="#"
+                            data-name="black-tea"
+                            data-price="0.5"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Black Tea</h4>
-              <p class="card-text">Price: $0.5</p>
-              <a
-                href="#"
-                data-name="black-tea"
-                data-price="0.5"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/green-tea.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/green-tea.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Green Tea</h4>
+                    <p class="card-text">Price: $0.9</p>
+                    <a
+                            href="#"
+                            data-name="green-tea"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Green Tea</h4>
-              <p class="card-text">Price: $0.9</p>
-              <a
-                href="#"
-                data-name="green-tea"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/green-tea.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/green-tea.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Green Tea</h4>
+                    <p class="card-text">Price: $0.5</p>
+                    <a
+                            href="#"
+                            data-name="green-tea"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Green Tea</h4>
-              <p class="card-text">Price: $0.5</p>
-              <a
-                href="#"
-                data-name="green-tea"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
 
-
-    <!-- coffee -->
-    <div class="swiper mySwiper text-center">
-      <h1 class="text-white">Coffee</h1>
-      <div class="swiper-wrapper">
+<!-- coffee -->
+<div class="swiper mySwiper text-center">
+    <h1 class="text-white">Coffee</h1>
+    <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/espresso.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/espresso.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Espresso</h4>
+                    <p class="card-text">Price: $3</p>
+                    <a
+                            href=""
+                            data-name="Espresso"
+                            data-price="0.5"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Espresso</h4>
-              <p class="card-text">Price: $3</p>
-              <a
-                href=""
-                data-name="Espresso"
-                data-price="0.5"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/cappuccino.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/cappuccino.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Cappuccino</h4>
+                    <p class="card-text">Price: $4.5</p>
+                    <a
+                            href="#"
+                            data-name="Cappuccino"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Cappuccino</h4>
-              <p class="card-text">Price: $4.5</p>
-              <a
-                href="#"
-                data-name="Cappuccino"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/Affogato.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/Affogato.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Affogato</h4>
+                    <p class="card-text">Price: $3</p>
+                    <a
+                            href="#"
+                            data-name="affogato"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Affogato</h4>
-              <p class="card-text">Price: $3</p>
-              <a
-                href="#"
-                data-name="affogato"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
-    <!-- Herbal Tea -->
-    <div class="swiper mySwiper text-center">
-      <h1 class="text-white">Herbal Tea</h1>
-      <div class="swiper-wrapper">
+<!-- Herbal Tea -->
+<div class="swiper mySwiper text-center">
+    <h1 class="text-white">Herbal Tea</h1>
+    <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/herbaltea1.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/herbaltea1.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Herbaltea1</h4>
+                    <p class="card-text">Price: $2</p>
+                    <a
+                            href=""
+                            data-name="Herbaltea1"
+                            data-price="0.5"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Herbaltea1</h4>
-              <p class="card-text">Price: $2</p>
-              <a
-                href=""
-                data-name="Herbaltea1"
-                data-price="0.5"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/herbaltea2.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/herbaltea2.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Herbaltea2</h4>
+                    <p class="card-text">Price: $1</p>
+                    <a
+                            href="#"
+                            data-name="herbaltea2"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Herbaltea2</h4>
-              <p class="card-text">Price: $1</p>
-              <a
-                href="#"
-                data-name="herbaltea2"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/herbaltea3.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/herbaltea3.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Herbaltea3</h4>
+                    <p class="card-text">Price: $1</p>
+                    <a
+                            href="#"
+                            data-name="herbaltea3"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Herbaltea3</h4>
-              <p class="card-text">Price: $1</p>
-              <a
-                href="#"
-                data-name="herbaltea3"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
-    <!-- Shakes -->
-    <div class="swiper mySwiper text-center">
-      <h1 class="text-white">Shakes</h1>
-      <div class="swiper-wrapper">
+<!-- Shakes -->
+<div class="swiper mySwiper text-center">
+    <h1 class="text-white">Shakes</h1>
+    <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/Chocolate-shake.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/Chocolate-shake.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Chocolate Shake</h4>
+                    <p class="card-text">Price: $2.5</p>
+                    <a
+                            href=""
+                            data-name="Chocolate-shake"
+                            data-price="0.5"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Chocolate Shake</h4>
-              <p class="card-text">Price: $2.5</p>
-              <a
-                href=""
-                data-name="Chocolate-shake"
-                data-price="0.5"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/Strawberry-shake.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/Strawberry-shake.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Strawberry Shake</h4>
+                    <p class="card-text">Price: $2.5</p>
+                    <a
+                            href="#"
+                            data-name="strawberry-shake"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Strawberry Shake</h4>
-              <p class="card-text">Price: $2.5</p>
-              <a
-                href="#"
-                data-name="strawberry-shake"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/milkshake.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/milkshake.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Milk Shake</h4>
+                    <p class="card-text">Price: $1.5</p>
+                    <a
+                            href="#"
+                            data-name="milkshake"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Milk Shake</h4>
-              <p class="card-text">Price: $1.5</p>
-              <a
-                href="#"
-                data-name="milkshake"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
-    <!-- Foods -->
-    <div class="swiper mySwiper text-center">
-      <h1 class="text-white">Foods</h1>
-      <div class="swiper-wrapper">
+<!-- Foods -->
+<div class="swiper mySwiper text-center">
+    <h1 class="text-white">Foods</h1>
+    <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/cezar-salad.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/cezar-salad.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Cezar Salad</h4>
+                    <p class="card-text">Price: $4</p>
+                    <a
+                            href=""
+                            data-name="cezar-salad"
+                            data-price="0.5"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Cezar Salad</h4>
-              <p class="card-text">Price: $4</p>
-              <a
-                href=""
-                data-name="cezar-salad"
-                data-price="0.5"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/pasta.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/pasta.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Pasta</h4>
+                    <p class="card-text">Price: $3</p>
+                    <a
+                            href="#"
+                            data-name="pasta"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Pasta</h4>
-              <p class="card-text">Price: $3</p>
-              <a
-                href="#"
-                data-name="pasta"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
         <div class="swiper-slide">
-          <div class="card" style="width: 20rem">
-            <div class="img-container">
-              <img
-              class="card-img-top"
-              src="{{url_for('static', filename='img/cheese&chips.jpg')}}"
-              alt="Card image cap"
-            />
+            <div class="card" style="width: 20rem">
+                <div class="img-container">
+                    <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='img/cheese&chips.jpg') }}"
+                            alt="Card image cap"
+                    />
+                </div>
+                <div class="card-block text-center">
+                    <h4 class="card-title">Cheese & chips</h4>
+                    <p class="card-text">Price: $2.5</p>
+                    <a
+                            href="#"
+                            data-name="cheese&chips"
+                            data-price="0.8"
+                            class="add-to-cart btn btn-success"
+                    >Add<i class="fas fa-add mx-2 "></i></a
+                    >
+                </div>
             </div>
-            <div class="card-block text-center">
-              <h4 class="card-title">Cheese & chips</h4>
-              <p class="card-text">Price: $2.5</p>
-              <a
-                href="#"
-                data-name="cheese&chips"
-                data-price="0.8"
-                class="add-to-cart btn btn-success"
-                >Add<i class="fas fa-add mx-2 "></i></a
-              >
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="cart"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
+<!-- Modal -->
+<div
+        class="modal fade"
+        id="cart"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <table class="show-cart table"></table>
-            <div>Total price: $<span class="total-cart"></span></div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-success">Order now</button>
-          </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="show-cart table"></table>
+                <div>Total price: $<span class="total-cart"></span></div>
+            </div>
+            <div class="modal-footer">
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                >
+                    Close
+                </button>
+                <button type="button" class="btn btn-success">Order now</button>
+            </div>
         </div>
-      </div>
     </div>
-    <!-- partial -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="./script.js"></script>
-  </body>
+</div>
+<!-- partial -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
 </html>
