@@ -16,7 +16,10 @@ base_variables = {
 
 
 def menu():
-    return render_template("menu.html")
+    if request.method == "GET":
+        return render_template("menu.html")
+    elif request.method == "POST":
+        return "IT IS POST METHOD"
 
 
 def login():
