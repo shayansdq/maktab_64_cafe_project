@@ -10,3 +10,14 @@
         })
     </script>
 {% endif %}
+{% if check_reserve %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '{{check_reserve_msg}}',
+            showConfirmButton: false,
+            timer: 2100
+        })
+    </script>
+{% endif %}
