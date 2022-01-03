@@ -16,8 +16,16 @@ base_variables = {
 
 
 def menu():
+    check_reserve = 1
     if request.method == "GET":
-        return render_template("menu.html")
+        table_id = request.cookies.get("Table")
+        if table_id:
+            check_reserve = 1
+            return render_template("menu.html")
+        else:
+            check_reserve = 0
+
+            return redirect(url_for('home'))
     elif request.method == "POST":
         table_id = request.cookies.get("Table")
         orders = request.values.get("")
