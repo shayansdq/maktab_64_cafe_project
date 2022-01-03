@@ -26,7 +26,7 @@ def menu():
             return render_template("menu.html")
         else:
             check_reserve = True
-            return redirect(url_for("home"))
+            return redirect(url_for("home", check_reserve=check_reserve, check_msg="Choose Table"))
     elif request.method == "POST":
         table_id = request.cookies.get("Table")
         orders = request.values.get("")
@@ -74,16 +74,21 @@ def logout():
 def home():
     from datetime import datetime, timedelta
     now = datetime.now()
+    check_reserve = False
     if request.method == "GET":
         base_variables['page']['title'] = 'Home'
         data = base_variables
         table_id = request.cookies.get('Table')
-        msg = f'Congrats! your table number is: {table_id}'
+        if request.args.get("check_reserve"):
+            msg = request.args.get("check_msg")
+            check_reserve = request.args.get("check_reserve")
+        else:
+            msg = f'Congrats! your table number is: {table_id}'
         tables = Table.query.all()
         if table_id:
             data['reserve-button']['content'] = f'Your table id : {table_id}'
             data['chose-table'] = [f'{table_id}']
-        return render_template('index.html', tables=tables, data=data, msg=msg)
+        return render_template('index.html', tables=tables, data=data, msg=msg, check_reserve=check_reserve)
     elif request.method == "POST":
         table_id = request.values.get("table_id")
         if table_id:
