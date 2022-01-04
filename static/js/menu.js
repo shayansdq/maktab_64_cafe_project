@@ -226,3 +226,20 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
+
+/*$(document).ready(function(){
+    var clicked;
+    $(".send-order").click(function(){
+        let ordersValue = cart
+        $.ajax({
+          type : 'POST',
+          url : "{{url_for('send_order')}}",
+          data : {
+              'orders':ordersValue
+          }
+        });
+     });
+    });*/
+//
+// let ordersValue = cart
+// console.log(ordersValue)

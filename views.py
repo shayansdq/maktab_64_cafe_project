@@ -2,7 +2,8 @@ from models import *
 from database import db
 from flask import request, redirect, url_for, make_response, render_template, flash, make_response
 from forms import *
-
+import json
+from werkzeug.datastructures import ImmutableMultiDict
 base_variables = {
     "page": {
         "base_title": "Cafe Dark",
@@ -34,7 +35,17 @@ def menu():
 
 
 def send_order():
-    request.form['x']
+    if request.method == "POST":
+        table_id = request.cookies.get('Table')
+        orders = request.form
+        orders = orders.to_dict(flat=False)
+        for i,j in orders.items():
+            orders = i
+        orders = json.loads(orders)
+        for order in orders:
+            print(order)
+
+    return '', 204
 
 
 def login():

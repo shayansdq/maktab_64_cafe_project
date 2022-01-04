@@ -55,6 +55,7 @@
                 <i class="fas fa-trash-alt"></i>
                 Clear Cart
             </button>
+            <a href="{{ url_for('home') }}">home</a>
         </div>
     </div>
 </nav>
@@ -490,21 +491,22 @@
 <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
 <script>
 
-    $(document).ready(function(){
+
     var clicked;
-    $('.send-order').click(function(){
-        clicked1 = $(this).attr("name");
-        clicked2 = $(this).attr("value");
+    $(".send-order").click(function(){
+        let ordersValue = cart
+        var json = JSON.stringify(ordersValue);
         $.ajax({
-          type : 'POST',
-          url : "{{url_for('send-order')}}",
-          data : {
-              'card_id':clicked1,
-              'value':clicked2
-          }
+            type: "POST",
+            url: "{{url_for('send_order')}}",
+            data: json,
+            dataType: "json",
+            success: function(msg) {
+                alert('In Ajax');
+            }
         });
      });
-    });
+
 </script>
 </body>
 </html>
