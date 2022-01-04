@@ -31,29 +31,34 @@
     />
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"/>
+{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">#}
+{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/res-modal-style.css') }}">#}
 </head>
 <body>
+{#{% include 'layouts/__nav.html' %}#}
+<br><br><br>
 <!-- partial:index.partial.html -->
 <!-- Nav -->
-{#<nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">#}
-{#    <div class="row">#}
-{#        <div class="col">#}
-{#            <button#}
-{#                    type="button"#}
-{#                    class="btn btn-success mx-1"#}
-{#                    data-toggle="modal"#}
-{#                    data-target="#cart"#}
-{#            >#}
-{#                <i class="fas fa-mug-hot"></i>#}
-{#                Cart (<span class="total-count"></span>)#}
-{#            </button>#}
-{#            <button class="clear-cart btn btn-danger mx-1">#}
-{#                <i class="fas fa-trash-alt"></i>#}
-{#                Clear Cart#}
-{#            </button>#}
-{#        </div>#}
-{#    </div>#}
-{#</nav>#}
+<nav class="navbar navbar-inverse fixed-top">
+    <div class="row">
+        <div class="col">
+            <button
+                    type="button"
+                    class="btn btn-success mx-1"
+                    data-toggle="modal"
+                    data-target="#cart"
+            >
+                <i class="fas fa-mug-hot"></i>
+                Cart (<span class="total-count"></span>)
+            </button>
+            <button class="clear-cart btn btn-danger mx-1">
+                <i class="fas fa-trash-alt"></i>
+                Clear Cart
+            </button>
+        </div>
+    </div>
+</nav>
+
 
 
 <!-- tea -->
@@ -461,7 +466,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="show-cart table"></table>
+                <table class="show-cart table">
+
+                </table>
                 <div>Total price: $<span class="total-cart"></span></div>
             </div>
             <div class="modal-footer">
@@ -472,7 +479,7 @@
                 >
                     Close
                 </button>
-                <button type="button" class="btn btn-success">Order now</button>
+                <button type="button" class="btn btn-success send-order">Order now</button>
             </div>
         </div>
     </div>
@@ -481,5 +488,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+<script>
+
+    $(document).ready(function(){
+    var clicked;
+    $('.send-order').click(function(){
+        clicked1 = $(this).attr("name");
+        clicked2 = $(this).attr("value");
+        $.ajax({
+          type : 'POST',
+          url : "{{url_for('send-order')}}",
+          data : {
+              'card_id':clicked1,
+              'value':clicked2
+          }
+        });
+     });
+    });
+</script>
 </body>
 </html>

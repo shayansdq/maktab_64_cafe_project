@@ -23,7 +23,7 @@ def menu():
         table_id = request.cookies.get("Table")
         if table_id:
             check_reserve = False
-            return render_template("menu.html")
+            return render_template("menu.html", data=data)
         else:
             check_reserve = True
             return redirect(url_for("home", check_reserve=check_reserve, check_msg="Choose Table"))
@@ -31,6 +31,10 @@ def menu():
         table_id = request.cookies.get("Table")
         orders = request.values.get("")
         return f"{table_id} , {orders}"
+
+
+def send_order():
+    request.form['x']
 
 
 def login():

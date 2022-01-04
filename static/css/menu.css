@@ -1,8 +1,8 @@
 
 body{
-  padding-top: 80px;
+  /*padding-top: 80px;*/
   background: linear-gradient(90deg, rgba(9,5,4,1) 25%, rgba(89,51,42,1) 71%, rgba(9,5,4,1) 100%);
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans Pro', sans-serif;
 }
 h1{
   margin-top: 50px;
@@ -42,8 +42,8 @@ h1{
   box-shadow: 0 0 5px #333;
 }
 
-a{
-  padding: 5px;
+.swiper a{
+  padding: 10px;
   min-width:60px;
   background-color: rgba(80, 50, 6, 0.651) !important;
   color: #fff;
@@ -53,7 +53,7 @@ a{
   outline: none;
   transition: .5s;
 }
-a:hover{
+.swiper a:hover{
   background-color: #5CB85C !important;
   box-shadow: 0 0 7px #333;
   width: 150px;
