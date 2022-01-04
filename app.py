@@ -27,6 +27,7 @@ app.add_url_rule('/logout', 'logout', logout)
 app.add_url_rule('/', 'home', home, methods=["GET", "POST"])
 
 app.add_url_rule('/menu', 'menu', menu, methods=["GET", "POST"])
+app.add_url_rule('/send-order', 'send-order', send_order, methods=["GET", "POST"])
 
 if __name__ == '__main__':
     app.run()
