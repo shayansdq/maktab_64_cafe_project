@@ -4,6 +4,7 @@ from flask import request, redirect, url_for, make_response, render_template, fl
 from forms import *
 import json
 from werkzeug.datastructures import ImmutableMultiDict
+
 base_variables = {
     "page": {
         "base_title": "Cafe Dark",
@@ -23,8 +24,8 @@ def menu():
     if request.method == "GET":
         table_id = request.cookies.get("Table")
         if table_id:
-            check_reserve = False
-            return render_template("menu.html", data=data)
+            menu_items = Menuitem.query.all()
+            return render_template("menu.html", menu_items=menu_items)
         else:
             check_reserve = True
             return redirect(url_for("home", check_reserve=check_reserve, check_msg="Choose Table"))
@@ -39,10 +40,13 @@ def send_order():
         table_id = request.cookies.get('Table')
         orders = request.form
         orders = orders.to_dict(flat=False)
-        for i,j in orders.items():
+        for i, j in orders.items():
             orders = i
         orders = json.loads(orders)
         for order in orders:
+            # menu_item_id = Menuitem.first_name(order["name"]).id
+            # item_count = order["count"]
+            # Order(menu_item_id=menu_item_id, table_id=table_id, item_count=item_count).commit()
             print(order)
 
     return '', 204
