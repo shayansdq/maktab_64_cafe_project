@@ -47,8 +47,6 @@ def send_order():
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
             Order(menu_item_id=menu_item_id, table_id=table_id, item_count=item_count).create()
-            print(order)
-
     return '', 204
 
 
