@@ -31,8 +31,8 @@
     />
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"/>
-{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">#}
-{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/res-modal-style.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">#}
+    {#    <link rel="stylesheet" href="{{ url_for('static', filename='css/res-modal-style.css') }}">#}
 </head>
 <body>
 {#{% include 'layouts/__nav.html' %}#}
@@ -55,83 +55,42 @@
                 <i class="fas fa-trash-alt"></i>
                 Clear Cart
             </button>
-            <a href="{{ url_for('home') }}">home</a>
+            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">home</a></button>
         </div>
     </div>
 </nav>
-
 
 
 <!-- tea -->
 <div class="swiper mySwiper text-center">
     <h1 class="text-white">Tea</h1>
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/tea.jpg') }}"
-                            alt="Card image cap"
-                    />
+        {% for item in menu_items %}
+            {% if item.item_category_id == 1 %}
+                <div class="swiper-slide">
+                    <div class="card" style="width: 20rem">
+                        <div class="img-container">
+                            <img
+                                    class="card-img-top"
+                                    src="{{ url_for('static', filename='img/tea.jpg') }}"
+                                    alt="Card image cap"
+                            />
+                        </div>
+                        <div class="card-block text-center">
+                            <h4 class="card-title">{{ item.item_name }}</h4>
+                            <p class="card-text">${{ item.price }}</p>
+                            <a
+                                    href="#"
+                                    data-name="{{ item.item_name }}"
+                                    data-price="{{ item.price }}"
+                                    class="add-to-cart btn btn-success"
+                            >Add<i class="fas fa-add mx-2 "></i></a
+                            >
+                        </div>
+                    </div>
                 </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Black Tea</h4>
-                    <p class="card-text">Price: $0.5</p>
-                    <a
-                            href="#"
-                            data-name="black-tea"
-                            data-price="0.5"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/green-tea.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Green Tea</h4>
-                    <p class="card-text">Price: $0.9</p>
-                    <a
-                            href="#"
-                            data-name="green-tea"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/green-tea.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Green Tea</h4>
-                    <p class="card-text">Price: $0.5</p>
-                    <a
-                            href="#"
-                            data-name="green-tea"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -143,72 +102,32 @@
 <div class="swiper mySwiper text-center">
     <h1 class="text-white">Coffee</h1>
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/espresso.jpg') }}"
-                            alt="Card image cap"
-                    />
+        {% for item in menu_items %}
+            {% if item.item_category_id == 2 %}
+                <div class="swiper-slide">
+                    <div class="card" style="width: 20rem">
+                        <div class="img-container">
+                            <img
+                                    class="card-img-top"
+                                    src="{{ url_for('static', filename='img/tea.jpg') }}"
+                                    alt="Card image cap"
+                            />
+                        </div>
+                        <div class="card-block text-center">
+                            <h4 class="card-title">{{ item.item_name }}</h4>
+                            <p class="card-text">${{ item.price }}</p>
+                            <a
+                                    href="#"
+                                    data-name="{{ item.item_name }}"
+                                    data-price="{{ item.price }}"
+                                    class="add-to-cart btn btn-success"
+                            >Add<i class="fas fa-add mx-2 "></i></a
+                            >
+                        </div>
+                    </div>
                 </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Espresso</h4>
-                    <p class="card-text">Price: $3</p>
-                    <a
-                            href="#"
-                            data-name="Espresso"
-                            data-price="0.5"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/cappuccino.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Cappuccino</h4>
-                    <p class="card-text">Price: $4.5</p>
-                    <a
-                            href="#"
-                            data-name="Cappuccino"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/Affogato.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Affogato</h4>
-                    <p class="card-text">Price: $3</p>
-                    <a
-                            href="#"
-                            data-name="affogato"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -219,72 +138,32 @@
 <div class="swiper mySwiper text-center">
     <h1 class="text-white">Herbal Tea</h1>
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/herbaltea1.jpg') }}"
-                            alt="Card image cap"
-                    />
+        {% for item in menu_items %}
+            {% if item.item_category_id == 3 %}
+                <div class="swiper-slide">
+                    <div class="card" style="width: 20rem">
+                        <div class="img-container">
+                            <img
+                                    class="card-img-top"
+                                    src="{{ url_for('static', filename='img/tea.jpg') }}"
+                                    alt="Card image cap"
+                            />
+                        </div>
+                        <div class="card-block text-center">
+                            <h4 class="card-title">{{ item.item_name }}</h4>
+                            <p class="card-text">${{ item.price }}</p>
+                            <a
+                                    href="#"
+                                    data-name="{{ item.item_name }}"
+                                    data-price="{{ item.price }}"
+                                    class="add-to-cart btn btn-success"
+                            >Add<i class="fas fa-add mx-2 "></i></a
+                            >
+                        </div>
+                    </div>
                 </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Herbaltea1</h4>
-                    <p class="card-text">Price: $2</p>
-                    <a
-                            href=""
-                            data-name="Herbaltea1"
-                            data-price="0.5"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/herbaltea2.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Herbaltea2</h4>
-                    <p class="card-text">Price: $1</p>
-                    <a
-                            href="#"
-                            data-name="herbaltea2"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/herbaltea3.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Herbaltea3</h4>
-                    <p class="card-text">Price: $1</p>
-                    <a
-                            href="#"
-                            data-name="herbaltea3"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -295,72 +174,32 @@
 <div class="swiper mySwiper text-center">
     <h1 class="text-white">Shakes</h1>
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/Chocolate-shake.jpg') }}"
-                            alt="Card image cap"
-                    />
+        {% for item in menu_items %}
+            {% if item.item_category_id == 4 %}
+                <div class="swiper-slide">
+                    <div class="card" style="width: 20rem">
+                        <div class="img-container">
+                            <img
+                                    class="card-img-top"
+                                    src="{{ url_for('static', filename='img/tea.jpg') }}"
+                                    alt="Card image cap"
+                            />
+                        </div>
+                        <div class="card-block text-center">
+                            <h4 class="card-title">{{ item.item_name }}</h4>
+                            <p class="card-text">${{ item.price }}</p>
+                            <a
+                                    href="#"
+                                    data-name="{{ item.item_name }}"
+                                    data-price="{{ item.price }}"
+                                    class="add-to-cart btn btn-success"
+                            >Add<i class="fas fa-add mx-2 "></i></a
+                            >
+                        </div>
+                    </div>
                 </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Chocolate Shake</h4>
-                    <p class="card-text">Price: $2.5</p>
-                    <a
-                            href=""
-                            data-name="Chocolate-shake"
-                            data-price="0.5"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/Strawberry-shake.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Strawberry Shake</h4>
-                    <p class="card-text">Price: $2.5</p>
-                    <a
-                            href="#"
-                            data-name="strawberry-shake"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/milkshake.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Milk Shake</h4>
-                    <p class="card-text">Price: $1.5</p>
-                    <a
-                            href="#"
-                            data-name="milkshake"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -371,72 +210,32 @@
 <div class="swiper mySwiper text-center">
     <h1 class="text-white">Foods</h1>
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/cezar-salad.jpg') }}"
-                            alt="Card image cap"
-                    />
+        {% for item in menu_items %}
+            {% if item.item_category_id == 5 %}
+                <div class="swiper-slide">
+                    <div class="card" style="width: 20rem">
+                        <div class="img-container">
+                            <img
+                                    class="card-img-top"
+                                    src="{{ url_for('static', filename='img/tea.jpg') }}"
+                                    alt="Card image cap"
+                            />
+                        </div>
+                        <div class="card-block text-center">
+                            <h4 class="card-title">{{ item.item_name }}</h4>
+                            <p class="card-text">${{ item.price }}</p>
+                            <a
+                                    href="#"
+                                    data-name="{{ item.item_name }}"
+                                    data-price="{{ item.price }}"
+                                    class="add-to-cart btn btn-success"
+                            >Add<i class="fas fa-add mx-2 "></i></a
+                            >
+                        </div>
+                    </div>
                 </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Cezar Salad</h4>
-                    <p class="card-text">Price: $4</p>
-                    <a
-                            href=""
-                            data-name="cezar-salad"
-                            data-price="0.5"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/pasta.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Pasta</h4>
-                    <p class="card-text">Price: $3</p>
-                    <a
-                            href="#"
-                            data-name="pasta"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 20rem">
-                <div class="img-container">
-                    <img
-                            class="card-img-top"
-                            src="{{ url_for('static', filename='img/cheese&chips.jpg') }}"
-                            alt="Card image cap"
-                    />
-                </div>
-                <div class="card-block text-center">
-                    <h4 class="card-title">Cheese & chips</h4>
-                    <p class="card-text">Price: $2.5</p>
-                    <a
-                            href="#"
-                            data-name="cheese&chips"
-                            data-price="0.8"
-                            class="add-to-cart btn btn-success"
-                    >Add<i class="fas fa-add mx-2 "></i></a
-                    >
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -493,7 +292,7 @@
 
 
     var clicked;
-    $(".send-order").click(function(){
+    $(".send-order").click(function () {
         let ordersValue = cart
         var json = JSON.stringify(ordersValue);
         $.ajax({
@@ -501,11 +300,11 @@
             url: "{{url_for('send_order')}}",
             data: json,
             dataType: "json",
-            success: function(msg) {
+            success: function (msg) {
                 alert('In Ajax');
             }
         });
-     });
+    });
 
 </script>
 </body>
