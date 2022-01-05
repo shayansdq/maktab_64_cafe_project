@@ -70,7 +70,6 @@ class Table(db.Model):
     cafe_space_position = db.Column(db.String(16), unique=True)
     reserved = db.Column(db.Boolean, default=False)
     receipts = db.relationship('Receipt', backref='table', lazy='dynamic')
-    orders = db.relationship('Order', backref='table', lazy='dynamic')
 
     def create(self):
         db.session.add(self)
@@ -111,13 +110,12 @@ class Order(db.Model):
 
 class Receipt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    orders = db.Column(db.PickleType)
     table_id = db.Column(db.Integer, db.ForeignKey('table.id'))
     time_stamp = db.Column(db.DateTime)
-    cashier_id = db.Column(db.Integer, db.ForeignKey('cashier.id'))
     pay_status = db.Column(db.Boolean, default=False)
     total_price = db.Column(db.Integer)
     final_price = db.Column(db.Integer)
+    orders = db.relationship('Order', backref='receipt', lazy='dynamic')
 
     def create(self):
         db.session.add(self)
@@ -126,6 +124,7 @@ class Receipt(db.Model):
     @staticmethod
     def final_receipt(table_id):
         return Receipt.query.filter_by(table_id=table_id).first()
+
 
     def __repr__(self):
         return '<receipt: %r>' % self.table_id
