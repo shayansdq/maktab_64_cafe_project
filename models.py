@@ -105,7 +105,7 @@ class Table(db.Model):
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     menu_item_id = db.Column(db.Integer, db.ForeignKey('menuitem.id'))
-    table_id = db.Column(db.Integer, db.ForeignKey('table.id'))
+    receipt_id = db.Column(db.Integer, db.ForeignKey('receipt.id'))
     item_count = db.Column(db.SmallInteger)
     status = db.Column(db.String(32), default='waiting')
     submit_time = db.Column(db.DateTime)
@@ -162,4 +162,3 @@ class Category(db.Model):
 
     def __repr__(self):
         return '<category number: %r>' % self.id
-
