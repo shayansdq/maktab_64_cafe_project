@@ -12,7 +12,6 @@ class Cashier(db.Model):
     email = db.Column(db.String(32), unique=True)
     password_hash = db.Column(db.String(128))
     register_date = db.Column(db.DateTime)
-    receipts = db.relationship('Receipt', backref='receipt', lazy='dynamic')
 
     @property
     def password(self):
@@ -41,6 +40,21 @@ class Cashier(db.Model):
         return '<Cashier: %r>' % self.username
 
 
+class Discount(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    value = db.Column(db.Integer, unique=True)
+    categories = db.relationship('Category', backref='discount')
+    menuitems = db.relationship('Menuitem', backref='discount')
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @staticmethod
+    def get_by_val(value):
+        return Discount.query.filter_by(value=value).first().id
+
+
 class Menuitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(32), unique=True)
@@ -51,6 +65,7 @@ class Menuitem(db.Model):
     is_delete = db.Column(db.Boolean, default=False)
     item_category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     orders = db.relationship('Order', backref='menuitem')
+    discount_id = db.Column(db.Integer, db.ForeignKey('discount.id'))
 
     def create(self):
         db.session.add(self)
@@ -135,6 +150,7 @@ class Category(db.Model):
     type = db.Column(db.String(32), unique=True)
     duration = db.Column(db.String(32))
     menu_item = db.relationship('Menuitem', backref='menuitem', lazy='dynamic')
+    discount_id = db.Column(db.Integer, db.ForeignKey('discount.id'))
 
     def create(self):
         db.session.add(self)
@@ -146,3 +162,4 @@ class Category(db.Model):
 
     def __repr__(self):
         return '<category number: %r>' % self.id
+
