@@ -43,8 +43,8 @@ class Cashier(db.Model):
 class Discount(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     value = db.Column(db.Integer, unique=True)
-    categories = db.relationship('Category', backref='discount')
-    menuitems = db.relationship('Menuitem', backref='discount')
+    categories = db.relationship('Category', backref='discount', lazy='dynamic')
+    menuitems = db.relationship('Menuitem', backref='discount', lazy='dynamic')
 
     def create(self):
         db.session.add(self)
@@ -59,7 +59,6 @@ class Menuitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(32), unique=True)
     price = db.Column(db.Integer)
-    discount = db.Column(db.Integer)
     serving_time_period = db.Column(db.String(16))
     estimated_cooking_time = db.Column(db.Time)
     is_delete = db.Column(db.Boolean, default=False)
@@ -139,7 +138,6 @@ class Receipt(db.Model):
     @staticmethod
     def final_receipt(table_id):
         return Receipt.query.filter_by(table_id=table_id).first()
-
 
     def __repr__(self):
         return '<receipt: %r>' % self.table_id
