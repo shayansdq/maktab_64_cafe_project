@@ -5,13 +5,13 @@ from datetime import datetime
 
 class Cashier(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(32), nullable=False)
-    last_name = db.Column(db.String(32), nullable=False)
-    username = db.Column(db.String(15), unique=True, nullable=False)
-    phone_number = db.Column(db.String(13), unique=True, nullable=False)
-    email = db.Column(db.String(32), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-    register_date = db.Column(db.DateTime, default=datetime.now())
+    first_name = db.Column(db.String(32))
+    last_name = db.Column(db.String(32))
+    username = db.Column(db.String(15), unique=True)
+    phone_number = db.Column(db.String(13), unique=True)
+    email = db.Column(db.String(32), unique=True)
+    password_hash = db.Column(db.String(128))
+    register_date = db.Column(db.DateTime)
 
     @property
     def password(self):
@@ -42,9 +42,9 @@ class Cashier(db.Model):
 
 class Discount(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    value = db.Column(db.Integer, unique=True, nullable=True)
-    categories = db.relationship('Category', backref='discount', lazy='dynamic', nullable=False)
-    menuitems = db.relationship('Menuitem', backref='discount', lazy='dynamic', nullable=False)
+    value = db.Column(db.Integer, unique=True)
+    categories = db.relationship('Category', backref='discount', lazy='dynamic')
+    menuitems = db.relationship('Menuitem', backref='discount', lazy='dynamic')
 
     def create(self):
         db.session.add(self)
@@ -80,6 +80,8 @@ class Menuitem(db.Model):
 
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    table_name = db.Column(db.String(32), unique=True)
+    cafe_space_position = db.Column(db.String(16), unique=True)
     reserved = db.Column(db.Boolean, default=False)
     receipts = db.relationship('Receipt', backref='table', lazy='dynamic')
 
@@ -105,7 +107,7 @@ class Order(db.Model):
     receipt_id = db.Column(db.Integer, db.ForeignKey('receipt.id'))
     item_count = db.Column(db.SmallInteger)
     status = db.Column(db.String(32), default='waiting')
-    submit_time = db.Column(db.DateTime, default=datetime.now())
+    submit_time = db.Column(db.DateTime)
     is_delete = db.Column(db.Boolean, default=False)
 
     @staticmethod
@@ -123,7 +125,7 @@ class Order(db.Model):
 class Receipt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     table_id = db.Column(db.Integer, db.ForeignKey('table.id'))
-    time_stamp = db.Column(db.DateTime, default=datetime.now())
+    time_stamp = db.Column(db.DateTime)
     pay_status = db.Column(db.Boolean, default=False)
     total_price = db.Column(db.Integer)
     final_price = db.Column(db.Integer)
