@@ -148,7 +148,7 @@ class Category(db.Model):
     type = db.Column(db.String(32), unique=True)
     duration = db.Column(db.String(32))
     menu_item = db.relationship('Menuitem', backref='menuitem', lazy='dynamic')
-    discount_id = db.Column(db.Integer, db.ForeignKey('discount.id'))
+    # discount_id = db.Column(db.Integer, db.ForeignKey('discount.id'))
 
     def create(self):
         db.session.add(self)
