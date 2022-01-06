@@ -74,5 +74,5 @@ const map = new ol.Map({
 });
 
 $(".check_reserve").on("click", () => {
-    console.log('asda')
+   $('.swal2-container').hide()
 })
