@@ -107,7 +107,7 @@ class Order(db.Model):
     receipt_id = db.Column(db.Integer, db.ForeignKey('receipt.id'))
     item_count = db.Column(db.SmallInteger)
     status = db.Column(db.String(32), default='waiting')
-    submit_time = db.Column(db.DateTime)
+    submit_time = db.Column(db.DateTime, default=datetime.now())
     is_delete = db.Column(db.Boolean, default=False)
 
     @staticmethod
@@ -125,7 +125,7 @@ class Order(db.Model):
 class Receipt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     table_id = db.Column(db.Integer, db.ForeignKey('table.id'))
-    time_stamp = db.Column(db.DateTime)
+    time_stamp = db.Column(db.DateTime, default=datetime.now())
     pay_status = db.Column(db.Boolean, default=False)
     total_price = db.Column(db.Integer)
     final_price = db.Column(db.Integer)
