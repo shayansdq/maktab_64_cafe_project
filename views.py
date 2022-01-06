@@ -36,6 +36,7 @@ def menu():
 
 def send_order():
     if request.method == "POST":
+        # todo : must be get receipt id
         table_id = request.cookies.get('Table')
         orders = request.form
         orders = orders.to_dict(flat=False)
@@ -46,7 +47,7 @@ def send_order():
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
             # todo : create part of get receipt id in menu part
-            Order(menu_item_id=menu_item_id, table_id=table_id, item_count=item_count).create()
+            Order(menu_item_id=menu_item_id, receipt_id=table_id, item_count=item_count).create()
     return '', 204
 
 
@@ -114,6 +115,7 @@ def home():
             table.create()
             flash(f'Congrats! your table id is {table_id}')
             resp = make_response(redirect(url_for("home")))
+            # todo : must be change this part
             resp.set_cookie("Table", f"{table.id}", expires=now + timedelta(hours=3))
             return resp
         return redirect(url_for('home'))
