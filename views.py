@@ -19,13 +19,12 @@ base_variables = {
 
 def menu():
     check_reserve = None
-    base_variables['page']['title'] = 'Home'
-    data = base_variables
     if request.method == "GET":
         table_id = request.cookies.get("Table")
         if table_id:
             menu_items = Menuitem.query.all()
-            return render_template("menu.html", menu_items=menu_items)
+            categories = Category.query.all()
+            return render_template("menu.html", menu_items=menu_items, categories=categories)
         else:
             check_reserve = True
             return redirect(url_for("home", check_reserve=check_reserve, check_msg="Choose Table"))
@@ -46,6 +45,7 @@ def send_order():
         for order in orders:
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
+            # todo : create part of get receipt id in menu part
             Order(menu_item_id=menu_item_id, table_id=table_id, item_count=item_count).create()
     return '', 204
 
