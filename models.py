@@ -43,7 +43,6 @@ class Cashier(db.Model):
 class Discount(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     value = db.Column(db.Integer, unique=True)
-    categories = db.relationship('Category', backref='discount', lazy='dynamic')
     menuitems = db.relationship('Menuitem', backref='discount', lazy='dynamic')
 
     def create(self):
@@ -148,7 +147,6 @@ class Category(db.Model):
     type = db.Column(db.String(32), unique=True)
     duration = db.Column(db.String(32))
     menu_item = db.relationship('Menuitem', backref='menuitem', lazy='dynamic')
-    # discount_id = db.Column(db.Integer, db.ForeignKey('discount.id'))
 
     def create(self):
         db.session.add(self)
