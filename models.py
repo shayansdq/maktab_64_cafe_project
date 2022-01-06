@@ -57,7 +57,7 @@ class Discount(db.Model):
 
 class Menuitem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    item_name = db.Column(db.String(32), unique=True)
+    item_name = db.Column(db.String(32))
     price = db.Column(db.Integer)
     serving_time_period = db.Column(db.String(16))
     estimated_cooking_time = db.Column(db.Time)
