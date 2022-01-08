@@ -82,7 +82,8 @@ def dashboard():
         categories = Category.query.all()
         user_name = Cashier.get_by_id(user_id).username
         resp = make_response(
-            render_template("AdminPanel/index.html", data=data, menu={"menu_items": menu_items , "categories":categories}, name=str(user_name)))
+            render_template("AdminPanel/index.html", data=data,
+                            menu={"menu_items": menu_items, "categories": categories}, name=str(user_name)))
         return resp
     else:
         base_variables['page']['title'] = 'Login'
