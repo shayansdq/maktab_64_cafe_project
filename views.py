@@ -121,3 +121,7 @@ def home():
         return redirect(url_for('home'))
     else:
         return "bad request"
+
+
+def uploader():
+    return render_template("upload.html")
