@@ -79,7 +79,7 @@ def dashboard():
         base_variables['page']['title'] = 'Dashboard'
         data = base_variables
         user_name = Cashier.get_by_id(user_id).username
-        resp = make_response(render_template("./AdminPanel2/index.html", data=data, name=str(user_name)))
+        resp = make_response(render_template("./AdminPanel/index.html", data=data, name=str(user_name)))
         return resp
     else:
         base_variables['page']['title'] = 'Login'
