@@ -132,10 +132,16 @@ def home():
 
 
 def uploader():
-    return render_template("upload.html")
+    if request.method == "GET":
+        return render_template("upload.html")
+    elif request.method == "POST":
+        thefile = request.files["file"]
+        thefile.save(os.path.join(path, thefile.filename))
+        return thefile.filename, "Successful uploaded"
+    else:
+        return "Bad Request"
 
-
-def save_file():
-    thefile = request.files["file"]
-    thefile.save(os.path.join(path, thefile.filename))
-    return thefile.filename, "Successful upload"
+# def save_file():
+#     thefile = request.files["file"]
+#     thefile.save(os.path.join(path, thefile.filename))
+#     return thefile.filename, "Successful upload"

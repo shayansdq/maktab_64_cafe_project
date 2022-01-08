@@ -82,13 +82,13 @@
     </style>
 </head>
 <body>
-<form action="/uploaded" enctype="multipart/form-data" method="post">
+<form action="{{ url_for("upload") }}" enctype="multipart/form-data" method="POST">
     <div class="wrapper">
         <div class="file-upload">
             <input type="file" name="file"/>
             <i class="fa fa-arrow-up"></i>
         </div>
-        <input class="sub" type="submit" value="upload"/>
+        <input class="sub" type="submit" value="Upload It"/>
     </div>
 </form>
 </body>
