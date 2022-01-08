@@ -23,7 +23,7 @@ if __name__ == "__main__":
     phone_number = args.phone_number
     email = args.email
     password_hash = generate_password_hash(args.password_hash, method='sha256')
-    conn: connection = psycopg2.connect(dbname='cafe', user='mohammadreza', host='localhost', port=5432, password=7985)
+    conn: connection = psycopg2.connect(dbname="gkfiljss", user='gkfiljss', host='kashin.db.elephantsql.com', port=5432, password="AftCRK0OqR14N6XffDFBimNvv3-aONHt")
     curs = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     curs.execute(
         f"""INSERT INTO cashier (first_name,last_name,username,phone_number,email,password_hash) VALUES (%s,%s,%s,%s,%s,%s)""",
