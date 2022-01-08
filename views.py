@@ -132,16 +132,16 @@ def home():
 
 
 def uploader():
-    if request.method == "GET":
-        return render_template("upload.html")
-    elif request.method == "POST":
-        thefile = request.files["file"]
-        thefile.save(os.path.join(path, thefile.filename))
-        return thefile.filename, "Successful uploaded"
+    # login requirement
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        if request.method == "GET":
+            return render_template("upload.html")
+        elif request.method == "POST":
+            thefile = request.files["file"]
+            thefile.save(os.path.join(path, thefile.filename))
+            return thefile.filename, "Successful uploaded"
+        else:
+            return "Bad Request"
     else:
-        return "Bad Request"
-
-# def save_file():
-#     thefile = request.files["file"]
-#     thefile.save(os.path.join(path, thefile.filename))
-#     return thefile.filename, "Successful upload"
+        return "Access Denied"
