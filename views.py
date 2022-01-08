@@ -139,6 +139,7 @@ def uploader():
             return render_template("upload.html")
         elif request.method == "POST":
             thefile = request.files["file"]
+            thefile.filename = request.form["nameforfile"]
             thefile.save(os.path.join(path, thefile.filename))
             return thefile.filename, "Successful uploaded"
         else:
