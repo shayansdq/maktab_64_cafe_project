@@ -1,9 +1,13 @@
 from models import *
+import os
 from database import db
 from flask import request, redirect, url_for, make_response, render_template, flash, make_response
 from forms import *
 import json
 from werkzeug.datastructures import ImmutableMultiDict
+
+path = os.path.join("uploads")
+os.makedirs(path, exist_ok=True)
 
 base_variables = {
     "page": {
@@ -125,3 +129,8 @@ def home():
 
 def uploader():
     return render_template("upload.html")
+
+def save_file():
+    thefile = request.files["file"]
+    thefile.save(os.path.join(path, thefile.filename))
+    return thefile.filename, "Successful upload"
