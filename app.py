@@ -32,7 +32,5 @@ app.add_url_rule('/send_order', 'send_order', send_order, methods=["POST"])
 
 app.add_url_rule('/upload', 'upload', uploader, methods=["GET", "POST"])
 
-# app.add_url_rule('/uploaded', 'save_file', save_file, methods=['POST'])
-
 if __name__ == '__main__':
     app.run()
