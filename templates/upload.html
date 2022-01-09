@@ -86,7 +86,7 @@
     </style>
 </head>
 <body>
-<form action="{{ url_for("upload") }}" enctype="multipart/form-data" method="POST">
+<form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
     <div class="wrapper">
         <div class="file-upload">
             <input type="file" name="file"/>
@@ -95,9 +95,22 @@
     </div>
     <div style="margin-top: -175px">
         <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
-            <label for="input_name" style="font-size: 1.5rem;">Enter Your File Name :</label>
+            <label for="input_name" style="font-size: 1.5rem;">Enter Item Name :</label>
             <input id="input_name" class="form-control align-content-center" type="text" name="file_name"
                    style="width: 300px">
+        </div>
+        <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+            <label for="input_price" style="font-size: 1.5rem;">Enter Item Price :</label>
+            <input id="input_price" class="form-control align-content-center" type="text" name="price"
+                   style="width: 300px">
+        </div>
+        <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+                <label for="input_category" style="font-size: 1.5rem;">Select Item Category :</label>
+                <select id="input_category" style="width: 300px" name="category_id" class="form-control">
+                <option value="1">1: Breakfast</option>
+                <option value="2">2: Lunch</option>
+                <option value="3">3: Dinner</option>
+                </select>
         </div>
         <div style="text-align: center" class="form-group">
             <input class="sub" type="submit" value="Upload It"/>
@@ -105,5 +118,4 @@
     </div>
 </form>
 </body>
-<script></script>
 </html>

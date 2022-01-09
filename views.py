@@ -141,6 +141,10 @@ def uploader():
         elif request.method == "POST":
             thefile = request.files["file"]
             thefile.filename = request.form["file_name"]
+            menu_item_name = request.form["file_name"].split('.')[0]
+            price = request.form["price"]
+            category_id = request.form["category_id"]
+            Menuitem(item_name=menu_item_name, price=price, item_category_id=category_id).create()
             thefile.save(os.path.join(path, thefile.filename))
             return thefile.filename, "Successful uploaded"
         else:
