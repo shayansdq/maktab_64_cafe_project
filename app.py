@@ -30,7 +30,7 @@ app.add_url_rule('/menu', 'menu', menu, methods=["GET", "POST"])
 
 app.add_url_rule('/send_order', 'send_order', send_order, methods=["POST"])
 
-app.add_url_rule('/upload', 'upload', uploader, methods=["GET", "POST"])
+app.add_url_rule('/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
 
 if __name__ == '__main__':
     app.run()

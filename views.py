@@ -132,13 +132,13 @@ def home():
         return "bad request"
 
 
-def uploader():
+def menu_item_adder():
     # login requirement
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
         if request.method == "GET":
             categories = Category.query.all()
-            return render_template("upload.html", categories=categories)
+            return render_template("menu_item_adder.html", categories=categories)
         elif request.method == "POST":
             thefile = request.files["file"]
             thefile.filename = request.form["file_name"]
