@@ -137,7 +137,8 @@ def uploader():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
         if request.method == "GET":
-            return render_template("upload.html")
+            categories = Category.query.all()
+            return render_template("upload.html", categories=categories)
         elif request.method == "POST":
             thefile = request.files["file"]
             thefile.filename = request.form["file_name"]

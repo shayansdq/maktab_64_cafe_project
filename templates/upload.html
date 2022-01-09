@@ -105,12 +105,12 @@
                    style="width: 300px">
         </div>
         <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
-                <label for="input_category" style="font-size: 1.5rem;">Select Item Category :</label>
-                <select id="input_category" style="width: 300px" name="category_id" class="form-control">
-                <option value="1">1: Breakfast</option>
-                <option value="2">2: Lunch</option>
-                <option value="3">3: Dinner</option>
-                </select>
+            <label for="input_category" style="font-size: 1.5rem;">Select Item Category :</label>
+            <select id="input_category" style="width: 300px" name="category_id" class="form-control">
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.type }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div style="text-align: center" class="form-group">
             <input class="sub" type="submit" value="Upload It"/>
