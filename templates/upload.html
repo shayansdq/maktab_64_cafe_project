@@ -86,40 +86,36 @@
     </style>
 </head>
 <body>
-<div>
-
-    <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
-        <div style="margin-top: -300px">
-            <div class="wrapper" style="margin-top: -250px">
-                <div class="file-upload">
-                    <input type="file" name="file"/>
-                    <i class="fa fa-arrow-up"></i>
-                </div>
-            </div>
-            <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
-                <label for="input_name" style="font-size: 1.5rem;">Enter Item Name :</label>
-                <input id="input_name" class="form-control align-content-center" type="text" name="file_name"
-                       style="width: 300px">
-            </div>
-            <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
-                <label for="input_price" style="font-size: 1.5rem;">Enter Item Price :</label>
-                <input id="input_price" class="form-control align-content-center" type="text" name="price"
-                       style="width: 300px">
-            </div>
-            <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
-                <label for="input_category" style="font-size: 1.5rem;">Select Item Category :</label>
-                <select id="input_category" style="width: 300px" name="category_id" class="form-control">
-                    {% for category in categories %}
-                        <option value="{{ category.id }}">{{ category.type }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div style="text-align: center" class="form-group">
-                <input class="sub" type="submit" value="Upload It"/>
+<form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
+    <div style="height: 275px;border: 2px solid red">
+        <div class="wrapper">
+            <div class="file-upload">
+                <input type="file" name="file"/>
+                <i class="fa fa-arrow-up"></i>
             </div>
         </div>
-    </form>
-
-</div>
+        <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+            <label for="input_name" style="font-size: 1.5rem;">Enter Item Name :</label>
+            <input id="input_name" class="form-control align-content-center" type="text" name="file_name"
+                   style="width: 300px">
+        </div>
+        <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+            <label for="input_price" style="font-size: 1.5rem;">Enter Item Price :</label>
+            <input id="input_price" class="form-control align-content-center" type="text" name="price"
+                   style="width: 300px">
+        </div>
+        <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+            <label for="input_category" style="font-size: 1.5rem;">Select Item Category :</label>
+            <select id="input_category" style="width: 300px" name="category_id" class="form-control">
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.type }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div style="text-align: center" class="form-group">
+            <input class="sub" type="submit" value="Upload It"/>
+        </div>
+    </div>
+</form>
 </body>
 </html>
