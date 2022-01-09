@@ -6,7 +6,8 @@ from forms import *
 import json
 from werkzeug.datastructures import ImmutableMultiDict
 
-path = os.path.join("uploads")
+# path = os.path.join("uploads")
+path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
 
 base_variables = {
@@ -139,7 +140,7 @@ def uploader():
             return render_template("upload.html")
         elif request.method == "POST":
             thefile = request.files["file"]
-            thefile.filename = request.form["nameforfile"]
+            thefile.filename = request.form["file_name"]
             thefile.save(os.path.join(path, thefile.filename))
             return thefile.filename, "Successful uploaded"
         else:
