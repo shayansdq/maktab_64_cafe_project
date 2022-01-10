@@ -199,3 +199,8 @@ def change_table_status():
             return f'{table.table_name} Status Changed'
     else:
         return "Bad Request !"
+
+
+def cashier_table():
+    tables = Table.query.all()
+    return render_template('AdminPanel/tables.html', tables=tables)
