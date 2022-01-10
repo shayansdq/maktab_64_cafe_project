@@ -31,6 +31,13 @@
     />
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"/>
+    <style>
+        .swiper a:hover {
+            background-color: red !important;
+            box-shadow: 0 0 7px #333;
+            width: 150px;
+        }
+    </style>
 </head>
 <body>
 <br><br><br>
@@ -39,24 +46,11 @@
 <nav class="navbar navbar-inverse fixed-top">
     <div class="row">
         <div class="col">
-            <button
-                    type="button"
-                    class="btn btn-success mx-1"
-                    data-toggle="modal"
-                    data-target="#cart"
-            >
-                <i class="fas fa-mug-hot"></i>
-                Cart (<span class="total-count"></span>)
-            </button>
-            <button class="clear-cart btn btn-danger mx-1">
-                <i class="fas fa-trash-alt"></i>
-                Clear Cart
-            </button>
             <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
         </div>
     </div>
 </nav>
-<div class="swiper mySwiper text-center">
+<div class="swiper mySwiper text-center" style="height: 85vh">
     <div class="swiper-wrapper">
         {% for receipt in receipts %}
             {% for order in orders %}
@@ -76,14 +70,16 @@
                                         <div class="card-block text-center">
                                             <h4 class="card-title">{{ item.item_name }}</h4>
                                             <p class="card-text">${{ item.price }}</p>
+                                            <p class="card-text">Item Count : {{ order.item_count }}</p>
                                             <p class="card-text">Status : {{ order.status }}</p>
-                                            <a
-                                                    href="#"
-                                                    data-name="{{ item.item_name }}"
-                                                    data-price="{{ item.price }}"
-                                                    class="add-to-cart btn btn-success"
-                                            >Add<i class="fas fa-add mx-2 "></i></a
-                                            >
+                                            {% if order.status == "waiting" %}
+                                                <a
+                                                        href="#"
+                                                        data-name="{{ item.item_name }}"
+                                                        data-price="{{ item.price }}"
+                                                        class="add-to-cart btn btn-danger"
+                                                >Remove<i class="fas fa-minus mx-2 "></i></a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
