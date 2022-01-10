@@ -173,3 +173,21 @@ def menu_item_adder():
             return "Bad Request"
     else:
         return "Access Denied"
+
+
+#  create tables1.html for test and write
+
+def change():
+    return render_template("tables1.html")
+
+def change_reserve_status():
+    table_id = request.form["ID_Tabales"]
+    table = Table.get_by_id(table_id)
+    table.reserved = False
+    table.create()
+    if table.reserved == True :
+        table.reserved = "false"
+        return table_id
+    else:
+        # table.reserved = True
+        return f'{table.table_name} is change'
