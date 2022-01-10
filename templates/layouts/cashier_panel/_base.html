@@ -24,5 +24,59 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 </head>
+{% block extra_head %}{% endblock %}
+
+
 
 <body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+
+
+
+{% block before_body_start %}{% endblock %}
+
+
+
+<main class="body-content">
+    {% include 'layouts/cashier_panel/__mobile_nav.html' %}
+    <div class="ms-content-wrapper">
+
+        {% block main_content %}{% endblock %}
+</div>
+</main>
+
+{% include 'layouts/cashier_panel/__quickbar.html' %}
+
+
+
+{% block before_body_end %}
+<script src="../../../static/AdminPanel/assets/js/jquery-3.3.1.min.js"></script>
+<script src="../../../static/AdminPanel/assets/js/popper.min.js"></script>
+<script src="../../../static/AdminPanel/assets/js/bootstrap.min.js"></script>
+<script src="../../../static/AdminPanel/assets/js/perfect-scrollbar.js">
+</script>
+<script src="../../../static/AdminPanel/assets/js/jquery-ui.min.js">
+</script>
+<!-- Global Required Scripts End -->
+<!-- Page Specific Scripts Start -->
+
+<script src="../../../static/AdminPanel/assets/js/Chart.bundle.min.js">
+</script>
+<script src="../../../static/AdminPanel/assets/js/widgets.js"></script>
+<script src="../../../static/AdminPanel/assets/js/clients.js"></script>
+<script src="../../../static/AdminPanel/assets/js/Chart.Financial.js"></script>
+<script src="../../../static/AdminPanel/assets/js/d3.v3.min.js">
+</script>
+<script src="../../../static/AdminPanel/assets/js/topojson.v1.min.js">
+</script>
+<script src="../../../static/AdminPanel/assets/js/datatables.min.js">
+</script>
+<script src="../../../static/AdminPanel/assets/js/data-tables.js">
+</script>
+<!-- Page Specific Scripts Finish -->
+<!-- Costic core JavaScript -->
+<script src="../../../static/AdminPanel/assets/js/framework.js"></script>
+<!-- Settings -->
+<script src="../../../static/AdminPanel/assets/js/settings.js"></script>
+{% endblock %}
+</body>
+</html>
