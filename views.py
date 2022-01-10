@@ -5,7 +5,7 @@ from flask import request, redirect, url_for, make_response, render_template, fl
 from forms import *
 import json
 from werkzeug.datastructures import ImmutableMultiDict
-
+from datetime import datetime
 # path = os.path.join("uploads")
 path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
@@ -42,7 +42,8 @@ def menu():
 def send_order():
     if request.method == "POST":
         # todo : must be get receipt id
-        table_id = request.cookies.get('Table')
+        # table_id = request.cookies.get('Table')
+        receipt_id = request.cookies.get('Receipt')
         orders = request.form
         orders = orders.to_dict(flat=False)
         for i, j in orders.items():
@@ -52,7 +53,7 @@ def send_order():
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
             # todo : create part of get receipt id in menu part
-            Order(menu_item_id=menu_item_id, receipt_id=table_id, item_count=item_count).create()
+            Order(menu_item_id=menu_item_id, receipt_id=receipt_id, item_count=item_count).create()
     return '', 204
 
 
@@ -124,8 +125,10 @@ def home():
             table.create()
             flash(f'Congrats! your table id is {table_id}')
             resp = make_response(redirect(url_for("home")))
-            # todo : must be change this part
+            create_receipt = Receipt(table_id=table_id,time_stamp=now)
+            create_receipt.create()
             resp.set_cookie("Table", f"{table.id}", expires=now + timedelta(hours=3))
+            resp.set_cookie("Receipt", f"{create_receipt.id}", expires=now + timedelta(hours=3))
             return resp
         return redirect(url_for('home'))
     else:
