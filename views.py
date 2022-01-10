@@ -6,6 +6,7 @@ from forms import *
 import json
 from werkzeug.datastructures import ImmutableMultiDict
 from datetime import datetime
+
 # path = os.path.join("uploads")
 path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
@@ -99,6 +100,24 @@ def logout():
     return resp
 
 
+def order_list():
+    check_reserve = None
+    if request.method == "GET":
+        table_id = request.cookies.get("Table")
+        if table_id:
+            menu_items = Menuitem.query.all()
+            categories = Category.query.all()
+            orders = Order.query.all()
+            return render_template("order_list.html", menu_items=menu_items, orders=orders, categories=categories)
+        else:
+            check_reserve = True
+            return redirect(url_for("home", check_reserve=check_reserve, check_msg="Choose Table"))
+    elif request.method == "POST":
+        table_id = request.cookies.get("Table")
+        orders = request.values.get("")
+        return f"{table_id} , {orders}"
+
+
 def home():
     from datetime import datetime, timedelta
     now = datetime.now()
@@ -116,7 +135,8 @@ def home():
         if table_id:
             data['reserve-button']['content'] = f'Your table id : {table_id}'
             data['chose-table'] = [f'{table_id}']
-        return render_template('index.html', tables=tables, data=data, msg=msg, check_reserve=check_reserve)
+        return render_template('index.html', tables=tables, data=data, msg=msg,
+                               check_reserve=check_reserve)
     elif request.method == "POST":
         table_id = request.values.get("table_id")
         if table_id:
@@ -125,7 +145,7 @@ def home():
             table.create()
             flash(f'Congrats! your table id is {table_id}')
             resp = make_response(redirect(url_for("home")))
-            create_receipt = Receipt(table_id=table_id,time_stamp=now)
+            create_receipt = Receipt(table_id=table_id, time_stamp=now)
             create_receipt.create()
             resp.set_cookie("Table", f"{table.id}", expires=now + timedelta(hours=3))
             resp.set_cookie("Receipt", f"{create_receipt.id}", expires=now + timedelta(hours=3))

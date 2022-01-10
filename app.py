@@ -28,6 +28,8 @@ app.add_url_rule('/', 'home', home, methods=["GET", "POST"])
 
 app.add_url_rule('/menu', 'menu', menu, methods=["GET", "POST"])
 
+app.add_url_rule('/menu/order_list', 'order_list', order_list, methods=["GET", "POST"])
+
 app.add_url_rule('/send_order', 'send_order', send_order, methods=["POST"])
 
 app.add_url_rule('/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
