@@ -7,7 +7,6 @@ import json
 from werkzeug.datastructures import ImmutableMultiDict
 from datetime import datetime
 
-# path = os.path.join("uploads")
 path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
 
@@ -52,13 +51,15 @@ def send_order():
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
             Order(menu_item_id=menu_item_id, receipt_id=receipt_id, item_count=item_count).create()
+            return "", 200
     elif request.method == "DELETE":
         data_order_id = request.form['data-order-id']
         order = Order.find_order_by_id(data_order_id)
         order.is_delete = True
         order.create()
-        print(data_order_id)
-    return '', 204
+        return "", 200
+    else:
+        return "Bad Request !"
 
 
 def login():
@@ -181,17 +182,16 @@ def menu_item_adder():
         return "Access Denied"
 
 
-#  create tables1.html for test and write
-
 def change():
     return render_template("tables1.html")
+
 
 def change_reserve_status():
     table_id = request.form["ID_Tabales"]
     table = Table.get_by_id(table_id)
     table.reserved = False
     table.create()
-    if table.reserved == True :
+    if table.reserved == True:
         table.reserved = "false"
         return table_id
     else:
