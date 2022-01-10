@@ -1,0 +1,161 @@
+<aside id="ms-side-nav" class="side-nav fixed ms-aside-scrollable ms-aside-left">
+    <!-- Logo -->
+    <div class="logo-sn ms-d-block-lg">
+        <a class="pl-0 ml-0 text-center" href="index.html">
+            <img src="../../../static/AdminPanel/assets/img/costic/costic-logo-216x62.png" alt="logo">
+        </a>
+    </div>
+    <!-- Navigation -->
+    <ul class="accordion ms-main-aside fs-14" id="side-nav-accordion">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"
+               aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
+            </a>
+            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
+                <li><a href="index.html">Costic</a>
+                </li>
+            </ul>
+        </li>
+        <!-- /Dashboard -->
+        <!-- product -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#product" aria-expanded="false"
+               aria-controls="product"> <span><i class="fa fa-archive fs-16"></i>Menus </span>
+            </a>
+            <ul id="product" class="collapse" aria-labelledby="product" data-parent="#side-nav-accordion">
+                <li><a href="pages/product/productcata.html">Menu Catalogue</a>
+                </li>
+                <li><a href="pages/product/productlist.html">Menu List</a>
+                </li>
+                <li><a href="pages/product/productgrid.html">Menu Grid</a>
+                </li>
+                <li><a href="{{ url_for('menu_item_adder') }}">Add Menu Item</a>
+                </li>
+                <li><a href="pages/product/productdetail.html">Product Detail</a>
+                </li>
+            </ul>
+        </li>
+        <!-- product end -->
+        <!-- orders -->
+        <li class="menu-item">
+            <a href="pages/orders.html"> <span><i class="fas fa-clipboard-list fs-16"></i>Orders</span>
+            </a>
+        </li>
+        <!-- orders end -->
+
+        <!-- Invoice -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#invoice" aria-expanded="false"
+               aria-controls="invoice"> <span><i class="fas fa-file-invoice fs-16"></i>Invoice </span>
+            </a>
+            <ul id="invoice" class="collapse" aria-labelledby="invoice" data-parent="#side-nav-accordion">
+                <li><a href="pages/invoice/invoicedetail.html">Invoice Detail</a>
+                </li>
+                <li><a href="pages/invoice/invoicelist.html">Invoice List</a>
+                </li>
+            </ul>
+        </li>
+        <!-- Invoice end -->
+        <!-- customers-->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#customer" aria-expanded="false"
+               aria-controls="customer"> <span><i class="fas fa-user-friends fs-16"></i>Customers </span>
+            </a>
+            <ul id="customer" class="collapse" aria-labelledby="customer" data-parent="#side-nav-accordion">
+                <li><a href="pages/customer/customersreview.html">Customers Review</a>
+                </li>
+                <li><a href="pages/customer/customersreview.html">Customers List</a>
+                </li>
+                <li><a href="pages/customer/social.html">Social Activity</a>
+                </li>
+            </ul>
+        </li>
+        <!-- Customers  end -->
+
+
+        <!-- Basic UI Elements -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#basic-elements" aria-expanded="false"
+               aria-controls="basic-elements"> <span><i
+                    class="material-icons fs-16">filter_list</i>Basic UI Elements</span>
+            </a>
+            <ul id="basic-elements" class="collapse" aria-labelledby="basic-elements" data-parent="#side-nav-accordion">
+                <li><a href="/static/AdminPanel/pages/ui-basic/accordions.html">Accordions</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/alerts.html">Alerts</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/buttons.html">Buttons</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/breadcrumbs.html">Breadcrumbs</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/badges.html">Badges</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/cards.html">Cards</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/progress-bars.html">Progress Bars</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/preloaders.html">Pre-loaders</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/pagination.html">Pagination</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/tabs.html">Tabs</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/ui-basic/typography.html">Typography</a>
+                </li>
+            </ul>
+        </li>
+        <!-- /Basic UI Elements -->
+        <!-- Advanced UI Elements -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#advanced-elements"
+               aria-expanded="false" aria-controls="advanced-elements"> <span><i class="material-icons fs-16">code</i>Advanced UI Elements</span>
+            </a>
+            <ul id="advanced-elements" class="collapse" aria-labelledby="advanced-elements"
+                data-parent="#side-nav-accordion">
+                <li><a href="/static/AdminPanel/pages/ui-advanced/modals.html">Modals</a>
+                </li>
+            </ul>
+        </li>
+        <!-- Tables -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#tables" aria-expanded="false"
+               aria-controls="tables"> <span><i class="material-icons fs-16">tune</i>Tables</span>
+            </a>
+            <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
+                <li><a href="pages/tables/basic-tables.html">Basic Tables</a>
+                </li>
+                <li><a href="pages/tables/data-tables.html">Data tables</a>
+                </li>
+            </ul>
+        </li>
+        <!-- /Tables -->
+        <!-- Charts -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#charts" aria-expanded="false"
+               aria-controls="charts"> <span><i class="material-icons fs-16">equalizer</i>Charts</span>
+            </a>
+            <ul id="charts" class="collapse" aria-labelledby="charts" data-parent="#side-nav-accordion">
+                <li><a href="/static/AdminPanel/pages/charts/chartjs.html">Chart JS</a>
+                </li>
+                <li><a href="/static/AdminPanel/pages/charts/morris-charts.html">Morris Chart</a>
+                </li>
+            </ul>
+        </li>
+        <!-- /Charts -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#bonuspages" aria-expanded="false"
+               aria-controls="bonuspages"> <span><i
+                    class="material-icons fs-16">insert_drive_file</i> Bonus Pages</span>
+            </a>
+            <ul id="bonuspages" class="collapse" aria-labelledby="bonuspages" data-parent="#side-nav-accordion">
+                <li><a href="pages/dashboard/web-analytics.html"> Web Analytics </a>
+                </li>
+                <li><a href="pages/dashboard/project-management.html">Stock Management</a>
+                </li>
+                <li><a href="pages/dashboard/client-management.html">Client Management</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</aside>
