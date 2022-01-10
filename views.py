@@ -41,8 +41,6 @@ def menu():
 
 def send_order():
     if request.method == "POST":
-        # todo : must be get receipt id
-        # table_id = request.cookies.get('Table')
         receipt_id = request.cookies.get('Receipt')
         orders = request.form
         orders = orders.to_dict(flat=False)
@@ -52,7 +50,6 @@ def send_order():
         for order in orders:
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
-            # todo : create part of get receipt id in menu part
             Order(menu_item_id=menu_item_id, receipt_id=receipt_id, item_count=item_count).create()
     return '', 204
 
