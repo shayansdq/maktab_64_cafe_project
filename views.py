@@ -103,9 +103,10 @@ def order_list():
         table_id = request.cookies.get("Table")
         if table_id:
             menu_items = Menuitem.query.all()
-            categories = Category.query.all()
+            receipts = Receipt.query.all()
             orders = Order.query.all()
-            return render_template("order_list.html", menu_items=menu_items, orders=orders, categories=categories)
+            return render_template("order_list.html", menu_items=menu_items, orders=orders, table_id=table_id,
+                                   receipts=receipts)
         else:
             check_reserve = True
             return redirect(url_for("home", check_reserve=check_reserve, check_msg="Choose Table"))

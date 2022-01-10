@@ -59,32 +59,39 @@
 <h1 class="text-white" style="text-align: center">You Have {{ orders|length }} Order/Orders</h1>
 <div class="swiper mySwiper text-center">
     <div class="swiper-wrapper">
-        {% for order in orders %}
-            {% for item in menu_items %}
-                {% if item.id == order.menu_item_id %}
-                    <div class="swiper-slide">
-                        <div class="card" style="width: 20rem">
-                            <div class="img-container">
-                                <img
-                                        class="card-img-top"
-                                        src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
-                                        alt="Card image cap"
-                                />
-                            </div>
-                            <div class="card-block text-center">
-                                <h4 class="card-title">{{ item.item_name }}</h4>
-                                <p class="card-text">${{ item.price }}</p>
-                                <p class="card-text">Status : {{ order.status }}</p>
-                                <a
-                                        href="#"
-                                        data-name="{{ item.item_name }}"
-                                        data-price="{{ item.price }}"
-                                        class="add-to-cart btn btn-success"
-                                >Add<i class="fas fa-add mx-2 "></i></a
-                                >
-                            </div>
-                        </div>
-                    </div>
+        {% for receipt in receipts %}
+            {% for order in orders %}
+                {% if receipt.id == order.receipt_id %}
+                    <h1>{{ receipt.table_id }} {{ table_id }}</h1>
+                    {% if receipt.table_id|string == table_id|string %}
+                        {% for item in menu_items %}
+                            {% if item.id == order.menu_item_id %}
+                                <div class="swiper-slide">
+                                    <div class="card" style="width: 20rem">
+                                        <div class="img-container">
+                                            <img
+                                                    class="card-img-top"
+                                                    src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
+                                                    alt="Card image cap"
+                                            />
+                                        </div>
+                                        <div class="card-block text-center">
+                                            <h4 class="card-title">{{ item.item_name }}</h4>
+                                            <p class="card-text">${{ item.price }}</p>
+                                            <p class="card-text">Status : {{ order.status }}</p>
+                                            <a
+                                                    href="#"
+                                                    data-name="{{ item.item_name }}"
+                                                    data-price="{{ item.price }}"
+                                                    class="add-to-cart btn btn-success"
+                                            >Add<i class="fas fa-add mx-2 "></i></a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         {% endfor %}
