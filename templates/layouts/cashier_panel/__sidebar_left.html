@@ -9,14 +9,18 @@
     <ul class="accordion ms-main-aside fs-14" id="side-nav-accordion">
         <!-- Dashboard -->
         <li class="menu-item">
-            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"
-               aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
+            <a href="{{ url_for('dashboard') }}"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
             </a>
-            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
-                <li><a href="index.html">Costic</a>
-                </li>
-            </ul>
         </li>
+{#        <li class="menu-item">#}
+{#            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"#}
+{#               aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>#}
+{#            </a>#}
+{#            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">#}
+{#                <li><a href="index.html">Costic</a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </li>#}
         <!-- /Dashboard -->
         <!-- product -->
         <li class="menu-item">
@@ -44,19 +48,19 @@
         </li>
         <!-- orders end -->
 
-        <!-- Invoice -->
+        <!-- Tables -->
         <li class="menu-item">
-            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#invoice" aria-expanded="false"
-               aria-controls="invoice"> <span><i class="fas fa-file-invoice fs-16"></i>Invoice </span>
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#tables" aria-expanded="false"
+               aria-controls="tables"> <span><i class="material-icons fs-16">tune</i>Tables</span>
             </a>
-            <ul id="invoice" class="collapse" aria-labelledby="invoice" data-parent="#side-nav-accordion">
-                <li><a href="pages/invoice/invoicedetail.html">Invoice Detail</a>
+            <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
+                <li><a href="pages/tables/basic-tables.html">Basic Tables</a>
                 </li>
-                <li><a href="pages/invoice/invoicelist.html">Invoice List</a>
+                <li><a href="pages/tables/data-tables.html">Data tables</a>
                 </li>
             </ul>
         </li>
-        <!-- Invoice end -->
+        <!-- /Tables -->
         <!-- customers-->
         <li class="menu-item">
             <a href="#" class="has-chevron" data-toggle="collapse" data-target="#customer" aria-expanded="false"
@@ -81,27 +85,7 @@
                     class="material-icons fs-16">filter_list</i>Basic UI Elements</span>
             </a>
             <ul id="basic-elements" class="collapse" aria-labelledby="basic-elements" data-parent="#side-nav-accordion">
-                <li><a href="/static/AdminPanel/pages/ui-basic/accordions.html">Accordions</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/alerts.html">Alerts</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/buttons.html">Buttons</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/breadcrumbs.html">Breadcrumbs</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/badges.html">Badges</a>
-                </li>
                 <li><a href="/static/AdminPanel/pages/ui-basic/cards.html">Cards</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/progress-bars.html">Progress Bars</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/preloaders.html">Pre-loaders</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/pagination.html">Pagination</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/tabs.html">Tabs</a>
-                </li>
-                <li><a href="/static/AdminPanel/pages/ui-basic/typography.html">Typography</a>
                 </li>
             </ul>
         </li>
@@ -117,19 +101,6 @@
                 </li>
             </ul>
         </li>
-        <!-- Tables -->
-        <li class="menu-item">
-            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#tables" aria-expanded="false"
-               aria-controls="tables"> <span><i class="material-icons fs-16">tune</i>Tables</span>
-            </a>
-            <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
-                <li><a href="pages/tables/basic-tables.html">Basic Tables</a>
-                </li>
-                <li><a href="pages/tables/data-tables.html">Data tables</a>
-                </li>
-            </ul>
-        </li>
-        <!-- /Tables -->
         <!-- Charts -->
         <li class="menu-item">
             <a href="#" class="has-chevron" data-toggle="collapse" data-target="#charts" aria-expanded="false"
@@ -143,19 +114,5 @@
             </ul>
         </li>
         <!-- /Charts -->
-        <li class="menu-item">
-            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#bonuspages" aria-expanded="false"
-               aria-controls="bonuspages"> <span><i
-                    class="material-icons fs-16">insert_drive_file</i> Bonus Pages</span>
-            </a>
-            <ul id="bonuspages" class="collapse" aria-labelledby="bonuspages" data-parent="#side-nav-accordion">
-                <li><a href="pages/dashboard/web-analytics.html"> Web Analytics </a>
-                </li>
-                <li><a href="pages/dashboard/project-management.html">Stock Management</a>
-                </li>
-                <li><a href="pages/dashboard/client-management.html">Client Management</a>
-                </li>
-            </ul>
-        </li>
     </ul>
 </aside>
