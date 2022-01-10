@@ -182,13 +182,20 @@ def menu_item_adder():
         return "Access Denied"
 
 
-def change():
-    return render_template("tables1.html")
-
-
-def change_reserve_status():
-    table_id = request.form["ID_Tabales"]
-    table = Table.get_by_id(table_id)
-    table.reserved = False
-    table.create()
-    return f'{table.table_name} changed'
+def change_table_status():
+    if request.method == "GET":
+        return render_template("change_table_status.html")
+    elif request.method == "POST":
+        table_id = request.form["table_id"].split("-")
+        if table_id[0] == "R":
+            table = Table.get_by_id(table_id[1])
+            table.reserved = True
+            table.create()
+            return f'{table.table_name} Status Changed'
+        elif table_id[0] == "U":
+            table = Table.get_by_id(table_id[1])
+            table.reserved = False
+            table.create()
+            return f'{table.table_name} Status Changed'
+    else:
+        return "Bad Request !"

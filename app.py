@@ -34,9 +34,7 @@ app.add_url_rule('/send_order', 'send_order', send_order, methods=["POST", "DELE
 
 app.add_url_rule('/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
 
-app.add_url_rule('/change', 'change', change)
-
-app.add_url_rule('/change_status', "change_reserve_status", change_reserve_status, methods=['POST'])
+app.add_url_rule('/change_table_status', "change_table_status", change_table_status, methods=["GET", 'POST'])
 
 if __name__ == '__main__':
     app.run()
