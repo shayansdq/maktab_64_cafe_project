@@ -1,0 +1,100 @@
+{% extends "layouts/cashier_panel/_base.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/tables.css') }}">
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+{% endblock %}
+{% block before_body_start %}
+    <div id="preloader-wrap">
+        <div class="spinner spinner-8">
+            <div class="ms-circle1 ms-child"></div>
+            <div class="ms-circle2 ms-child"></div>
+            <div class="ms-circle3 ms-child"></div>
+            <div class="ms-circle4 ms-child"></div>
+            <div class="ms-circle5 ms-child"></div>
+            <div class="ms-circle6 ms-child"></div>
+            <div class="ms-circle7 ms-child"></div>
+            <div class="ms-circle8 ms-child"></div>
+            <div class="ms-circle9 ms-child"></div>
+            <div class="ms-circle10 ms-child"></div>
+            <div class="ms-circle11 ms-child"></div>
+            <div class="ms-circle12 ms-child"></div>
+        </div>
+    </div>
+    <!-- Overlays -->
+    <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+    <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity"
+         data-toggle="slideRight"></div>
+    {% include 'layouts/cashier_panel/__sidebar_left.html' %}
+    {% include 'layouts/cashier_panel/__sidebar_right.html' %}
+{% endblock %}
+
+{% block main_content %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper cafe-floor">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Tables</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Tables</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12 reciepts-tables">
+            <!-- table loops should start from here -->
+              {% for table in tables %}
+            <div class="table-container">
+                {% if table.reserved %}
+                <i title="Table Is Empty" class="fas fa-user-clock table-check"></i>
+                {% endif %}
+                {% if not table.reserved %}
+                <i title="Table Is Empty" class="fas fa-chair table-check empty-table"></i>
+                {% endif %}
+                <div class="reciept-table">
+                 <button>
+
+                 </button>
+                 <h4>{{ table.id }}</h4>
+                </div>
+                <div class="table-chair chair-one"></div>
+                <div class="table-chair chair-two"></div>
+                <div class="table-chair chair-three"></div>
+                <div class="table-chair chair-four"></div>
+            </div>
+              {% endfor %}
+        </div>
+        <!-- end table loop -->
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+
+{% block before_body_end %}
+
+    {{ super() }}
+{% endblock %}
