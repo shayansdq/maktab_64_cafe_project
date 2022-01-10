@@ -110,8 +110,8 @@ class Order(db.Model):
     is_delete = db.Column(db.Boolean, default=False)
 
     @staticmethod
-    def find_orders(table_id):
-        return Table.query.filter_by(id=table_id).all()
+    def find_order_by_id(order_id):
+        return Order.query.filter_by(id=order_id).first()
 
     def create(self):
         db.session.add(self)

@@ -54,7 +54,7 @@
     <div class="swiper-wrapper">
         {% for receipt in receipts %}
             {% for order in orders %}
-                {% if receipt.id == order.receipt_id %}
+                {% if receipt.id == order.receipt_id and order.is_delete == False %}
                     {% if receipt.table_id|string == table_id|string %}
                         {% for item in menu_items %}
                             {% if item.id == order.menu_item_id %}
@@ -77,7 +77,8 @@
                                                         href="#"
                                                         data-name="{{ item.item_name }}"
                                                         data-price="{{ item.price }}"
-                                                        class="add-to-cart btn btn-danger"
+                                                        data-order-id="{{ order.id }}"
+                                                        class="add-to-cart remove-item btn btn-danger"
                                                 >Remove<i class="fas fa-minus mx-2 "></i></a>
                                             {% endif %}
                                         </div>
@@ -141,16 +142,17 @@
 <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
 <script>
     var clicked;
-    $(".send-order").click(function () {
-        let ordersValue = cart
-        var json = JSON.stringify(ordersValue);
+    $(".remove-item").click(function () {
+        {#let ordersValue = "remove"#}
+        {#var json = JSON.stringify(ordersValue);#}
+        var data_order_id = $(this).attr("data-order-id")
         $.ajax({
-            type: "POST",
+            type: "DELETE",
             url: "{{url_for('send_order')}}",
-            data: json,
-            dataType: "json",
+            data: {"data-order-id": data_order_id},
+            {#dataType: "json",#}
             success: function (msg) {
-                alert('Your order was successfully send');
+                alert('Your Order Was Successfully Removed !');
             }
         });
     });
