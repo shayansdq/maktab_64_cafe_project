@@ -191,9 +191,4 @@ def change_reserve_status():
     table = Table.get_by_id(table_id)
     table.reserved = False
     table.create()
-    if table.reserved == True:
-        table.reserved = "false"
-        return table_id
-    else:
-        # table.reserved = True
-        return f'{table.table_name} is change'
+    return f'{table.table_name} changed'
