@@ -71,6 +71,7 @@ def login():
         user = Cashier.check_user(form.username.data)
         if user:
             if user.verify_password(form.password.data):
+
                 base_variables['page']['title'] = 'Dashboard'
                 resp = make_response(redirect(url_for('dashboard', data=data)))
                 resp.set_cookie("aetvbhuoaetv", str(user.id))
@@ -87,9 +88,28 @@ def dashboard():
         menu_items = Menuitem.query.all()
         categories = Category.query.all()
         user_name = Cashier.get_by_id(user_id).username
+        menus = {
+            "menu_items": menu_items,
+            "categories": categories
+        }
+        receipts = Receipt.query.all()
+        total_sales_amount = 0
+
+        for receipt in receipts:
+            if not receipt.final_price:
+                receipt.final_price = 0
+            total_sales_amount += receipt.final_price
+
+        data2 = {
+            'menuitem': Menuitem.query.all(),
+            'table': Table.query.all(),
+            'total_sales_amount': total_sales_amount,
+            'order': Order.query.all(),
+        }
+        # print(data
         resp = make_response(
-            render_template("AdminPanel/index.html", data=data,
-                            menu={"menu_items": menu_items, "categories": categories}, name=str(user_name)))
+            render_template("AdminPanel/dashboard.html", data=data,
+                            menu=menus, name=str(user_name),data2=data2))
         return resp
     else:
         base_variables['page']['title'] = 'Login'

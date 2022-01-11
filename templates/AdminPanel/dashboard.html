@@ -35,8 +35,8 @@
                 <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 3.2%</span>
                 <div class="ms-card-body media">
                     <div class="media-body">
-                        <span class="black-text"><strong>Sells Graph</strong></span>
-                        <h2>$8,451</h2>
+                        <span class="black-text"><strong>Menu Items</strong></span>
+                        <h2>{{data2.menuitem | length}}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart"></canvas>
@@ -47,8 +47,8 @@
                 <span class="ms-chart-label bg-red"><i class="material-icons">arrow_downward</i> 4.5%</span>
                 <div class="ms-card-body media">
                     <div class="media-body">
-                        <span class="black-text"><strong>Total Visitors</strong></span>
-                        <h2>3,973</h2>
+                        <span class="black-text"><strong>Tables</strong></span>
+                        <h2>{{data2.table | length}}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart-2"></canvas>
@@ -59,8 +59,8 @@
                 <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 12.5%</span>
                 <div class="ms-card-body media">
                     <div class="media-body">
-                        <span class="black-text"><strong>New Users</strong></span>
-                        <h2>7,333</h2>
+                        <span class="black-text"><strong>Total Sales Amount</strong></span>
+                        <h2>{{data2.total_sales_amount}}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart-3"></canvas>
@@ -72,7 +72,7 @@
                 <div class="ms-card-body media">
                     <div class="media-body">
                         <span class="black-text"><strong>Total Orders</strong></span>
-                        <h2>48,973</h2>
+                        <h2>{{data2.order | length}}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart-4"></canvas>
