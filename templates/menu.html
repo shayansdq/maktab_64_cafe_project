@@ -52,7 +52,7 @@
                 <i class="fas fa-trash-alt"></i>
                 Clear Cart
             </button>
-            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">home</a></button>
+            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
         </div>
     </div>
 </nav>
@@ -150,6 +150,9 @@
             dataType: "json",
             success: function (msg) {
                 alert('Your order was successfully send');
+            },
+            error: function (msg) {
+                alert(`Failed ${msg}`);
             }
         });
     });
