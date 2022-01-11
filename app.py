@@ -20,7 +20,7 @@ app = create_app()
 
 app.add_url_rule('/login', 'login', login, methods=['GET', 'POST'])
 
-app.add_url_rule('/dashboard', 'dashboard', dashboard, )
+app.add_url_rule('/cashier/dashboard', 'dashboard', dashboard, )
 
 app.add_url_rule('/logout', 'logout', logout)
 
@@ -37,6 +37,8 @@ app.add_url_rule('/menu_item_adder', 'menu_item_adder', menu_item_adder, methods
 app.add_url_rule('/change_table_status', "change_table_status", change_table_status, methods=["GET", 'POST'])
 
 app.add_url_rule('/show_tables', "show_tables", show_tables, methods=["GET", 'POST'])
+
+# app.add_url_rule('/cashier/tables', "cashier_table", cashier_table, methods=['GET','POST'])
 
 if __name__ == '__main__':
     app.run()

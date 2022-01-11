@@ -186,17 +186,37 @@ def change_table_status():
     if request.method == "GET":
         return render_template("change_table_status.html")
     elif request.method == "POST":
-        table_id = request.form["table_id"].split("-")
-        if table_id[0] == "R":
-            table = Table.get_by_id(table_id[1])
+        now = datetime.now()
+        do = request.form["do"]
+        table_id = request.form["table_id"]
+        table = Table.get_by_id(table_id)
+        if bool(int(do)):
             table.reserved = True
             table.create()
-            return f'{table.table_name} Status Changed'
-        elif table_id[0] == "U":
-            table = Table.get_by_id(table_id[1])
+            create_receipt = Receipt(table_id=table_id, time_stamp=now)
+            create_receipt.create()
+        else:
             table.reserved = False
-            table.create()
-            return f'{table.table_name} Status Changed'
+            their_receipt = Receipt.query.filter_by(table_id=table_id,pay_status=False).first()
+            their_receipt.pay_status = True
+            their_receipt.create()
+            their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
+            for order in their_orders:
+                order.is_delete = True
+                order.create()
+        return '',204
+
+        # table_id = request.form["table_id"].split("-")
+        # if table_id[0] == "R":
+        #     table = Table.get_by_id(table_id[1])
+        #     table.reserved = True
+        #     table.create()
+        #     return f'{table.table_name} Status Changed'
+        # elif table_id[0] == "U":
+        #     table = Table.get_by_id(table_id[1])
+        #     table.reserved = False
+        #     table.create()
+        #     return f'{table.table_name} Status Changed'
     else:
         return "Bad Request !"
 
