@@ -102,7 +102,7 @@ def dashboard():
         most_pupolar_items = Order.find_most_popular_items()
         most_pupolar_menu_item = []
         for most_item in most_pupolar_items:
-            most_pupolar_menu_item.append(Menuitem.get_by_id(most_item))
+            most_pupolar_menu_item.append(Menuitem.get_by_id(most_item[0]))
         print(most_pupolar_menu_item)
         data2 = {
             'menuitem': Menuitem.query.all(),
