@@ -64,7 +64,7 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="content-wrapper cafe-floor">
+    <div class="content-wrapper cafe-                {#dataType: "json",#}floor">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -157,14 +157,11 @@
     <script>
         var clicked;
         $(".Remove-Item").click(function () {
-            {#let ordersValue = "remove"#}
-            {#var json = JSON.stringify(ordersValue);#}
             var data_id = $(this).attr("data-id")
             $.ajax({
                 type: "DELETE",
                 url: "{{url_for('cashier_menu')}}",
                 data: {"data-id": data_id},
-                {#dataType: "json",#}
                 success: function (msg) {
                     alert('Your Item Was Successfully Removed !');
                 }
@@ -174,14 +171,11 @@
     <script>
         var clicked;
         $(".Add-Item").click(function () {
-            {#let ordersValue = "remove"#}
-            {#var json = JSON.stringify(ordersValue);#}
             var data_id = $(this).attr("data-id")
             $.ajax({
                 type: "POST",
                 url: "{{url_for('cashier_menu')}}",
                 data: {"data-id": data_id},
-                {#dataType: "json",#}
                 success: function (msg) {
                     alert('Your Item Was Successfully Added !');
                 }
