@@ -201,7 +201,7 @@ def change_table_status():
             their_receipt.create()
             # their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
 
-        return '',204
+        return redirect(url_for('show_tables'))
 
         # table_id = request.form["table_id"].split("-")
         # if table_id[0] == "R":
