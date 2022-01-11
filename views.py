@@ -201,7 +201,7 @@ def change_table_status():
         return "Bad Request !"
 
 
-def cashier_table():
+def show_tables():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
         if request.method == "GET":
