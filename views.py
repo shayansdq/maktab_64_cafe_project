@@ -99,12 +99,17 @@ def dashboard():
                 receipt.final_price = 0
             total_sales_amount += receipt.final_price
 
+        most_pupolar_items = Order.find_most_popular_items()
+        most_pupolar_menu_item = []
+        for most_item in most_pupolar_items:
+            most_pupolar_menu_item.append(Menuitem.get_by_id(most_item[0]))
+        print(most_pupolar_menu_item)
         data2 = {
             'menuitem': Menuitem.query.all(),
             'table': Table.query.all(),
             'total_sales_amount': total_sales_amount,
             'order': Order.query.all(),
-            "most_popular": Order.find_most_popular_items()
+            "most_popular": most_pupolar_menu_item
         }
         # print(data
         resp = make_response(
