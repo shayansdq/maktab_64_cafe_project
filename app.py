@@ -36,7 +36,7 @@ app.add_url_rule('/cashier/change_table_status', "change_table_status", change_t
 
 app.add_url_rule('/cashier/show_tables', "show_tables", show_tables, methods=["GET", 'POST'])
 
-app.add_url_rule('/cashier/menu', "cashier_menu", cashier_menu, methods=["GET", 'POST'])
+app.add_url_rule('/cashier/menu', "cashier_menu", cashier_menu, methods=["GET", 'POST', "DELETE"])
 
 app.add_url_rule('/cashier/menu/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
 

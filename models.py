@@ -70,6 +70,14 @@ class Menuitem(db.Model):
         db.session.commit()
 
     @staticmethod
+    def get_by_id(item_id):
+        return Menuitem.query.filter_by(id=item_id).first()
+
+    @staticmethod
+    def get_valid_items():
+        return Menuitem.query.filter_by(is_delete=False).all()
+
+    @staticmethod
     def find_item(item_name):
         return Menuitem.query.filter_by(item_name=item_name).first()
 

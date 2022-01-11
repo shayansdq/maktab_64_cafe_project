@@ -97,15 +97,25 @@
                                     />
                                 </div>
                                 <div class="card-block text-center">
-                                    <h4 class="card-title">{{ item.item_name }}</h4>
+                                    <h4 class="card-title" style="color: black">{{ item.item_name }}</h4>
                                     <p class="card-text">${{ item.price }}</p>
-                                    <a
-                                            href="#"
-                                            data-name="{{ item.item_name }}"
-                                            data-price="{{ item.price }}"
-                                            class="add-to-cart btn btn-success"
-                                    >Edit<i class="fas fa-add mx-2 "></i></a
-                                    >
+                                    {% if item.is_delete == False %}
+                                        <p class="card-text">Status : Available</p>
+                                    {% elif item.is_delete == True %}
+                                        <p class="card-text">Status : UnAvailable</p>
+                                    {% else %}
+                                        <p class="card-text">Status : UnKnown</p>
+                                    {% endif %}
+                                    {% if item.is_delete == False %}
+                                        <button type="button" data-id="{{ item.id }}"
+                                                class="btn Remove-Item btn-danger">
+                                            Remove Item
+                                        </button>
+                                    {% elif item.is_delete != False %}
+                                        <button type="button" data-id="{{ item.id }}" class="btn Add-Item btn-success">
+                                            Add Item
+                                        </button>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -117,13 +127,67 @@
             <div class="swiper-pagination"></div>
         </div>
     {% endfor %}
-    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <script>
+                        (".Edit").attr("data-name")
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block before_body_end %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    <script>
+        var clicked;
+        $(".Remove-Item").click(function () {
+            {#let ordersValue = "remove"#}
+            {#var json = JSON.stringify(ordersValue);#}
+            var data_id = $(this).attr("data-id")
+            $.ajax({
+                type: "DELETE",
+                url: "{{url_for('cashier_menu')}}",
+                data: {"data-id": data_id},
+                {#dataType: "json",#}
+                success: function (msg) {
+                    alert('Your Item Was Successfully Removed !');
+                }
+            });
+        });
+    </script>
+    <script>
+        var clicked;
+        $(".Add-Item").click(function () {
+            {#let ordersValue = "remove"#}
+            {#var json = JSON.stringify(ordersValue);#}
+            var data_id = $(this).attr("data-id")
+            $.ajax({
+                type: "POST",
+                url: "{{url_for('cashier_menu')}}",
+                data: {"data-id": data_id},
+                {#dataType: "json",#}
+                success: function (msg) {
+                    alert('Your Item Was Successfully Added !');
+                }
+            });
+        });
+    </script>
     {{ super() }}
 {% endblock %}
 

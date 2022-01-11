@@ -27,7 +27,7 @@ def menu():
     if request.method == "GET":
         table_id = request.cookies.get("Table")
         if table_id:
-            menu_items = Menuitem.query.all()
+            menu_items = Menuitem.get_valid_items()
             categories = Category.query.all()
             return render_template("menu.html", menu_items=menu_items, categories=categories)
         else:
@@ -71,7 +71,6 @@ def login():
         user = Cashier.check_user(form.username.data)
         if user:
             if user.verify_password(form.password.data):
-
                 base_variables['page']['title'] = 'Dashboard'
                 resp = make_response(redirect(url_for('dashboard', data=data)))
                 resp.set_cookie("aetvbhuoaetv", str(user.id))
@@ -109,7 +108,7 @@ def dashboard():
         # print(data
         resp = make_response(
             render_template("AdminPanel/dashboard.html", data=data,
-                            menu=menus, name=str(user_name),data2=data2))
+                            menu=menus, name=str(user_name), data2=data2))
         return resp
     else:
         base_variables['page']['title'] = 'Login'
@@ -260,6 +259,18 @@ def cashier_menu():
             menu_items = Menuitem.query.all()
             categories = Category.query.all()
             return render_template("AdminPanel/cashier_menu.html", menu_items=menu_items, categories=categories)
+        elif request.method == "POST":
+            item_id = request.form['data-id']
+            item = Menuitem.get_by_id(item_id)
+            item.is_delete = False
+            item.create()
+            return "", 200
+        elif request.method == "DELETE":
+            item_id = request.form['data-id']
+            item = Menuitem.get_by_id(item_id)
+            item.is_delete = True
+            item.create()
+            return "", 200
         else:
             return "Bad Request"
     else:
