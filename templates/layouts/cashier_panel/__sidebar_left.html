@@ -2,7 +2,7 @@
     <!-- Logo -->
     <div class="logo-sn ms-d-block-lg">
         <a class="pl-0 ml-0 text-center" href="index.html">
-            <img src="../../../static/AdminPanel/assets/img/costic/costic-logo-216x62.png" alt="logo">
+            <img src="../../../static/AdminPanel/assets/img/costic/logo.png" alt="logo">
         </a>
     </div>
     <!-- Navigation -->
@@ -12,15 +12,6 @@
             <a href="{{ url_for('dashboard') }}"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
             </a>
         </li>
-        {#        <li class="menu-item">#}
-        {#            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"#}
-        {#               aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>#}
-        {#            </a>#}
-        {#            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">#}
-        {#                <li><a href="index.html">Costic</a>#}
-        {#                </li>#}
-        {#            </ul>#}
-        {#        </li>#}
         <!-- /Dashboard -->
         <!-- product -->
         <li class="menu-item">
@@ -28,12 +19,6 @@
                aria-controls="product"> <span><i class="fa fa-archive fs-16"></i>Menus </span>
             </a>
             <ul id="product" class="collapse" aria-labelledby="product" data-parent="#side-nav-accordion">
-{#                <li><a href="pages/product/productcata.html">Menu Catalogue</a>#}
-{#                </li>#}
-{#                <li><a href="pages/product/productlist.html">Menu List</a>#}
-{#                </li>#}
-{#                <li><a href="pages/product/productgrid.html">Menu Grid</a>#}
-{#                </li>#}
                 <li><a href="{{ url_for('menu_item_adder') }}">Add Menu Item</a>
                 </li>
                 <li><a href="{{ url_for('cashier_menu') }}">Menu Items Detail</a>
@@ -54,27 +39,12 @@
                aria-controls="tables"> <span><i class="material-icons fs-16">tune</i>Tables</span>
             </a>
             <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
-{#                <li><a href="pages/tables/basic-tables.html">Basic Tables</a>#}
-{#                </li>#}
                 <li><a href="{{ url_for('show_tables') }}">Show Table</a>
                 </li>
             </ul>
         </li>
         <!-- /Tables -->
         <!-- customers-->
-{#        <li class="menu-item">#}
-{#            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#customer" aria-expanded="false"#}
-{#               aria-controls="customer"> <span><i class="fas fa-user-friends fs-16"></i>Customers </span>#}
-{#            </a>#}
-{#            <ul id="customer" class="collapse" aria-labelledby="customer" data-parent="#side-nav-accordion">#}
-{#                <li><a href="pages/customer/customersreview.html">Customers Review</a>#}
-{#                </li>#}
-{#                <li><a href="pages/customer/customersreview.html">Customers List</a>#}
-{#                </li>#}
-{#                <li><a href="pages/customer/social.html">Social Activity</a>#}
-{#                </li>#}
-{#            </ul>#}
-{#        </li>#}
         <!-- Customers  end -->
 
 
