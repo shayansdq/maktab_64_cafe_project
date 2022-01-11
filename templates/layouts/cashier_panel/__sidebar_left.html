@@ -12,15 +12,15 @@
             <a href="{{ url_for('dashboard') }}"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
             </a>
         </li>
-{#        <li class="menu-item">#}
-{#            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"#}
-{#               aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>#}
-{#            </a>#}
-{#            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">#}
-{#                <li><a href="index.html">Costic</a>#}
-{#                </li>#}
-{#            </ul>#}
-{#        </li>#}
+        {#        <li class="menu-item">#}
+        {#            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"#}
+        {#               aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>#}
+        {#            </a>#}
+        {#            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">#}
+        {#                <li><a href="index.html">Costic</a>#}
+        {#                </li>#}
+        {#            </ul>#}
+        {#        </li>#}
         <!-- /Dashboard -->
         <!-- product -->
         <li class="menu-item">
@@ -36,7 +36,7 @@
                 </li>
                 <li><a href="{{ url_for('menu_item_adder') }}">Add Menu Item</a>
                 </li>
-                <li><a href="pages/product/productdetail.html">Product Detail</a>
+                <li><a href="{{ url_for('cashier_menu') }}">Menu Items Detail</a>
                 </li>
             </ul>
         </li>
