@@ -66,11 +66,18 @@
                                 {% if not table.reserved %}
                                     <i title="Table Is Empty" class="fas fa-chair table-check empty-table"></i>
                                 {% endif %}
-                                <div class="reciept-table">
-                                    <button>
-
-                                    </button>
+                                <div class="reciept-table d-flex flex-column">
                                     <h4>{{ table.id }}</h4>
+                                    {% if table.reserved %}
+                                        <button type="button" class="btn btn-danger">
+                                            Unreserved
+                                        </button>
+                                    {% endif %}
+                                    {% if not table.reserved %}
+                                        <button type="button" class="btn btn-success">
+                                            Reserved
+                                        </button>
+                                    {% endif %}
                                 </div>
                                 <div class="table-chair chair-one"></div>
                                 <div class="table-chair chair-two"></div>
