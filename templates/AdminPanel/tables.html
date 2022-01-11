@@ -126,9 +126,15 @@
               'do':String(num),
               'table_id':String(idOfTable)
           },
-          success:function(data){
-              location.reload();
-          }
+          success: function(data) {
+            if (data.hasOwnProperty('success')) {
+                console.log("data was sent!");
+
+                if (reload_on_return) {
+                    location.reload();
+                }
+            }
+        },
         });
      });
 
