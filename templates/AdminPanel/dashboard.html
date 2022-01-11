@@ -222,27 +222,25 @@
                 </div>
                 <div class="ms-panel-body">
                     <div class="row">
-                        # todo : create
-                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                            <div class="ms-card no-margin">
-                                <div class="ms-card-img">
-                                    <img src="assets/img/costic/food-5.jpg" alt="card_img">
-                                </div>
-                                <div class="ms-card-body">
-                                    <div class="ms-card-heading-title">
-                                        {% for item in data2.most_popular %}
-                                            <h6>{{ item }}</h6>
-                                        {% endfor %}
-                                        <span class="green-text"><strong>$25.00</strong></span>
+                        {% for most_item in data2.most_popular %}
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                                <div class="ms-card no-margin">
+                                    <div class="ms-card-img">
+                                        <img src="{{ url_for('static', filename='img/' + most_item[0] + '.jpg') }}" alt="card_img">
                                     </div>
-
-                                    <div class="ms-card-heading-title">
-                                        <p>Orders <span class="red-text">15</span></p>
-                                        <p>Income <span class="red-text">$175</span></p>
+                                    <div class="ms-card-body">
+                                        <div class="ms-card-heading-title">
+                                            <h6>{{ most_item[0] }}</h6>
+                                            <span class="green-text"><strong>${{ most_item[1] }}</strong></span>
+                                        </div>
+                                        <div class="ms-card-heading-title">
+                                            <p>Orders <span class="red-text">{{ most_item[2] }}</span></p>
+                                            <p>Income <span class="red-text">$175</span></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
