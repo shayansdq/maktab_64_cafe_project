@@ -40,7 +40,5 @@ app.add_url_rule('/cashier/menu', "cashier_menu", cashier_menu, methods=["GET", 
 
 app.add_url_rule('/cashier/menu/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
 
-# app.add_url_rule('/cashier/tables', "cashier_table", cashier_table, methods=['GET','POST'])
-
 if __name__ == '__main__':
     app.run()
