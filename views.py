@@ -202,5 +202,14 @@ def change_table_status():
 
 
 def cashier_table():
-    tables = Table.query.all()
-    return render_template('AdminPanel/tables.html', tables=tables)
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        if request.method == "GET":
+            tables = Table.query.order_by(Table.id)
+            return render_template('AdminPanel/tables.html', tables=tables)
+        elif request.method == "POST":
+            return "Coming Soon..."
+        else:
+            return "Bad Request"
+    else:
+        return "Access Denied"
