@@ -230,7 +230,9 @@
                                 </div>
                                 <div class="ms-card-body">
                                     <div class="ms-card-heading-title">
-                                        <h6>{{ data2.most_popular }}</h6>
+                                        {% for item in data2.most_popular %}
+                                            <h6>{{ item }}</h6>
+                                        {% endfor %}
                                         <span class="green-text"><strong>$25.00</strong></span>
                                     </div>
 
