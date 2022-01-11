@@ -199,10 +199,8 @@ def change_table_status():
             their_receipt = Receipt.query.filter_by(table_id=table_id,pay_status=False).first()
             their_receipt.pay_status = True
             their_receipt.create()
-            their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
-            for order in their_orders:
-                order.is_delete = True
-                order.create()
+            # their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
+
         return '',204
 
         # table_id = request.form["table_id"].split("-")
