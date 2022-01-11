@@ -32,11 +32,13 @@ app.add_url_rule('/menu/order_list', 'order_list', order_list, methods=["GET", "
 
 app.add_url_rule('/send_order', 'send_order', send_order, methods=["POST", "DELETE"])
 
-app.add_url_rule('/cashier/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
-
 app.add_url_rule('/cashier/change_table_status', "change_table_status", change_table_status, methods=["GET", 'POST'])
 
 app.add_url_rule('/cashier/show_tables', "show_tables", show_tables, methods=["GET", 'POST'])
+
+app.add_url_rule('/cashier/menu', "cashier_menu", cashier_menu, methods=["GET", 'POST'])
+
+app.add_url_rule('/cashier/menu/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
 
 # app.add_url_rule('/cashier/tables', "cashier_table", cashier_table, methods=['GET','POST'])
 
