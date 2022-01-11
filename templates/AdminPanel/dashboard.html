@@ -100,10 +100,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for item in menu.menu_items %}
+                            {% for item in menu.menu_items[:7] %}
                                 <tr>
                                     <td class="ms-table-f-w"><img src="../../static/img/{{ item.item_name }}.jpg"
-                                                                  alt="people">{{ item.item_name }}
+                                                                  alt="{{item.item_name}}">{{ item.item_name }}
                                     </td>
                                     <td>${{ item.price }}</td>
                                     <td>{{ item.id }}</td>
