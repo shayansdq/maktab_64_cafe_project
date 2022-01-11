@@ -20,7 +20,7 @@ app = create_app()
 
 app.add_url_rule('/login', 'login', login, methods=['GET', 'POST'])
 
-app.add_url_rule('/cashier/dashboard', 'dashboard', dashboard, )
+app.add_url_rule('/cashier/dashboard', 'dashboard', dashboard, methods=['GET', 'POST'])
 
 app.add_url_rule('/logout', 'logout', logout)
 
