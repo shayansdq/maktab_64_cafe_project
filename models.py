@@ -82,7 +82,7 @@ class Menuitem(db.Model):
         return Menuitem.query.filter_by(item_name=item_name).first()
 
     def __repr__(self):
-        return '<menuitem: %r>' % self.word
+        return '<menuitem: %r>' % self.item_name
 
 
 class Table(db.Model):
