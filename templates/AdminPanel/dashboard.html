@@ -116,51 +116,14 @@
             </div>
         </div>
         <div class="col-xl-6 col-md-12">
-            <div class="ms-panel ms-panel-fh">
-                <div class="ms-panel-header new">
-                    <h6>Monthly Revenue</h6>
-                    <select class="form-control new" id="exampleSelect">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="1">June</option>
-                        <option value="2">July</option>
-                        <option value="3">August</option>
-                        <option value="4">September</option>
-                        <option value="5">October</option>
-                        <option value="4">November</option>
-                        <option value="5">December</option>
-                    </select>
-                </div>
-                <div class="ms-panel-body">
-                    <span class="progress-label"> <strong>Week 1</strong> </span>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 25%"
-                             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%
-                        </div>
-                    </div>
-                    <span class="progress-label"> <strong>Week 2</strong> </span>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 50%"
-                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%
-                        </div>
-                    </div>
-                    <span class="progress-label"> <strong>Week 3</strong> </span>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"
-                             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%
-                        </div>
-                    </div>
-                    <span class="progress-label"> <strong>Week 4</strong> </span>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 40%"
-                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%
-                        </div>
-                    </div>
-                </div>
+          <div class="ms-panel">
+            <div class="ms-panel-header">
+              <h6>Pie Chart</h6>
             </div>
+            <div class="ms-panel-body">
+              <canvas id="pie-chart"></canvas>
+            </div>
+          </div>
         </div>
         <!-- Food Orders -->
         <div class="col-md-12">
@@ -1036,4 +999,8 @@
 {% block before_body_end %}
 
     {{ super() }}
+    <script src="../../static/AdminPanel/assets/js/Chart.bundle.min.js">
+      </script>
+      <script src="../../static/AdminPanel/assets/js/charts.js">
+      </script>
 {% endblock %}
