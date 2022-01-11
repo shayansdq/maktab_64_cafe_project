@@ -111,10 +111,13 @@ def dashboard():
             'order': Order.query.all(),
             "most_popular": most_pupolar_menu_item
         }
-        # print(data
+
+        last_orders = Order.query.all()[::-1]
+        last_orders = last_orders[:7]
+
         resp = make_response(
             render_template("AdminPanel/dashboard.html", data=data,
-                            menu=menus, name=str(user_name), data2=data2))
+                            menu=menus, name=str(user_name), data2=data2,last_orders=last_orders))
         return resp
     else:
         base_variables['page']['title'] = 'Login'
