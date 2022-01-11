@@ -121,6 +121,10 @@ class Order(db.Model):
     def find_order_by_id(order_id):
         return Order.query.filter_by(id=order_id).first()
 
+    @staticmethod
+    def find_most_popular_items():
+        return db.session.execute('SELECT menu_item_id  FROM order GROUP BY menu_item_id HAVING COUNT(menu_item_id)>1 ORDER BY count DESC')
+
     def create(self):
         db.session.add(self)
         db.session.commit()

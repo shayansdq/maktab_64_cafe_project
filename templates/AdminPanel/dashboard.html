@@ -36,7 +36,7 @@
                 <div class="ms-card-body media">
                     <div class="media-body">
                         <span class="black-text"><strong>Menu Items</strong></span>
-                        <h2>{{data2.menuitem | length}}</h2>
+                        <h2>{{ data2.menuitem | length }}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart"></canvas>
@@ -48,7 +48,7 @@
                 <div class="ms-card-body media">
                     <div class="media-body">
                         <span class="black-text"><strong>Tables</strong></span>
-                        <h2>{{data2.table | length}}</h2>
+                        <h2>{{ data2.table | length }}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart-2"></canvas>
@@ -60,7 +60,7 @@
                 <div class="ms-card-body media">
                     <div class="media-body">
                         <span class="black-text"><strong>Total Sales Amount</strong></span>
-                        <h2>{{data2.total_sales_amount}}</h2>
+                        <h2>{{ data2.total_sales_amount }}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart-3"></canvas>
@@ -72,7 +72,7 @@
                 <div class="ms-card-body media">
                     <div class="media-body">
                         <span class="black-text"><strong>Total Orders</strong></span>
-                        <h2>{{data2.order | length}}</h2>
+                        <h2>{{ data2.order | length }}</h2>
                     </div>
                 </div>
                 <canvas id="line-chart-4"></canvas>
@@ -103,7 +103,7 @@
                             {% for item in menu.menu_items[:6] %}
                                 <tr>
                                     <td class="ms-table-f-w"><img src="../../static/img/{{ item.item_name }}.jpg"
-                                                                  alt="{{item.item_name}}">{{ item.item_name }}
+                                                                  alt="{{ item.item_name }}">{{ item.item_name }}
                                     </td>
                                     <td>${{ item.price }}</td>
                                     <td>{{ item.id }}</td>
@@ -116,14 +116,14 @@
             </div>
         </div>
         <div class="col-xl-6 col-md-12">
-          <div class="ms-panel">
-            <div class="ms-panel-header">
-              <h6>Pie Chart</h6>
+            <div class="ms-panel">
+                <div class="ms-panel-header">
+                    <h6>Pie Chart</h6>
+                </div>
+                <div class="ms-panel-body">
+                    <canvas id="pie-chart"></canvas>
+                </div>
             </div>
-            <div class="ms-panel-body">
-              <canvas id="pie-chart"></canvas>
-            </div>
-          </div>
         </div>
         <!-- Recent Placed Orders< -->
         <div class="col-12">
@@ -222,7 +222,7 @@
                 </div>
                 <div class="ms-panel-body">
                     <div class="row">
-
+                        # todo : create
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                             <div class="ms-card no-margin">
                                 <div class="ms-card-img">
@@ -230,7 +230,7 @@
                                 </div>
                                 <div class="ms-card-body">
                                     <div class="ms-card-heading-title">
-                                        <h6>Meat Stew</h6>
+                                        <h6>{{ data2.most_popular }}</h6>
                                         <span class="green-text"><strong>$25.00</strong></span>
                                     </div>
 
@@ -241,60 +241,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                            <div class="ms-card no-margin">
-                                <div class="ms-card-img">
-                                    <img src="assets/img/costic/food-2.jpg" alt="card_img">
-                                </div>
-                                <div class="ms-card-body">
-                                    <div class="ms-card-heading-title">
-                                        <h6>Pancake</h6>
-                                        <span class="green-text"><strong>$50.00</strong></span>
-                                    </div>
-
-                                    <div class="ms-card-heading-title">
-                                        <p>Orders <span class="red-text">75</span></p>
-                                        <p>Income <span class="red-text">$275</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                            <div class="ms-card no-margin">
-                                <div class="ms-card-img">
-                                    <img src="assets/img/costic/food-4.jpg" alt="card_img">
-                                </div>
-                                <div class="ms-card-body">
-                                    <div class="ms-card-heading-title">
-                                        <h6>Burger</h6>
-                                        <span class="green-text"><strong>$45.00</strong></span>
-                                    </div>
-
-                                    <div class="ms-card-heading-title">
-                                        <p>Orders <span class="red-text">85</span></p>
-                                        <p>Income <span class="red-text">$575</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                            <div class="ms-card no-margin">
-                                <div class="ms-card-img">
-                                    <img src="assets/img/costic/food-3.jpg" alt="card_img">
-                                </div>
-                                <div class="ms-card-body">
-                                    <div class="ms-card-heading-title">
-                                        <h6>Saled</h6>
-                                        <span class="green-text"><strong>$85.00</strong></span>
-                                    </div>
-                                    <div class="ms-card-heading-title">
-                                        <p>Orders <span class="red-text">175</span></p>
-                                        <p>Income <span class="red-text">$775</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -618,7 +564,6 @@
         <!-- Recent Orders< -->
 
 
-
     </div>
 {% endblock %}
 
@@ -626,7 +571,7 @@
 
     {{ super() }}
     <script src="../../static/AdminPanel/assets/js/Chart.bundle.min.js">
-      </script>
-      <script src="../../static/AdminPanel/assets/js/charts.js">
-      </script>
+    </script>
+    <script src="../../static/AdminPanel/assets/js/charts.js">
+    </script>
 {% endblock %}

@@ -104,6 +104,7 @@ def dashboard():
             'table': Table.query.all(),
             'total_sales_amount': total_sales_amount,
             'order': Order.query.all(),
+            "most_popular": Order.find_most_popular_items()
         }
         # print(data
         resp = make_response(
