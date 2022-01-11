@@ -196,12 +196,12 @@ def change_table_status():
             create_receipt.create()
         else:
             table.reserved = False
-            their_receipt = Receipt.query.filter_by(table_id=table_id,pay_status=False).first()
+            their_receipt = Receipt.query.filter_by(table_id=table_id, pay_status=False).first()
             their_receipt.pay_status = True
             their_receipt.create()
             # their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
 
-        return '',204
+        return '', 204
 
         # table_id = request.form["table_id"].split("-")
         # if table_id[0] == "R":
@@ -226,6 +226,20 @@ def show_tables():
             return render_template('AdminPanel/tables.html', tables=tables)
         elif request.method == "POST":
             return "Coming Soon..."
+        else:
+            return "Bad Request"
+    else:
+        return "Access Denied"
+
+
+def cashier_menu():
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        check_reserve = None
+        if request.method == "GET":
+            menu_items = Menuitem.query.all()
+            categories = Category.query.all()
+            return render_template("AdminPanel/cashier_menu.html", menu_items=menu_items, categories=categories)
         else:
             return "Bad Request"
     else:

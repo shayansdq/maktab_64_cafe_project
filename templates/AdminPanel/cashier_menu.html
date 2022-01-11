@@ -1,0 +1,144 @@
+{% extends "layouts/cashier_panel/_base.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/menu.css') }}">
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+{% endblock %}
+{% block before_body_start %}
+    <div id="preloader-wrap">
+        <div class="spinner spinner-8">
+            <div class="ms-circle1 ms-child"></div>
+            <div class="ms-circle2 ms-child"></div>
+            <div class="ms-circle3 ms-child"></div>
+            <div class="ms-circle4 ms-child"></div>
+            <div class="ms-circle5 ms-child"></div>
+            <div class="ms-circle6 ms-child"></div>
+            <div class="ms-circle7 ms-child"></div>
+            <div class="ms-circle8 ms-child"></div>
+            <div class="ms-circle9 ms-child"></div>
+            <div class="ms-circle10 ms-child"></div>
+            <div class="ms-circle11 ms-child"></div>
+            <div class="ms-circle12 ms-child"></div>
+        </div>
+    </div>
+    <!-- Overlays -->
+    <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+    <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity"
+         data-toggle="slideRight"></div>
+    {% include 'layouts/cashier_panel/__sidebar_left.html' %}
+    {% include 'layouts/cashier_panel/__sidebar_right.html' %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="content-wrapper cafe-floor">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Menu</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Menu</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    {% for category in categories %}
+        <div class="swiper mySwiper text-center">
+            <h1 class="text-white">{{ category.type }}</h1>
+            <div class="swiper-wrapper">
+                {% for item in menu_items %}
+                    {% if item.item_category_id == category.id %}
+                        <div class="swiper-slide">
+                            <div class="card" style="width: 20rem">
+                                <div class="img-container">
+                                    <img
+                                            class="card-img-top"
+                                            src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
+                                            alt="Card image cap"
+                                    />
+                                </div>
+                                <div class="card-block text-center">
+                                    <h4 class="card-title">{{ item.item_name }}</h4>
+                                    <p class="card-text">${{ item.price }}</p>
+                                    <a
+                                            href="#"
+                                            data-name="{{ item.item_name }}"
+                                            data-price="{{ item.price }}"
+                                            class="add-to-cart btn btn-success"
+                                    >Add<i class="fas fa-add mx-2 "></i></a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    {% endfor %}
+    <!-- Modal -->
+    <div
+            class="modal fade"
+            id="cart"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                    <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="show-cart table">
+
+                    </table>
+                    <div>Total price: $<span class="total-cart"></span></div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-success send-order">Order now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block before_body_end %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    {{ super() }}
+{% endblock %}
+
+{% block after_body %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+{% endblock %}
