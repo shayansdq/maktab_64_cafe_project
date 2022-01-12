@@ -108,17 +108,23 @@
         var num = $(this).attr('id')
         var idOfTable = $(this).attr('name')
         $.ajax({
-          type : 'POST',
+              type : 'POST',
           url : "{{url_for('change_table_status')}}",
           data : {
               'do':String(num),
               'table_id':String(idOfTable)
-          }
+          },
+            success: function(data) {
+           let target = `button[name="${idOfTable}"]`
+            $(target).html('Reserve')
+            $(target).attr('class','btn btn-success')
+        },
         });
      });
     $("button.btn-success").click(function(){
         var num = $(this).attr('id')
         var idOfTable = $(this).attr('name')
+        var a = 2
         $.ajax({
           type : 'POST',
           url : "{{url_for('change_table_status')}}",
@@ -127,13 +133,9 @@
               'table_id':String(idOfTable)
           },
           success: function(data) {
-            if (data.hasOwnProperty('success')) {
-                console.log("data was sent!");
-
-                if (reload_on_return) {
-                    location.reload();
-                }
-            }
+            let target = `button[name="${idOfTable}"]`
+            $(target).html('Unreserve')
+            $(target).attr('class','btn btn-danger')
         },
         });
      });
