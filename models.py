@@ -122,9 +122,9 @@ class Order(db.Model):
         return Order.query.filter_by(id=order_id).first()
 
     @staticmethod
-    def find_most_popular_items():
+    def find_most_popular_items(count):
         return db.session.execute(
-            'SELECT menu_item_id , Count(menu_item_id) FROM public."order" GROUP BY menu_item_id HAVING COUNT(menu_item_id)>1 ORDER BY public."order"."count" DESC limit 4')
+            f'SELECT menu_item_id , Count(menu_item_id) FROM public."order" GROUP BY menu_item_id HAVING COUNT(menu_item_id)>1 ORDER BY public."order"."count" DESC limit {count}')
 
     def create(self):
         db.session.add(self)
