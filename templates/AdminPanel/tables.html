@@ -107,6 +107,8 @@
     $("button.btn-danger").click(function(){
         var num = $(this).attr('id')
         var idOfTable = $(this).attr('name')
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('slow')
         $.ajax({
               type : 'POST',
           url : "{{url_for('change_table_status')}}",
@@ -115,17 +117,19 @@
               'table_id':String(idOfTable)
           },
             success: function(data) {
-           let target = `button[name="${idOfTable}"]`
+
             $(target).html('Reserve')
             $(target).attr('class','btn btn-success')
             $(target).attr('id','1')
+            $(target).show('slow')
         },
         });
      });
     $("button.btn-success").click(function(){
         var num = $(this).attr('id')
         var idOfTable = $(this).attr('name')
-        var a = 2
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('slow')
         $.ajax({
           type : 'POST',
           url : "{{url_for('change_table_status')}}",
@@ -134,10 +138,10 @@
               'table_id':String(idOfTable)
           },
           success: function(data) {
-            let target = `button[name="${idOfTable}"]`
             $(target).html('Unreserve')
             $(target).attr('class','btn btn-danger')
             $(target).attr('id','0')
+            $(target).show('slow')
         },
         });
      });
