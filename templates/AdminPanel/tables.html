@@ -107,18 +107,29 @@
     $("button.btn-danger").click(function(){
         var num = $(this).attr('id')
         var idOfTable = $(this).attr('name')
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('slow')
         $.ajax({
-          type : 'POST',
+              type : 'POST',
           url : "{{url_for('change_table_status')}}",
           data : {
               'do':String(num),
               'table_id':String(idOfTable)
-          }
+          },
+            success: function(data) {
+
+            $(target).html('Reserve')
+            $(target).attr('class','btn btn-success')
+            $(target).attr('id','1')
+            $(target).show('slow')
+        },
         });
      });
     $("button.btn-success").click(function(){
         var num = $(this).attr('id')
         var idOfTable = $(this).attr('name')
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('slow')
         $.ajax({
           type : 'POST',
           url : "{{url_for('change_table_status')}}",
@@ -127,13 +138,10 @@
               'table_id':String(idOfTable)
           },
           success: function(data) {
-            if (data.hasOwnProperty('success')) {
-                console.log("data was sent!");
-
-                if (reload_on_return) {
-                    location.reload();
-                }
-            }
+            $(target).html('Unreserve')
+            $(target).attr('class','btn btn-danger')
+            $(target).attr('id','0')
+            $(target).show('slow')
         },
         });
      });

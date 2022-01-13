@@ -79,6 +79,8 @@ def login():
     return render_template('login-page.html', data=data, form=form)
 
 
+
+
 def dashboard():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
@@ -99,13 +101,14 @@ def dashboard():
                 receipt.final_price = 0
             total_sales_amount += receipt.final_price
 
-        most_pupolar_items = Order.find_most_popular_items()
+        most_pupolar_items = Order.find_most_popular_items(4)
         most_pupolar_menu_item = []
         for most_item in most_pupolar_items:
             in_item_id = most_item[0]
             in_item_count = most_item[1]
             most_pupolar_menu_item.append(
                 (Menuitem.get_by_id(in_item_id).item_name, Menuitem.get_by_id(in_item_id).price, in_item_count))
+        print(most_pupolar_menu_item)
         data2 = {
             'menuitem': Menuitem.query.all(),
             'table': Table.query.all(),
