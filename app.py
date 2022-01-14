@@ -2,7 +2,8 @@ from flask import Flask, render_template, redirect, url_for, Response, make_resp
 from database import db
 from flask_bootstrap import Bootstrap
 from os import urandom
-from views import *
+from maktab_64_cafe_project.landing.views import *
+from maktab_64_cafe_project.cashier.views import *
 
 
 def create_app():

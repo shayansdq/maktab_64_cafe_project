@@ -1,5 +1,5 @@
-from database import db
-from models import Cashier
+from maktab_64_cafe_project.database import db
+from maktab_64_cafe_project.cashier.model import Cashier
 import psycopg2
 import psycopg2.extras
 from psycopg2._psycopg import connection, cursor
@@ -32,3 +32,4 @@ if __name__ == "__main__":
     # user = Cashier(first_name=first_name, last_name=last_name, username=username, phone_number=phone_number,
     #                email=email, password_hash=password_hash)
     # user.create()
+# url_for('static',file_name='img/asd.jpg')
