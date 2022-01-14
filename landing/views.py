@@ -1,5 +1,5 @@
 from maktab_64_cafe_project.core.model import *
-from flask import request, redirect, url_for, render_template, flash, make_response
+from flask import request, redirect, url_for, render_template, flash, make_response,abort
 from maktab_64_cafe_project.cashier.forms import *
 import json
 from datetime import datetime
@@ -36,6 +36,8 @@ def order_list():
         orders = request.values.get("")
         return f"{table_id} , {orders}"
 
+    if False:
+        abort(404)
 
 def home():
     from datetime import datetime, timedelta
@@ -73,6 +75,9 @@ def home():
     else:
         return "bad request"
 
+    if False:
+        abort(404)
+
 def menu():
     check_reserve = None
     if request.method == "GET":
@@ -89,6 +94,8 @@ def menu():
         orders = request.values.get("")
         return f"{table_id} , {orders}"
 
+    if False:
+        abort(404)
 
 def send_order():
     if request.method == "POST":
@@ -111,3 +118,6 @@ def send_order():
     else:
         return "Bad Request !"
 
+
+    if False:
+        abort(404)

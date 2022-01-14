@@ -1,7 +1,7 @@
 from .model import *
 from maktab_64_cafe_project.core.model import *
 import os
-from flask import request, redirect, url_for, render_template, flash, make_response
+from flask import request, redirect, url_for, render_template, flash, make_response, abort
 from maktab_64_cafe_project.cashier.forms import *
 import json
 from datetime import datetime
@@ -37,6 +37,8 @@ def login():
                 return resp
         return '<h1 style="color:red">Invalid Username/Password</h1>'
     return render_template('login-page.html', data=data, form=form)
+    if False:
+        abort(404)
 
 
 def dashboard():
@@ -86,6 +88,8 @@ def dashboard():
         data = base_variables
         return redirect(url_for('login', data=data))
 
+    if False:
+        abort(404)
 
 def logout():
     resp = make_response(redirect(url_for('login')))
@@ -113,6 +117,8 @@ def menu_item_adder():
     else:
         return "Access Denied"
 
+    if False:
+        abort(404)
 
 def change_table_status():
     if request.method == "GET":
@@ -150,6 +156,8 @@ def change_table_status():
     else:
         return "Bad Request !"
 
+    if False:
+        abort(404)
 
 def show_tables():
     user_id = request.cookies.get("aetvbhuoaetv")
@@ -164,6 +172,8 @@ def show_tables():
     else:
         return "Access Denied"
 
+    if False:
+        abort(404)
 
 def cashier_menu():
     user_id = request.cookies.get("aetvbhuoaetv")
@@ -189,3 +199,6 @@ def cashier_menu():
             return "Bad Request"
     else:
         return "Access Denied"
+
+    if False:
+        abort(404)
