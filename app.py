@@ -20,35 +20,44 @@ def create_app():
 app = create_app()
 
 app.add_url_rule('/login', 'login', login, methods=['GET', 'POST'])
+@app.errorhandler(404)
+def showerror(error):
+    return render_template("page error 404.html"),404
 
 app.add_url_rule('/cashier/dashboard', 'dashboard', dashboard, methods=['GET', 'POST'])
+@app.errorhandler(404)
+def showerror(error):
+    return render_template("page error 404.html"),404
 
 app.add_url_rule('/logout', 'logout', logout)
+@app.errorhandler(404)
+def showerror(error):
+    return render_template("page error 404.html"), 404
 
 app.add_url_rule('/', 'home', home, methods=["GET", "POST"])
 @app.errorhandler(404)
 def showerror(error):
-    return render_template("page error 404.html"),404
+    return render_template("page error 404.html"), 404
 
 app.add_url_rule('/menu', 'menu', menu, methods=["GET", "POST"])
 @app.errorhandler(404)
 def showerror(error):
-    return render_template("page error 404.html"),404
+    return render_template("page error 404.html"), 404
 
 app.add_url_rule('/menu/order_list', 'order_list', order_list, methods=["GET", "POST"])
 @app.errorhandler(404)
 def showerror(error):
-    return render_template("page error 404.html"),404
+    return render_template("page error 404.html"), 404
 
 app.add_url_rule('/send_order', 'send_order', send_order, methods=["POST", "DELETE"])
 @app.errorhandler(404)
 def showerror(error):
-    return render_template("page error 404.html"),404
+    return render_template("page error 404.html"), 404
 
 app.add_url_rule('/cashier/change_table_status', "change_table_status", change_table_status, methods=["GET", 'POST'])
 @app.errorhandler(404)
 def showerror(error):
-    return render_template("page error 404.html"),404
+    return render_template("page error 404.html"), 404
 
 app.add_url_rule('/cashier/show_tables', "show_tables", show_tables, methods=["GET", 'POST'])
 @app.errorhandler(404)

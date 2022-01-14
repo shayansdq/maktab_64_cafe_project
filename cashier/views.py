@@ -91,6 +91,7 @@ def dashboard():
     if False:
         abort(404)
 
+
 def logout():
     resp = make_response(redirect(url_for('login')))
     resp.delete_cookie('aetvbhuoaetv')
@@ -119,6 +120,7 @@ def menu_item_adder():
 
     if False:
         abort(404)
+
 
 def change_table_status():
     if request.method == "GET":
@@ -159,6 +161,7 @@ def change_table_status():
     if False:
         abort(404)
 
+
 def show_tables():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
@@ -174,6 +177,7 @@ def show_tables():
 
     if False:
         abort(404)
+
 
 def cashier_menu():
     user_id = request.cookies.get("aetvbhuoaetv")
