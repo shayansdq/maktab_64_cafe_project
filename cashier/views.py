@@ -1,8 +1,8 @@
 from .model import *
-from maktab_64_cafe_project.core.model import *
+from core.model import *
 import os
 from flask import request, redirect, url_for, render_template, flash, make_response, abort
-from maktab_64_cafe_project.cashier.forms import *
+from cashier.forms import *
 import json
 from datetime import datetime
 
