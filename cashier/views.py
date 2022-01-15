@@ -5,20 +5,12 @@ from flask import request, redirect, url_for, render_template, flash, make_respo
 from cashier.forms import *
 import json
 from datetime import datetime
+from core.views import *
 
 path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
 
-base_variables = {
-    "page": {
-        "base_title": "Cafe Dark",
-        "lang": 'en-US',
-        "title": 'main'
-    },
-    'reserve-button': {
-        'content': 'Reservation'
-    }
-}
+
 
 
 def login():

@@ -1,20 +1,11 @@
 from core.model import *
-from flask import request, redirect, url_for, render_template, flash, make_response,abort
+from flask import request, redirect, url_for, render_template, flash, make_response, abort
 from cashier.forms import *
 import json
 from datetime import datetime
+from core.views import *
 
 
-base_variables = {
-    "page": {
-        "base_title": "Cafe Dark",
-        "lang": 'en-US',
-        "title": 'main'
-    },
-    'reserve-button': {
-        'content': 'Reservation'
-    }
-}
 
 
 
