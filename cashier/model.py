@@ -1,4 +1,4 @@
-from maktab_64_cafe_project.database import db
+from database import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 

@@ -1,6 +1,6 @@
-from maktab_64_cafe_project.core.model import *
-from flask import request, redirect, url_for, render_template, flash, make_response, abort
-from maktab_64_cafe_project.cashier.forms import *
+from core.model import *
+from flask import request, redirect, url_for, render_template, flash, make_response,abort
+from cashier.forms import *
 import json
 from datetime import datetime
 
@@ -38,7 +38,6 @@ def order_list():
 
     if False:
         abort(404)
-
 
 def home():
     from datetime import datetime, timedelta
@@ -98,7 +97,6 @@ def menu():
     if False:
         abort(404)
 
-
 def send_order():
     if request.method == "POST":
         receipt_id = request.cookies.get('Receipt')
@@ -119,6 +117,7 @@ def send_order():
         return "", 200
     else:
         return "Bad Request !"
+
 
     if False:
         abort(404)
