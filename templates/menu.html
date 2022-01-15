@@ -36,27 +36,30 @@
 <br><br><br>
 <!-- partial:index.partial.html -->
 <!-- Nav -->
-<nav class="navbar navbar-inverse fixed-top">
-    <div class="row">
-        <div class="col">
-            <button
-                    type="button"
-                    class="btn btn-success mx-1"
-                    data-toggle="modal"
-                    data-target="#cart"
-            >
-                <i class="fas fa-mug-hot"></i>
-                Cart (<span class="total-count"></span>)
-            </button>
-            <button class="clear-cart btn btn-danger mx-1">
-                <i class="fas fa-trash-alt"></i>
-                Clear Cart
-            </button>
-            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
+{% if status == True %}
+    <nav class="navbar navbar-inverse fixed-top">
+        <div class="row">
+            <div class="col">
+                <button
+                        type="button"
+                        class="btn btn-success mx-1"
+                        data-toggle="modal"
+                        data-target="#cart"
+                >
+                    <i class="fas fa-mug-hot"></i>
+                    Cart (<span class="total-count"></span>)
+                </button>
+                <button class="clear-cart btn btn-danger mx-1">
+                    <i class="fas fa-trash-alt"></i>
+                    Clear Cart
+                </button>
+                <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
+            </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
+{% else %}
+    <h1>IF YOU WANT TO PUT ORDER FIRST SELECT A TABLE !</h1>
+{% endif %}
 {% for category in categories %}
     <div class="swiper mySwiper text-center">
         <h1 class="text-white">{{ category.type }}</h1>
@@ -75,13 +78,15 @@
                             <div class="card-block text-center">
                                 <h4 class="card-title">{{ item.item_name }}</h4>
                                 <p class="card-text">${{ item.price }}</p>
-                                <a
-                                        href="#"
-                                        data-name="{{ item.item_name }}"
-                                        data-price="{{ item.price }}"
-                                        class="add-to-cart btn btn-success"
-                                >Add<i class="fas fa-add mx-2 "></i></a
-                                >
+                                {% if status == True %}
+                                    <a
+                                            href="#"
+                                            data-name="{{ item.item_name }}"
+                                            data-price="{{ item.price }}"
+                                            class="add-to-cart btn btn-success"
+                                    >Add<i class="fas fa-add mx-2 "></i></a
+                                    >
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -94,46 +99,48 @@
     </div>
 {% endfor %}
 <!-- Modal -->
-<div
-        class="modal fade"
-        id="cart"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
-                <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                >
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="show-cart table">
+{% if status == True %}
+    <div
+            class="modal fade"
+            id="cart"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                    <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="show-cart table">
 
-                </table>
-                <div>Total price: $<span class="total-cart"></span></div>
-            </div>
-            <div class="modal-footer">
-                <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                >
-                    Close
-                </button>
-                <button type="button" class="btn btn-success send-order">Order now</button>
+                    </table>
+                    <div>Total price: $<span class="total-cart"></span></div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-success send-order">Order now</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endif %}
 <!-- partial -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
