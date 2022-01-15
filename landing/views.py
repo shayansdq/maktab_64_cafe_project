@@ -6,9 +6,6 @@ from datetime import datetime
 from core.views import *
 
 
-
-
-
 def order_list():
     check_reserve = None
     if request.method == "GET":
@@ -29,6 +26,7 @@ def order_list():
 
     if False:
         abort(404)
+
 
 def home():
     from datetime import datetime, timedelta
@@ -69,6 +67,7 @@ def home():
     if False:
         abort(404)
 
+
 def menu():
     check_reserve = None
     if request.method == "GET":
@@ -76,10 +75,11 @@ def menu():
         if table_id:
             menu_items = Menuitem.get_valid_items()
             categories = Category.query.all()
-            return render_template("menu.html", menu_items=menu_items, categories=categories)
+            return render_template("menu.html", menu_items=menu_items, categories=categories, status=True)
         else:
-            check_reserve = True
-            return redirect(url_for("home", check_reserve=check_reserve, check_msg="Choose Table"))
+            menu_items = Menuitem.get_valid_items()
+            categories = Category.query.all()
+            return render_template("menu.html", menu_items=menu_items, categories=categories, status=False)
     elif request.method == "POST":
         table_id = request.cookies.get("Table")
         orders = request.values.get("")
@@ -87,6 +87,7 @@ def menu():
 
     if False:
         abort(404)
+
 
 def send_order():
     if request.method == "POST":
@@ -108,7 +109,6 @@ def send_order():
         return "", 200
     else:
         return "Bad Request !"
-
 
     if False:
         abort(404)
