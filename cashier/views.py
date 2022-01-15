@@ -11,8 +11,6 @@ path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
 
 
-
-
 def login():
     base_variables['page']['title'] = 'Cashier Login'
     data = base_variables
@@ -54,6 +52,9 @@ def dashboard():
             total_sales_amount += receipt.final_price
 
         most_pupolar_items = Order.find_most_popular_items(4)
+        last_orders = []
+        # for l_order in Order.query.all():
+
         most_pupolar_menu_item = []
         for most_item in most_pupolar_items:
             in_item_id = most_item[0]
@@ -88,6 +89,7 @@ def logout():
     resp = make_response(redirect(url_for('login')))
     resp.delete_cookie('aetvbhuoaetv')
     return resp
+
 
 def menu_item_adder():
     # login requirement
@@ -129,10 +131,11 @@ def change_table_status():
             create_receipt.create()
         else:
             table.reserved = False
+            table.create()
             their_receipt = Receipt.query.filter_by(table_id=table_id, pay_status=False).first()
             their_receipt.pay_status = True
             their_receipt.create()
-            # their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
+            their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
 
         return '', 204
 
