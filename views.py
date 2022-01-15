@@ -233,17 +233,6 @@ def change_table_status():
 
         return '', 204
 
-        # table_id = request.form["table_id"].split("-")
-        # if table_id[0] == "R":
-        #     table = Table.get_by_id(table_id[1])
-        #     table.reserved = True
-        #     table.create()
-        #     return f'{table.table_name} Status Changed'
-        # elif table_id[0] == "U":
-        #     table = Table.get_by_id(table_id[1])
-        #     table.reserved = False
-        #     table.create()
-        #     return f'{table.table_name} Status Changed'
     else:
         return "Bad Request !"
 
