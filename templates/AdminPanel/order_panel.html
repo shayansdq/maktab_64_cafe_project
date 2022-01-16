@@ -69,6 +69,25 @@
 {% endblock %}
 
 {% block before_body_end %}
+
+<script >
+    $('#show-tables').click(function(){
+    $.get({
+        url: '/handler/?show_tables=true',
+        success: function(data){
+            $('.ms-content-wrapper').html(data)
+        }
+    })
+})
+    $('#cashier_order').click(function(){
+    $.get({
+        url: '/handler/?cashier_order=true',
+        success: function(data){
+            $('.ms-content-wrapper').html(data)
+        }
+    })
+})
+</script>
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
