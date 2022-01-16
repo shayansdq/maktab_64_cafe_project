@@ -168,7 +168,9 @@ def cashier_order():
     if Cashier.get_by_id(user_id):
         if request.method == "GET":
             orders = Order.query.all()
-            return render_template("AdminPanel/order_panel.html", orders=orders, name="mobin")
+            menu_items = Menuitem.query.all()
+            return render_template("AdminPanel/order_panel.html", orders=orders, menu_items=menu_items,
+                                   name="mobin")
         elif request.method == "POST":
             return "Bad Request !"
     else:
