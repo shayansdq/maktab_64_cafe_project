@@ -4,10 +4,11 @@ from core.model import *
 
 
 def spa_handler():
-    if request.args.get('show-tables'):
+    if request.args.get('show_tables'):
+        print('hi')
         tables = Table.query.order_by(Table.id)
-        return render_template('AdminPanel/tables.html', tables=tables)
-    elif request.args.get('about'):
+        return render_template('cashier-spa/tables.html', tables=tables)
+    elif request.args.get('cashier_order'):
         data = base_variables
         data['page']['title'] = "درباره ما"
         data['content'] = """
