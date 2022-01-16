@@ -3,7 +3,7 @@ from flask import request, redirect, url_for, render_template, flash, make_respo
 from cashier.forms import *
 import json
 from datetime import datetime
-from core.views import *
+from core.data import *
 
 
 def order_list():
@@ -90,6 +90,7 @@ def menu():
 
 def send_order():
     if request.method == "POST":
+        now = datetime.now()
         receipt_id = request.cookies.get('Receipt')
         orders = request.form
         orders = orders.to_dict(flat=False)
@@ -99,7 +100,9 @@ def send_order():
         for order in orders:
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
-            Order(menu_item_id=menu_item_id, receipt_id=receipt_id, item_count=item_count).create()
+            Order(menu_item_id=menu_item_id, receipt_id=receipt_id,
+                  item_count=item_count,submit_time=datetime.now()).create()
+        return "", 204
     elif request.method == "DELETE":
         data_order_id = request.form['data-order-id']
         order = Order.find_order_by_id(data_order_id)

@@ -5,7 +5,7 @@ from flask import request, redirect, url_for, render_template, flash, make_respo
 from cashier.forms import *
 import json
 from datetime import datetime
-from core.views import *
+from core.data import *
 
 path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
