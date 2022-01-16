@@ -39,7 +39,8 @@
                aria-controls="tables"> <span><i class="material-icons fs-16">tune</i>Tables</span>
             </a>
             <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
-                <li><a href="{{ url_for('show_tables') }}">Show Table</a>
+<!--                <li><a href="{{ url_for('show_tables') }}">Tables & Receipt</a>-->
+                <li><a link="{{ url_for('handler') }}?show_tables=true">Tables & Receipt</a>
                 </li>
             </ul>
         </li>

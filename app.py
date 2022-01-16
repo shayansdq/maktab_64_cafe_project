@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from os import urandom
 from landing.views import *
 from cashier.views import *
+from cashier.spa_views import *
 
 
 def create_app():
@@ -26,6 +27,8 @@ app.add_url_rule('/cashier/dashboard', 'dashboard', dashboard, methods=['GET', '
 app.add_url_rule('/logout', 'logout', logout)
 
 app.add_url_rule('/', 'home', home, methods=["GET", "POST"])
+
+app.add_url_rule("/handler/", "handler", spa_handler)
 
 
 @app.errorhandler(404)
