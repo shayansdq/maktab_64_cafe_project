@@ -1782,7 +1782,7 @@ input[type=file] > input[type=button]::-moz-focus-inner {
 /*    !* W3C *!*/
 /*    background-size: 250% 250%;*/
 /*}*/
-span {
+.dropdown-item-marker span {
     color: white !important;
 }
 
