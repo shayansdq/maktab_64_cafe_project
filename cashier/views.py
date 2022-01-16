@@ -163,6 +163,17 @@ def show_tables():
         abort(404)
 
 
+def cashier_order():
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        if request.method == "GET":
+            return render_template("AdminPanel/cashier_orders.html")
+        elif request.method == "POST":
+            return "Bad Request !"
+    else:
+        return "Access Denied !"
+
+
 def cashier_menu():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):

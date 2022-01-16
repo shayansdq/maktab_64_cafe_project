@@ -88,13 +88,6 @@ def menu():
         abort(404)
 
 
-def cashier_order():
-    if request.method == "GET":
-        return render_template("AdminPanel/cashier_orders.html")
-    elif request.method == "POST":
-        return "Bad Request !"
-
-
 def send_order():
     if request.method == "POST":
         receipt_id = request.cookies.get('Receipt')
