@@ -86,7 +86,8 @@
                         <div class="align-self-center align-left">
                             <h6>Recent Orders Requested</h6>
                         </div>
-                        <button type="button" class="btn btn-primary" href="{{url_for('cashier_menu')}}">View All</button>
+                        <button type="button" class="btn btn-primary" href="{{ url_for('cashier_menu') }}">View All
+                        </button>
                     </div>
                 </div>
                 <div class="ms-panel-body">
@@ -144,12 +145,12 @@
                             </thead>
                             <tbody>
                             {% for order in last_orders %}
-                            <tr>
-                                <th scope="row">{{order.id}}</th>
-                                <td>{{order.menu_item_id}}</td>
-                                <td><span class="badge badge-primary">Pending</span></td>
-                                <td>10:15</td>
-                            </tr>
+                                <tr>
+                                    <th scope="row">{{ order.id }}</th>
+                                    <td>{{ order.menu_item_id }}</td>
+                                    <td><span class="badge badge-primary">Pending</span></td>
+                                    <td>10:15</td>
+                                </tr>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -169,7 +170,8 @@
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
                                 <div class="ms-card no-margin">
                                     <div class="ms-card-img">
-                                        <img src="{{ url_for('static', filename='img/' + most_item[0] + '.jpg') }}" alt="card_img">
+                                        <img src="{{ url_for('static', filename='img/' + most_item[0] + '.jpg') }}"
+                                             alt="card_img">
                                     </div>
                                     <div class="ms-card-body">
                                         <div class="ms-card-heading-title">
