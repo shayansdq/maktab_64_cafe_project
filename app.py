@@ -60,7 +60,7 @@ def showerror(error):
     return render_template("page error 404.html"), 404
 
 
-app.add_url_rule('/cashier_order', 'cashier_order', cashier_order, methods=["GET", "POST", "DELETE"])
+app.add_url_rule('/cashier_order', 'cashier_order', cashier_order, methods=["GET", "POST", "DELETE", "PUT"])
 
 
 @app.errorhandler(404)

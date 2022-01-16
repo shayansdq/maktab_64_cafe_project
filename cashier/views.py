@@ -170,10 +170,16 @@ def cashier_order():
             return render_template("AdminPanel/order_panel.html", orders=orders, menu_items=menu_items)
         elif request.method == "POST":
             return "Bad Request !"
-        elif request.method == "DELETE":
+        elif request.method == "PUT":
             data = json.loads(request.form["data"])
             order = Order.find_order_by_id(data["id"])
             order.status = "cocking"
+            order.create()
+            return "", 204
+        elif request.method == "DELETE":
+            data = json.loads(request.form["data"])
+            order = Order.find_order_by_id(data["id"])
+            order.is_delete = True
             order.create()
             return "", 204
     else:
