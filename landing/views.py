@@ -69,7 +69,6 @@ def home():
 
 
 def menu():
-    check_reserve = None
     if request.method == "GET":
         table_id = request.cookies.get("Table")
         if table_id:
