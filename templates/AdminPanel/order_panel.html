@@ -96,6 +96,7 @@
                         alert("Failed")
                     }
                 })
+                location.reload();
             },
             'click .remove': function (e, value, row, index) {
                 {#$table.bootstrapTable('remove', {#}
@@ -115,6 +116,7 @@
                         alert("Failed")
                     }
                 })
+                location.reload();
             },
         }
 
@@ -136,7 +138,6 @@
             $table.bootstrapTable({
                 classes: 'table table-hover table-striped',
                 toolbar: '.toolbar',
-
                 search: true,
                 showRefresh: true,
                 showToggle: true,
@@ -159,7 +160,6 @@
                 alert('You pressed on Alert')
             })
         })
-
     </script>
     {{ super() }}
 {% endblock %}
