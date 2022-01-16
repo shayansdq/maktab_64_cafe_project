@@ -167,7 +167,8 @@ def cashier_order():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
         if request.method == "GET":
-            return render_template("AdminPanel/order_panel.html", name="mobin")
+            orders = Order.query.all()
+            return render_template("AdminPanel/order_panel.html", orders=orders, name="mobin")
         elif request.method == "POST":
             return "Bad Request !"
     else:
