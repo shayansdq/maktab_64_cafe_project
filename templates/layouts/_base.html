@@ -21,6 +21,7 @@
 {% block body %}{% endblock %}
 </body>
 {% block after_body %}
+    <script src="{{ url_for('static', filename='spa_ajax.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TimelineMax.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

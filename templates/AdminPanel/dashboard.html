@@ -515,6 +515,18 @@
 {% block before_body_end %}
 
     {{ super() }}
+<script >
+    $('#show-tables').click(function(){
+
+    console.log('tables')
+    $.get({
+        url: '/handler/?show_tables=true',
+        success: function(data){
+            $('.ms-content-wrapper').html(data)
+        }
+    })
+})
+</script>
     <script src="../../static/AdminPanel/assets/js/Chart.bundle.min.js">
     </script>
     <script src="../../static/AdminPanel/assets/js/charts.js">
