@@ -32,20 +32,24 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="ms-panel">
-                <div class="ms-panel-header">
-                    <h6>Orders Data : </h6>
-                </div>
-                <div class="ms-panel-body">
-                    <div class="table-responsive">
-                        <table id="data-table-2" class="table table-striped thead-primary w-100"></table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#id</th>
+            <th scope="col">Menu Item</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>{{ name }}</td>
+            <td>@mdo</td>
+        </tr>
+        </tbody>
+    </table>
 {% endblock %}
 {% block before_body_end %}
     {{ super() }}
@@ -59,3 +63,4 @@
             referrerpolicy="no-referrer"></script>
 
 {% endblock %}
+
