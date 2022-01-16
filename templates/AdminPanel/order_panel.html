@@ -39,8 +39,8 @@
         <table id="fresh-table" class="table">
             <thead>
             <th data-field="id">ID</th>
-            <th data-field="name">Name</th>
-            <th data-field="salary">Salary</th>
+            <th data-field="name">Menu Item Name</th>
+            <th data-field="salary"></th>
             <th data-field="country">Country</th>
             <th data-field="city">City</th>
             <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
@@ -49,7 +49,11 @@
             {% for order in orders %}
                 <tr>
                     <td>{{ order.id }}</td>
-                    <td>{{ order.menu_item_id }}</td>
+                    {% for menu_item in menu_items %}
+                        {% if order.menu_item_id == menu_item.id %}
+                            <td>{{ menu_item.item_name }} ({{ order.id }})</td>
+                        {% endif %}
+                    {% endfor %}
                     <td>{{ order.count }}</td>
                     <td>{{ order.status }}</td>
                     <td>{{ order.receipt_id }}</td>
