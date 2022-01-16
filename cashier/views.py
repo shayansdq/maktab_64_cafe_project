@@ -174,7 +174,7 @@ def cashier_order():
         elif request.method == "PUT":
             data = json.loads(request.form["data"])
             order = Order.find_order_by_id(data["id"])
-            order.status = "cocking"
+            order.status = "cooking"
             order.create()
             return "", 204
         elif request.method == "DELETE":
