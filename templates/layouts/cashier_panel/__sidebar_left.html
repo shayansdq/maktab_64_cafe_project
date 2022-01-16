@@ -36,7 +36,7 @@
                aria-controls="tables"> <span><i class="fas fa-clipboard-list fs-16"></i>Orders</span>
             </a>
             <ul id="orders" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
-                <li><a id="cashier_order">Show orders</a>
+                <li><a id="cashier_order" href="{{ url_for('cashier_order') }}">Show orders</a>
                 </li>
                 <li><a id="add_order">Add new</a>
                 </li>
@@ -51,7 +51,7 @@
             </a>
             <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
 <!--                <li><a href="{{ url_for('show_tables') }}">Tables & Receipt</a>-->
-                <li><a id="show-tables" link="{{ url_for('handler') }}?show_tables=true">Tables & Receipt</a>
+                <li><a id="show-tables" href="{{ url_for('show_tables') }}">Tables & Receipt</a>
                 </li>
             </ul>
         </li>
