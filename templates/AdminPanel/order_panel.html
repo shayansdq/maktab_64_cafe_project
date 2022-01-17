@@ -127,10 +127,10 @@
 
         function operateFormatter(value, row, index) {
             return [
-                '<a rel="tooltip" title="Served" class="table-action served" href="javascript:void(0)" title="served">',
+                '<a rel="tooltip" title="Served" class="table-action served" href="javascript:void(0)" title="Served">',
                 '<i class="fas fa-check-double"></i>',
                 '</a>',
-                '<a rel="tooltip" title="Cooking" class="table-action cooking" href="javascript:void(0)" title="cooking">',
+                '<a rel="tooltip" title="Cooking" class="table-action cooking" href="javascript:void(0)" title="Cooking">',
                 '<i class="fas fa-check"></i>',
                 '</a>',
                 '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
@@ -162,7 +162,7 @@
             })
 
             $reloadBtn.click(function () {
-                alert('Page Reloaded')
+                alert('Page Reloading')
                 location.reload();
             })
         })
