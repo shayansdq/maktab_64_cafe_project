@@ -222,12 +222,5 @@ def cashier_menu():
 def receipts_data():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
-        receipts = Rec
-
-
-def show_comments():
-    user_id = request.cookies.get("aetvbhuoaetv")
-    if Cashier.get_by_id(user_id):
-        if request.method == "GET":
-            comments = Comments.query.all()
-            return render_template("AdminPanel/comments_panel.html", comments=comments)
+        receipts = Receipt.query.all()
+        return render_template("AdminPanel/receipts_panel.html",receipts=receipts)
