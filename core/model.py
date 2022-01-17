@@ -76,6 +76,7 @@ class Comments(db.Model):
     name = db.Column(db.String(32))
     email = db.Column(db.String(60), unique=True)
     comments = db.Column(db.String(1000))
+    is_delete = db.Column(db.Boolean, default=False)
 
     def create(self):
         db.session.add(self)
