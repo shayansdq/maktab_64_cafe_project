@@ -224,7 +224,7 @@ def receipts_data():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
         receipts = Receipt.query.all()
-        return render_template("AdminPanel/receipts_panel.html",receipts=receipts)
+        return render_template("AdminPanel/receipts_panel.html", receipts=receipts)
 
 
 def show_comments():
@@ -233,3 +233,13 @@ def show_comments():
         if request.method == "GET":
             comments = Comments.query.all()
             return render_template("AdminPanel/comments_panel.html", comments=comments)
+        elif request.method == "POST":
+            email = request.form['email']
+            name = request.form['name']
+            message = request.form['message']
+            Comments(name=name, email=email, comments=message).create()
+            return redirect(url_for("home"))
+        else:
+            return "Bad Request"
+    else:
+        return "Access Denied !"

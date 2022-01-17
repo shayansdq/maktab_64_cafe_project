@@ -101,7 +101,7 @@ def send_order():
             menu_item_id = Menuitem.find_item(order["name"]).id
             item_count = order["count"]
             Order(menu_item_id=menu_item_id, receipt_id=receipt_id,
-                  item_count=item_count,submit_time=datetime.now()).create()
+                  item_count=item_count, submit_time=datetime.now()).create()
         return "", 204
     elif request.method == "DELETE":
         data_order_id = request.form['data-order-id']
@@ -115,15 +115,3 @@ def send_order():
     if False:
         abort(404)
 
-
-def save_comments():
-    email = request.form['email']
-    name = request.form['name']
-    message = request.form['message']
-    comment = Comments(name=name, email=email, comments=message).create()
-    return url_for('home')
-    # comment.name = namer
-
-    # comment.email = emailr
-    # comment.comments = massager
-    # comment.create()
