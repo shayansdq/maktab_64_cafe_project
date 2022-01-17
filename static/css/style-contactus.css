@@ -330,8 +330,30 @@ textarea.input2 + .focus-input2::after {
   visibility: visible;
   opacity: 1;
 }
+.wrap-contact2{
+  width: 43vw;
+  height: 65vh;
+  margin-top: 200px;
+}
+@media (min-width: 1070px){
+  .wrap-contact2{
+    height:38rem;
+  }
+}
+@media (min-width: 769px) and (max-width: 1070px){
+  .wrap-contact2{
+    margin-left: 420px;
+    margin-top: 250px;
+  }
+}
+input[type="submit"]{
+  background-color: #e07d63;
+}
 
 @media (max-width: 1070px) {
+  form *{
+    color: white;
+  }
   #map{
     margin-top: -180px;
   }
@@ -342,11 +364,10 @@ textarea.input2 + .focus-input2::after {
     font-size: 20px !important;
   }
   .wrap-contact2{
-    height:36rem !important;
+    width:80vw;
+    height:38rem !important;
   }
   .bg-contact2{
-    width:80vw;
-    height:1rem !important;
     margin-top: -190px;
   }
   #about{
