@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="{{url_for('static',filename='AdminPanel/assets/css/receipts_panel_style.css')}}">
 
 </head>
-<body style="background-color: #aaaaaa">
+<body>
 
 <table id="example" class="table table-striped table-bordered " cellspacing="0" width="100%" style="background-color: #f3864f; border-radius: 10px">
 	<thead>
@@ -25,13 +25,13 @@
 		</tr>
 	</thead>
 	<tbody>
-	{% for resid in resids %}
+	{% for receipt in receipts %}
 		<tr>
-			<td>{{  resid.id }}</td>
-			<td>Alphabet puzzle</td>
-			<td>2016/01/15</td>
-			<td>Done</td>
-			<td >€1.000,00</td>
+			<td>{{  receipt.id }}</td>
+			<td>{{ receipt.time_stamp }}</td>
+			<td>{{ receipt.pay_status }}</td>
+			<td>{{ receipt.total_price }}</td>
+			<td >{{ receipt.final_price }}</td>
 			<td ><a  href="#open-modal">More</a></td>
 		</tr>
 	{% endfor %}

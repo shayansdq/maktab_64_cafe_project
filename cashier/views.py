@@ -222,4 +222,5 @@ def cashier_menu():
 def receipts_data():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
-        receipts = Rec
+        receipts = Receipt.query.all()
+        return render_template("AdminPanel/receipts_panel.html",receipts=receipts)
