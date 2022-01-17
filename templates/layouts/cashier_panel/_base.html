@@ -7,11 +7,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Cashier Panel</title>
     <!-- Iconic Fonts -->
+<!--    <link rel="stylesheet" href="{{ url_for('static',filename='css/tables.css') }}">-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/css/fresh-bootstrap-table.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../../../static/AdminPanel/vendors/iconic-fonts/font-awesome/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../static/AdminPanel/vendors/iconic-fonts/flat-icons/flaticon.css">
     <link rel="stylesheet" href="../../../static/AdminPanel/vendors/iconic-fonts/cryptocoins/cryptocoins.css">
     <link rel="stylesheet" href="../../../static/AdminPanel/vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css">
+    <link href="../../../static/AdminPanel/assets/css/datatables.min.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="../../../static/AdminPanel/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery UI -->
@@ -72,13 +78,12 @@
     </script>
     <script src="../../../static/AdminPanel/assets/js/datatables.min.js">
     </script>
-    <script src="../../../static/AdminPanel/assets/js/data-tables.js">
+    <script src="../../../static/AdminPanel/assets/js/data-orders.js">
     </script>
     <!-- Page Specific Scripts Finish -->
     <!-- Costic core JavaScript -->
     <script src="../../../static/AdminPanel/assets/js/framework.js"></script>
     <!-- Settings -->
-    <script src="../../../static/AdminPanel/assets/js/settings.js"></script>
 {% endblock %}
 </body>
 

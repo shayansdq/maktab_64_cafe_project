@@ -71,6 +71,25 @@ class Table(db.Model):
         return '<table number: %r>' % self.id
 
 
+class Comments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32))
+    email = db.Column(db.String(60), unique=True)
+    comments = db.Column(db.String(1000))
+    is_delete = db.Column(db.Boolean, default=False)
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @staticmethod
+    def get_by_id(comment_id):
+        return Table.query.filter_by(id=comment_id).first()
+
+    def __repr__(self):
+        return '<comment number: %r>' % self.id
+
+
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     menu_item_id = db.Column(db.Integer, db.ForeignKey('menuitem.id'))
@@ -83,6 +102,10 @@ class Order(db.Model):
     @staticmethod
     def find_order_by_id(order_id):
         return Order.query.filter_by(id=order_id).first()
+
+    @staticmethod
+    def select_all():
+        return db.session.execute('SELECT * FROM public."order" ORDER BY id Desc')
 
     @staticmethod
     def find_most_popular_items(count):

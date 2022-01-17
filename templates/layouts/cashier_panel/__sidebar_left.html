@@ -27,9 +27,20 @@
         </li>
         <!-- product end -->
         <!-- orders -->
+<!--        <li class="menu-item">-->
+<!--            <a href="{{ url_for('cashier_order') }}"> <span><i class="fas fa-clipboard-list fs-16"></i>Orders</span>-->
+<!--            </a>-->
+<!--        </li>-->
         <li class="menu-item">
-            <a href="pages/orders.html"> <span><i class="fas fa-clipboard-list fs-16"></i>Orders</span>
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#orders" aria-expanded="false"
+               aria-controls="tables"> <span><i class="fas fa-clipboard-list fs-16"></i>Orders</span>
             </a>
+            <ul id="orders" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
+                <li><a id="cashier_order" href="{{ url_for('cashier_order') }}">Show orders</a>
+                </li>
+                <li><a id="add_order">Add new</a>
+                </li>
+            </ul>
         </li>
         <!-- orders end -->
 
@@ -39,36 +50,37 @@
                aria-controls="tables"> <span><i class="material-icons fs-16">tune</i>Tables</span>
             </a>
             <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
-                <li><a href="{{ url_for('show_tables') }}">Show Table</a>
+<!--                <li><a href="{{ url_for('show_tables') }}">Tables & Receipt</a>-->
+                <li><a id="show-tables" href="{{ url_for('show_tables') }}">Tables & Receipt</a>
                 </li>
             </ul>
         </li>
         <!-- /Tables -->
         <!-- customers-->
         <!-- Customers  end -->
-<!--        &lt;!&ndash; Advanced UI Elements &ndash;&gt;-->
-<!--        <li class="menu-item">-->
-<!--            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#advanced-elements"-->
-<!--               aria-expanded="false" aria-controls="advanced-elements"> <span><i class="material-icons fs-16">code</i>Advanced UI Elements</span>-->
-<!--            </a>-->
-<!--            <ul id="advanced-elements" class="collapse" aria-labelledby="advanced-elements"-->
-<!--                data-parent="#side-nav-accordion">-->
-<!--                <li><a href="/static/AdminPanel/pages/ui-advanced/modals.html">Modals</a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </li>-->
+        <!--        &lt;!&ndash; Advanced UI Elements &ndash;&gt;-->
+        <!--        <li class="menu-item">-->
+        <!--            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#advanced-elements"-->
+        <!--               aria-expanded="false" aria-controls="advanced-elements"> <span><i class="material-icons fs-16">code</i>Advanced UI Elements</span>-->
+        <!--            </a>-->
+        <!--            <ul id="advanced-elements" class="collapse" aria-labelledby="advanced-elements"-->
+        <!--                data-parent="#side-nav-accordion">-->
+        <!--                <li><a href="/static/AdminPanel/pages/ui-advanced/modals.html">Modals</a>-->
+        <!--                </li>-->
+        <!--            </ul>-->
+        <!--        </li>-->
         <!-- Charts -->
-<!--        <li class="menu-item">-->
-<!--            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#charts" aria-expanded="false"-->
-<!--               aria-controls="charts"> <span><i class="material-icons fs-16">equalizer</i>Charts</span>-->
-<!--            </a>-->
-<!--            <ul id="charts" class="collapse" aria-labelledby="charts" data-parent="#side-nav-accordion">-->
-<!--                <li><a href="/static/AdminPanel/pages/charts/chartjs.html">Chart JS</a>-->
-<!--                </li>-->
-<!--                <li><a href="/static/AdminPanel/pages/charts/morris-charts.html">Morris Chart</a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </li>-->
+        <!--        <li class="menu-item">-->
+        <!--            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#charts" aria-expanded="false"-->
+        <!--               aria-controls="charts"> <span><i class="material-icons fs-16">equalizer</i>Charts</span>-->
+        <!--            </a>-->
+        <!--            <ul id="charts" class="collapse" aria-labelledby="charts" data-parent="#side-nav-accordion">-->
+        <!--                <li><a href="/static/AdminPanel/pages/charts/chartjs.html">Chart JS</a>-->
+        <!--                </li>-->
+        <!--                <li><a href="/static/AdminPanel/pages/charts/morris-charts.html">Morris Chart</a>-->
+        <!--                </li>-->
+        <!--            </ul>-->
+        <!--        </li>-->
         <!-- /Charts -->
     </ul>
 </aside>

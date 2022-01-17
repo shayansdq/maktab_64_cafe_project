@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from os import urandom
 from landing.views import *
 from cashier.views import *
+from cashier.spa_views import *
 
 
 def create_app():
@@ -21,19 +22,21 @@ app = create_app()
 
 app.add_url_rule('/login', 'login', login, methods=['GET', 'POST'])
 
-
 app.add_url_rule('/cashier/dashboard', 'dashboard', dashboard, methods=['GET', 'POST'])
-
 
 app.add_url_rule('/logout', 'logout', logout)
 
-
 app.add_url_rule('/', 'home', home, methods=["GET", "POST"])
+
+# app.add_url_rule("/handler/", "handler", spa_handler)
 
 
 @app.errorhandler(404)
 def showerror(error):
     return render_template("page error 404.html"), 404
+
+
+app.add_url_rule('/save_comments', 'save_comments', save_comments, methods=['POST'])
 
 
 app.add_url_rule('/menu', 'menu', menu, methods=["GET", "POST"])
@@ -53,6 +56,14 @@ def showerror(error):
 
 
 app.add_url_rule('/send_order', 'send_order', send_order, methods=["POST", "DELETE"])
+
+
+@app.errorhandler(404)
+def showerror(error):
+    return render_template("page error 404.html"), 404
+
+
+app.add_url_rule('/cashier_order', 'cashier_order', cashier_order, methods=["GET", "POST", "DELETE", "PUT"])
 
 
 @app.errorhandler(404)

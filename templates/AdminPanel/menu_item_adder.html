@@ -1,0 +1,160 @@
+{% extends "layouts/cashier_panel/_base.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/tables.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous"/>
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: #2590eb;
+            height: 100%;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-upload {
+            height: 200px;
+            width: 200px;
+            border-radius: 100px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #ffffff;
+            overflow: hidden;
+            background-image: linear-gradient(to bottom, #2590eb 50%, #ffffff 50%);
+            background-size: 100% 200%;
+            transition: all 1s;
+            color: #ffffff;
+            font-size: 100px;
+        }
+
+        input[type="file"] {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            background-position: 0 -100%;
+
+            color: black;
+        }
+
+        .sub {
+            padding: 10px;
+            border-radius: 1rem;
+            background-color: rgb(13, 55, 80);
+            color: rgb(255, 255, 255);
+            border: none;
+            margin-inline-start: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all .2s;
+        }
+
+        .sub:hover {
+            transform: scale(1.1);
+            background: black !important;
+
+        }
+    </style>
+{% endblock %}
+{% block before_body_start %}
+    <div id="preloader-wrap">
+        <div class="spinner spinner-8">
+            <div class="ms-circle1 ms-child"></div>
+            <div class="ms-circle2 ms-child"></div>
+            <div class="ms-circle3 ms-child"></div>
+            <div class="ms-circle4 ms-child"></div>
+            <div class="ms-circle5 ms-child"></div>
+            <div class="ms-circle6 ms-child"></div>
+            <div class="ms-circle7 ms-child"></div>
+            <div class="ms-circle8 ms-child"></div>
+            <div class="ms-circle9 ms-child"></div>
+            <div class="ms-circle10 ms-child"></div>
+            <div class="ms-circle11 ms-child"></div>
+            <div class="ms-circle12 ms-child"></div>
+        </div>
+    </div>
+    <!-- Overlays -->
+    <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+    <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity"
+         data-toggle="slideRight"></div>
+    {% include 'layouts/cashier_panel/__sidebar_left.html' %}
+    {% include 'layouts/cashier_panel/__sidebar_right.html' %}
+{% endblock %}
+
+{% block main_content %}
+    <form action="{{ url_for('menu_item_adder') }}" enctype="multipart/form-data" method="POST">
+        <div style="height: 300px">
+            <div class="wrapper">
+                <div class="file-upload">
+                    <input type="file" name="file"/>
+                    <i class="fa fa-arrow-up"></i>
+                </div>
+            </div>
+            <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+                <label for="input_name" style="font-size: 1.5rem;">Enter Item Name :</label>
+                <input id="input_name" class="form-control align-content-center" type="text" name="file_name"
+                       style="width: 300px">
+            </div>
+            <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+                <label for="input_price" style="font-size: 1.5rem;">Enter Item Price :</label>
+                <input id="input_price" class="form-control align-content-center" type="text" name="price"
+                       style="width: 300px">
+            </div>
+            <div style="text-align: center" class="form-group d-flex align-items-center flex-column">
+                <label for="input_category" style="font-size: 1.5rem;">Select Item Category :</label>
+                <select id="input_category" style="width: 300px" name="category_id" class="form-control">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="text-align: center" class="form-group">
+                <input class="sub" type="submit" value="Upload It"/>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block before_body_end %}
+    {{ super() }}
+{% endblock %}
+
+{% block after_body %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+{% endblock %}

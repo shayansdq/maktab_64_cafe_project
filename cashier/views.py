@@ -5,12 +5,10 @@ from flask import request, redirect, url_for, render_template, flash, make_respo
 from cashier.forms import *
 import json
 from datetime import datetime
-from core.views import *
+from core.data import *
 
 path = os.path.join("static/img")
 os.makedirs(path, exist_ok=True)
-
-
 
 
 def login():
@@ -54,6 +52,9 @@ def dashboard():
             total_sales_amount += receipt.final_price
 
         most_pupolar_items = Order.find_most_popular_items(4)
+        last_orders = []
+        # for l_order in Order.query.all():
+
         most_pupolar_menu_item = []
         for most_item in most_pupolar_items:
             in_item_id = most_item[0]
@@ -89,13 +90,13 @@ def logout():
     resp.delete_cookie('aetvbhuoaetv')
     return resp
 
+
 def menu_item_adder():
-    # login requirement
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
         if request.method == "GET":
             categories = Category.query.all()
-            return render_template("menu_item_adder.html", categories=categories)
+            return render_template("AdminPanel/menu_item_adder.html", categories=categories)
         elif request.method == "POST":
             thefile = request.files["file"]
             thefile.filename = request.form["file_name"]
@@ -129,10 +130,11 @@ def change_table_status():
             create_receipt.create()
         else:
             table.reserved = False
+            table.create()
             their_receipt = Receipt.query.filter_by(table_id=table_id, pay_status=False).first()
             their_receipt.pay_status = True
             their_receipt.create()
-            # their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
+            their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
 
         return '', 204
 
@@ -155,9 +157,38 @@ def show_tables():
             return "Bad Request"
     else:
         return "Access Denied"
-
     if False:
         abort(404)
+
+
+def cashier_order():
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        if request.method == "GET":
+            print('hi')
+            orders = Order.select_all()
+            menu_items = Menuitem.query.all()
+            return render_template("AdminPanel/order_panel.html", orders=orders, menu_items=menu_items)
+        elif request.method == "POST":
+            data = json.loads(request.form["data"])
+            order = Order.find_order_by_id(data["id"])
+            order.status = "served"
+            order.create()
+            return "", 204
+        elif request.method == "PUT":
+            data = json.loads(request.form["data"])
+            order = Order.find_order_by_id(data["id"])
+            order.status = "cooking"
+            order.create()
+            return "", 204
+        elif request.method == "DELETE":
+            data = json.loads(request.form["data"])
+            order = Order.find_order_by_id(data["id"])
+            order.is_delete = True
+            order.create()
+            return "", 204
+    else:
+        return "Access Denied !"
 
 
 def cashier_menu():

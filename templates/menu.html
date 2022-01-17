@@ -29,7 +29,8 @@
             rel="stylesheet"
             href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"/>
 </head>
 <body>
@@ -58,7 +59,12 @@
         </div>
     </nav>
 {% else %}
-    <h5 style="color: white ; text-align: center">IF YOU WANT TO PUT ORDER FIRST SELECT A TABLE !</h5>
+    <div class= "container flouid">
+        <div class="row d-flex align-items-center" style="flex-direction: column">
+            <h5 style="color: white">IF YOU WANT TO PUT ORDER FIRST SELECT A TABLE !</h5>
+            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
+        </div>
+    </div>
 {% endif %}
 {% for category in categories %}
     <div class="swiper mySwiper text-center">
@@ -156,10 +162,16 @@
             data: json,
             dataType: "json",
             success: function (msg) {
-                alert('Your order was successfully send');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your order was successfully sent',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
             },
             error: function (msg) {
-                alert(`Failed ${msg}`);
+                alert(`Failed`);
             }
         });
     });

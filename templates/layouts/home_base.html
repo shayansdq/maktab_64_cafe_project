@@ -26,61 +26,66 @@
                     <div class="col-sm-12 col-md-6 d-flex flex-column align-items-center" style="perspective: 1000px;">
                         <div id="map" style="width: 500px; height: 300px; transform: rotate(-3deg);"></div>
                     </div>
-                    <div class="col-sm-12 col-md-6 d-flex flex-column align-items-center border-5 border-end border-warning">
-
-                        <h1 style="font-family: 'open Sans pro', sans-serif;">Cafe Dark Address</h1>
+                    <div id='about-us' class="col-sm-12 col-md-6 d-flex flex-column align-items-center border-5 border-end border-warning">
+                        <h1 class="text-center text-white">
+                            About us
+                        </h1>
+                        <p class="text-white text-lead fs-4">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae,
+                            consectetur debitis dignissimos earum in.
+                        </p>
+                        <h1 id='tels' style="font-family: 'open Sans pro', sans-serif;">Cafe Dark Address</h1>
                         <p>Tehran Province, Tehran, Amiri Taimeh St.</p>
                         <a href="tel:04254">Tel: <span style="font-size: 18px;">09189185310</span></a>
                         <a href="tel:04254">Tel: <span style="font-size: 18px;">09917482436</span></a>
                     </div>
                 </div>
             </div>
-            <div id="about" class="swiper-slide  mt-5 px-5">
-                <div class="row d-flex align-items-center h-100 border-5 border-start border-warning">
-                    <div class="col-md-6 col-sm-12 col-xs-12 d-flex flex-column align-items-center border-5 border-start border-warning">
-                        <h1 class="text-center text-white">
-                            About us
-                        </h1>
-                        <p class="text-white text-lead fs-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae,
-                            consectetur debitis dignissimos earum in, incidunt laboriosam maxime non qui quis
-                            repellendus velit vitae.
-                            Cumque facilis odit perspiciatis quo reprehenderit repudiandae?
-                        </p>
+            <div id="contactus" class="swiper-slide mt-5 px-5">
+                <div class="row d-flex align-items-center h-100 border-5 border-warning border-end">
+                    <div class="col-md-6 col-sm-12 col-xs-12 d-flex flex-column align-items-center border-5 border-warning">
+                        <div class="bg-contact2">
+                            <div class="container-contact2">
+                                <div class="wrap-contact2">
+                                    <form class="contact2-form validate-form" action="/save_comments" method="post">
+                                        <span class="contact2-form-title">
+                                            Contact Us
+                                        </span>
+
+                                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                                            <input class="input2" type="text" name="name">
+                                            <span class="focus-input2" data-placeholder="NAME"></span>
+                                        </div>
+
+                                        <div class="wrap-input2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                                            <input class="input2" type="text" name="email">
+                                            <span class="focus-input2" data-placeholder="EMAIL"></span>
+                                        </div>
+
+                                        <div class="wrap-input2 validate-input" data-validate = "Message is required">
+                                            <textarea class="input2" name="message"></textarea>
+
+                                            <span class="focus-input2" data-placeholder="MESSAGE"></span>
+                                        </div>
+
+{#                                        <input type="submit" value="Submit" style="display: flex">#}
+{#                                        <input  type="submit" value="Submit" style="display: flex">#}
+                                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                        <i class="material-icons right">send</i>
+                                        </button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-sm-12 col-md-6 d-flex flex-column align-items-center">
-                        {#                   <h1 style="font-family: 'Shizuru',sans-serif;" class="display-3">About us</h1>#}
+                    <div id='svg-contact2' class="col-sm-12 col-md-6 d-flex flex-column align-items-center">
                         {% include 'layouts/aboutus-svg.html' %}
                     </div>
                 </div>
-                {#            <div class="row d-flex align-items-center h-100 border-5 border-start border-warning">#}
-                {#                <div class="col-md-6 col-sm-12 col-xs-12">#}
-                {#                    <h1 class="text-center text-white">#}
-                {#                        About us#}
-                {#                    </h1>#}
-                {#                    <p class="text-white text-lead fs-4">#}
-                {#                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae,#}
-                {#                        consectetur debitis dignissimos earum in, incidunt laboriosam maxime non qui quis#}
-                {#                        repellendus velit vitae.#}
-                {#                        Cumque facilis odit perspiciatis quo reprehenderit repudiandae?#}
-                {#                    </p>#}
-                {#                </div>#}
-                {#                <div class="col-md-6 col-sm-12 col-xs-12 h-100">#}
-                {#                    {% include 'layouts/aboutus-svg.html' %}#}
-                {#                </div>#}
-                {#            </div>#}
-            </div>
-            <div id="contactus" class="swiper-slide  mt-5 px-5">
-                <div class="row d-flex align-items-center h-100 border-5 border-end border-warning">
-                    <h1>Coming Soon ... </h1>
-                </div>
             </div>
         </div>
-        <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
-
-        <!-- If we need navigation buttons -->
-        <!-- <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div> -->
     </div>
 </div>
