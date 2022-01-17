@@ -123,6 +123,7 @@ def save_comments():
     comment = Comments(name=namer, email=emailr, comments=messager).create()
     return url_for('home')
     # comment.name = namer
+
     # comment.email = emailr
     # comment.comments = massager
     # comment.create()
