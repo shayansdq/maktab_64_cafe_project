@@ -187,3 +187,8 @@ def cashier_menu():
 
     if False:
         abort(404)
+
+def receipts_data():
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        receipts = Rec
