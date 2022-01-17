@@ -335,7 +335,11 @@ textarea.input2 + .focus-input2::after {
   height: 65vh;
   margin-top: 200px;
 }
-
+@media (min-width: 1070px){
+  .wrap-contact2{
+    height:38rem;
+  }
+}
 @media (min-width: 769px) and (max-width: 1070px){
   .wrap-contact2{
     margin-left: 420px;
