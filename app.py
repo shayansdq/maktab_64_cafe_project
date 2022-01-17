@@ -39,6 +39,14 @@ def showerror(error):
 app.add_url_rule('/save_comments', 'save_comments', save_comments, methods=['POST'])
 
 
+@app.errorhandler(404)
+def showerror(error):
+    return render_template("page error 404.html"), 404
+
+
+app.add_url_rule('/show_comments', 'show_comments', show_comments, methods=['GET', 'POST'])
+
+
 app.add_url_rule('/menu', 'menu', menu, methods=["GET", "POST"])
 
 

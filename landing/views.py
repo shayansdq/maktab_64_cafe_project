@@ -117,10 +117,10 @@ def send_order():
 
 
 def save_comments():
-    emailr = request.form['email']
-    namer = request.form['name']
-    messager = request.form['message']
-    comment = Comments(name=namer, email=emailr, comments=messager).create()
+    email = request.form['email']
+    name = request.form['name']
+    message = request.form['message']
+    comment = Comments(name=name, email=email, comments=message).create()
     return url_for('home')
     # comment.name = namer
 
