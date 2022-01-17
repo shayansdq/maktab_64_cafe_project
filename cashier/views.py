@@ -165,6 +165,7 @@ def cashier_order():
     user_id = request.cookies.get("aetvbhuoaetv")
     if Cashier.get_by_id(user_id):
         if request.method == "GET":
+            print('hi')
             orders = Order.select_all()
             menu_items = Menuitem.query.all()
             return render_template("AdminPanel/order_panel.html", orders=orders, menu_items=menu_items)

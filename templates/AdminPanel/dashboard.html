@@ -516,26 +516,26 @@
 
     {{ super() }}
 <script >
-    $('#show-tables').click(function(){
-
-    console.log('tables')
-    $.get({
-        url: '/handler/?show_tables=true',
-        success: function(data){
-            $('.ms-content-wrapper').html(data)
-        }
-    })
-    })
-    $('#cashier_order').click(function(){
-
-    console.log('orders')
-    $.get({
-        url: '/handler/?cashier_order=true',
-        success: function(data){
-            $('.ms-content-wrapper').html(data)
-        }
-    })
-    })
+    // $('#show-tables').click(function(){
+    //
+    // console.log('tables')
+    // $.get({
+    //     url: '/handler/?show_tables=true',
+    //     success: function(data){
+    //         $('.ms-content-wrapper').html(data)
+    //     }
+    // })
+    // })
+    // $('#cashier_order').click(function(){
+    //
+    // console.log('orders')
+    // $.get({
+    //     url: '/handler/?cashier_order=true',
+    //     success: function(data){
+    //         $('.ms-content-wrapper').html(data)
+    //     }
+    // })
+    // })
 </script>
     <script src="../../static/AdminPanel/assets/js/Chart.bundle.min.js">
     </script>
