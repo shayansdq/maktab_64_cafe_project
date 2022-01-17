@@ -170,7 +170,11 @@ def cashier_order():
             menu_items = Menuitem.query.all()
             return render_template("AdminPanel/order_panel.html", orders=orders, menu_items=menu_items)
         elif request.method == "POST":
-            return "Bad Request !"
+            data = json.loads(request.form["data"])
+            order = Order.find_order_by_id(data["id"])
+            order.status = "served"
+            order.create()
+            return "", 204
         elif request.method == "PUT":
             data = json.loads(request.form["data"])
             order = Order.find_order_by_id(data["id"])
@@ -214,3 +218,8 @@ def cashier_menu():
 
     if False:
         abort(404)
+
+def receipts_data():
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        receipts = Rec

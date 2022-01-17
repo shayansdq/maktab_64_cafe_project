@@ -59,7 +59,12 @@
         </div>
     </nav>
 {% else %}
-    <h5 style="color: white ; text-align: center">IF YOU WANT TO PUT ORDER FIRST SELECT A TABLE !</h5>
+    <div class= "container flouid">
+        <div class="row d-flex align-items-center" style="flex-direction: column">
+            <h5 style="color: white">IF YOU WANT TO PUT ORDER FIRST SELECT A TABLE !</h5>
+            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
+        </div>
+    </div>
 {% endif %}
 {% for category in categories %}
     <div class="swiper mySwiper text-center">

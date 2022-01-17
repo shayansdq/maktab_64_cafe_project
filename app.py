@@ -97,6 +97,12 @@ def showerror(error):
 
 app.add_url_rule('/cashier/menu/menu_item_adder', 'menu_item_adder', menu_item_adder, methods=["GET", "POST"])
 
+@app.errorhandler(404)
+def showerror(error):
+    return render_template("page error 404.html"), 404
+
+
+app.add_url_rule('/cashier/menu/receipts', 'receipts', receipts_data, methods=["GET", "POST"])
 
 @app.errorhandler(404)
 def showerror(error):
