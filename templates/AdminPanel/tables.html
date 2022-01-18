@@ -69,8 +69,8 @@
                                 <div class="reciept-table d-flex flex-column">
                                     <h4>{{ table.id }}</h4>
                                     {% if table.reserved %}
-                                        <button type="button" class="btn btn-danger" name="{{table.id}}" id="0">
-                                            Unreserved
+                                        <button type="button" class="btn btn-warning" name="{{table.id}}" id="0">
+                                            Receipt
                                         </button>
                                     {% endif %}
                                     {% if not table.reserved %}
@@ -131,7 +131,7 @@
         var num = $(this).attr('id')
         var idOfTable = $(this).attr('name')
         var target = `button[name="${idOfTable}"]`
-        $(target).hide('slow')
+        $(target).hide('fast')
         $.ajax({
           type : 'POST',
           url : "{{url_for('change_table_status')}}",
@@ -140,10 +140,10 @@
               'table_id':String(idOfTable)
           },
           success: function(data) {
-            $(target).html('Unreserve')
-            $(target).attr('class','btn btn-danger')
+            $(target).html('Receipt')
+            $(target).attr('class','btn btn-warning')
             $(target).attr('id','0')
-            $(target).show('slow')
+            $(target).show('fast')
         },
         });
      });

@@ -4,7 +4,7 @@
   new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
     data: {
-      labels: ["Hunger House", "Food Lounge", "Delizious", "Red Resturant", "Hunger Lounge"],
+      labels: ["Breakfast", "Lunch", "Dinner", "Drinks", "Dessert",'Coffee',"Shake","Tea"],
       datasets: [{
         label: "Population (millions)",
         backgroundColor: ["#ff0018", "#f7b11b","#ff6c60","#8663e1","#08bf6f"],

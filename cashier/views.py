@@ -132,9 +132,20 @@ def change_table_status():
             table.reserved = False
             table.create()
             their_receipt = Receipt.query.filter_by(table_id=table_id, pay_status=False).first()
-            their_receipt.pay_status = True
-            their_receipt.create()
             their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
+            final_price = 0
+            total_price = 0
+            for order in their_orders:
+                print(Menuitem.query_by(id=order.menu_item_id).first().price)
+                total_price += order.item_count * Menuitem.query.filter_by(id=order.menu_item_id).first().price
+                order.status = 'served'
+                order.is_delete = True
+                order.create()
+            their_receipt.pay_status = True
+            their_receipt.final_price = total_price
+            their_receipt.total_price = total_price
+            their_receipt.create()
+
 
         return '', 204
 
