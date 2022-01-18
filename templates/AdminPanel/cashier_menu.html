@@ -1,6 +1,7 @@
 {% extends "layouts/cashier_panel/_base.html" %}
 {% block extra_head %}
     <link rel="stylesheet" href="{{ url_for('static',filename='css/menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/tables.css') }}">
     <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
@@ -31,12 +32,6 @@
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossorigin="anonymous"/>
-    <style>
-        main.body-content {
-            background-image: url(../../static/logos/logo.jpg);
-            color: #fff;
-        }
-    </style>
 {% endblock %}
 {% block before_body_start %}
     <div id="preloader-wrap">
