@@ -240,7 +240,7 @@ def show_comments():
             try:
                 Comments(name=name, email=email, comments=message).create()
             except Exception as e:
-                return "E-mail Must Be Unique !"
+                return "E-mail Must Be Unique/Not Empty !"
             return redirect(url_for("home"))
         else:
             return "Bad Request"
