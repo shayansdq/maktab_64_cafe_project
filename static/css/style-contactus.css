@@ -81,6 +81,9 @@ textarea:-ms-input-placeholder { color: #999999; }
 
 .contact2-form {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact2-form-title {
@@ -322,7 +325,12 @@ textarea.input2 + .focus-input2::after {
   }
 }
 input[type="submit"]{
-  background-color: #e07d63;
+  /*background-color: #25E42B;*/
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  height: 50px;
+  border-radius: 15px;
 }
 
 @media (max-width: 1070px) {
