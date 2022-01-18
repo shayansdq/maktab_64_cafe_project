@@ -138,7 +138,7 @@ def change_table_status():
             final_price = 0
             total_price = 0
             for order in their_orders:
-                print(Menuitem.query_by(id=order.menu_item_id).first().price)
+                print(Menuitem.query.filter_by(id=order.menu_item_id).first().price)
                 total_price += order.item_count * Menuitem.query.filter_by(id=order.menu_item_id).first().price
                 order.status = 'served'
                 order.is_delete = True
