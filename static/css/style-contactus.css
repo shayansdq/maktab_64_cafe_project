@@ -18,7 +18,6 @@ ul, li {
 }
 
 
-/*---------------------------------------------*/
 input {
 	outline: none;
 	border: none;
@@ -76,11 +75,15 @@ textarea:-ms-input-placeholder { color: #999999; }
   border-radius: 10px;
   overflow: hidden;
   padding: 72px 55px 90px 55px;
-  background-color: rgba(150, 78, 20, 0.98);
+  /*background-color: rgba(150, 78, 20, 0.98);*/
+  background-color: #E7AC65;
 }
 
 .contact2-form {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact2-form-title {
@@ -106,10 +109,12 @@ textarea:-ms-input-placeholder { color: #999999; }
 
   font-family: Poppins-Regular;
   font-size: 15px;
-  /*color: #555555;*/
+
   color: rgba(0,0,2,0.83);
   line-height: 1.2;
-  background-color: rgba(150, 78, 20, 0.98);
+  /*background-color: rgba(150, 78, 20, 0.98);*/
+  background-color: #E7AC65;
+  /*background-color: white;*/
 }
 
 .focus-input2 {
@@ -151,7 +156,6 @@ textarea:-ms-input-placeholder { color: #999999; }
   transition: all 0.4s;
 }
 
-/*---------------------------------------------*/
 input.input2 {
   height: 45px;
 }
@@ -188,8 +192,6 @@ textarea.input2 + .focus-input2::after {
   width: 100%;
 }
 
-/*------------------------------------------------------------------
-[ Button ]*/
 .container-contact2-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -244,24 +246,7 @@ textarea.input2 + .focus-input2::after {
 .wrap-contact2-form-btn:hover .contact2-form-bgbtn {
   left: 0;
 }
-            input[type=submit] {
-			background-color: #04AA6D;
-			color: white;
-			padding: 12px 20px;
-			border: none;
-			border-radius: 4px;
-              width: 100%;
-			cursor: pointer;
-			display: flex;
-			justify-content: center;
-            justify-self: center;
-			}
 
-			input[type=submit]:hover {
-		  		background-color: #45a049;
-			}
-/*------------------------------------------------------------------
-[ Responsive ]*/
 
 @media (max-width: 576px) {
   .wrap-contact2 {
@@ -270,9 +255,6 @@ textarea.input2 + .focus-input2::after {
 }
 
 
-
-/*------------------------------------------------------------------
-[ Alert validate ]*/
 
 .validate-input {
   position: relative;
@@ -303,12 +285,8 @@ textarea.input2 + .focus-input2::after {
 
   visibility: hidden;
   opacity: 0;
-
-  /*-webkit-transition: opacity 0.4s;*/
-  /*-o-transition: opacity 0.4s;*/
-  /*-moz-transition: opacity 0.4s;*/
-  /*transition: opacity 0.4s;*/
 }
+
 
 .alert-validate::after {
   content: "\f12a";
@@ -347,7 +325,12 @@ textarea.input2 + .focus-input2::after {
   }
 }
 input[type="submit"]{
-  background-color: #e07d63;
+  /*background-color: #25E42B;*/
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  height: 50px;
+  border-radius: 15px;
 }
 
 @media (max-width: 1070px) {
