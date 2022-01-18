@@ -131,8 +131,10 @@ def change_table_status():
         else:
             table.reserved = False
             table.create()
+
             their_receipt = Receipt.query.filter_by(table_id=table_id, pay_status=False).first()
             their_orders = Order.query.filter_by(receipt_id=their_receipt.id).all()
+            print(their_orders)
             final_price = 0
             total_price = 0
             for order in their_orders:
