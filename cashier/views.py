@@ -237,12 +237,16 @@ def show_comments():
             email = request.form['email']
             name = request.form['name']
             message = request.form['message']
-            Comments(name=name, email=email, comments=message).create()
+            try:
+                Comments(name=name, email=email, comments=message).create()
+            except Exception as e:
+                return "E-mail Must Be Unique/Not Empty !"
             return redirect(url_for("home"))
         else:
             return "Bad Request"
     else:
         return "Access Denied !"
+
 
 def order_of_receipt():
     user_id = request.cookies.get("aetvbhuoaetv")
@@ -253,8 +257,7 @@ def order_of_receipt():
         x = []
 
         for i in orders:
-            x.append({'name':i.menu_item_id, 'count':i.item_count})
+            x.append({'name': i.menu_item_id, 'count': i.item_count})
         print(x)
         print(type(json.dumps(x)))
         return json.dumps(x)
-
