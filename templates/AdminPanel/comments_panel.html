@@ -42,7 +42,6 @@
             <th data-field="name">User Name</th>
             <th data-field="email">E-mail</th>
             <th data-field="comments">Comment</th>
-            <th data-field="is_delete">is_delete</th>
             </thead>
             <tbody>
             {% for comment in comments %}
@@ -51,7 +50,6 @@
                     <td>{{ comment.name }}</td>
                     <td>{{ comment.email }}</td>
                     <td>{{ comment.comments}}</td>
-                    <td>{{ comment.is_delete }}</td>
                 </tr>
             {% endfor %}
             </tbody>

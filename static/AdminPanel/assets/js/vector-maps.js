@@ -65,7 +65,6 @@
     data: {
       'USA': {fillKey: 'lt50' },
       'MEX': {fillKey: 'lt25' },
-      'CAN': {fillKey: 'gt50' },
       'GTM': {fillKey: 'gt500'},
       'HND': {fillKey: 'eq50' },
       'BLZ': {fillKey: 'pink' },
