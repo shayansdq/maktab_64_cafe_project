@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Order List</title>
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+            integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"/>
+    <style>
+        .swiper a:hover {
+            background-color: red !important;
+            box-shadow: 0 0 7px #333;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<br><br><br>
+<!-- partial:index.partial.html -->
+<!-- Nav -->
+<nav class="navbar navbar-inverse fixed-top">
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
+        </div>
+    </div>
+</nav>
+<div class="swiper mySwiper text-center" style="height: 85vh">
+    <div class="swiper-wrapper">
+        {% for receipt in receipts %}
+            {% for order in orders %}
+                {% if receipt.id == order.receipt_id and order.is_delete == False %}
+                    {% if receipt.table_id|string == table_id|string %}
+                        {% for item in menu_items %}
+                            {% if item.id == order.menu_item_id %}
+                                <div class="swiper-slide">
+                                    <div class="card" style="width: 20rem">
+                                        <div class="img-container">
+                                            <img
+                                                    class="card-img-top"
+                                                    src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
+                                                    alt="Card image cap"
+                                            />
+                                        </div>
+                                        <div class="card-block text-center">
+                                            <h4 class="card-title">{{ item.item_name }}</h4>
+                                            <p class="card-text">${{ item.price }}</p>
+                                            <p class="card-text">Item Count : {{ order.item_count }}</p>
+                                            <p class="card-text">Status : {{ order.status }}</p>
+                                            {% if order.status == "waiting" %}
+                                                <a
+                                                        href="#"
+                                                        data-name="{{ item.item_name }}"
+                                                        data-price="{{ item.price }}"
+                                                        data-order-id="{{ order.id }}"
+                                                        class="add-to-cart remove-item btn btn-danger"
+                                                >Remove<i class="fas fa-minus mx-2 "></i></a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+<!-- Modal -->
+<div
+        class="modal fade"
+        id="cart"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="show-cart table">
+
+                </table>
+                <div>Total price: $<span class="total-cart"></span></div>
+            </div>
+            <div class="modal-footer">
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                >
+                    Close
+                </button>
+                <button type="button" class="btn btn-success send-order">Order now</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- partial -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+<script>
+    var clicked;
+    $(".remove-item").click(function () {
+        {#let ordersValue = "remove"#}
+        {#var json = JSON.stringify(ordersValue);#}
+        var data_order_id = $(this).attr("data-order-id")
+        $.ajax({
+            type: "DELETE",
+            url: "{{url_for('send_order')}}",
+            data: {"data-order-id": data_order_id},
+            {#dataType: "json",#}
+            success: function (msg) {
+                alert('Your Order Was Successfully Removed !');
+            }
+        });
+    });
+</script>
+</body>
+</html>

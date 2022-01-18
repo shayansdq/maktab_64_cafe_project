@@ -29,268 +29,129 @@
             rel="stylesheet"
             href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"/>
-    {#    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">#}
-    {#    <link rel="stylesheet" href="{{ url_for('static', filename='css/res-modal-style.css') }}">#}
 </head>
 <body>
-{#{% include 'layouts/__nav.html' %}#}
 <br><br><br>
 <!-- partial:index.partial.html -->
 <!-- Nav -->
-<nav class="navbar navbar-inverse fixed-top">
-    <div class="row">
-        <div class="col">
-            <button
-                    type="button"
-                    class="btn btn-success mx-1"
-                    data-toggle="modal"
-                    data-target="#cart"
-            >
-                <i class="fas fa-mug-hot"></i>
-                Cart (<span class="total-count"></span>)
-            </button>
-            <button class="clear-cart btn btn-danger mx-1">
-                <i class="fas fa-trash-alt"></i>
-                Clear Cart
-            </button>
-            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">home</a></button>
+{% if status == True %}
+    <nav class="navbar navbar-inverse fixed-top">
+        <div class="row">
+            <div class="col">
+                <button
+                        type="button"
+                        class="btn btn-success mx-1"
+                        data-toggle="modal"
+                        data-target="#cart"
+                >
+                    <i class="fas fa-mug-hot"></i>
+                    Cart (<span class="total-count"></span>)
+                </button>
+                <button class="clear-cart btn btn-danger mx-1">
+                    <i class="fas fa-trash-alt"></i>
+                    Clear Cart
+                </button>
+                <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
+            </div>
+        </div>
+    </nav>
+{% else %}
+    <div class= "container flouid">
+        <div class="row d-flex align-items-center" style="flex-direction: column">
+            <h5 style="color: white">IF YOU WANT TO PUT ORDER FIRST SELECT A TABLE !</h5>
+            <button class="btn btn-primary"><a href="{{ url_for('home') }}" style="color: white">Home</a></button>
         </div>
     </div>
-</nav>
-
-
-<!-- tea -->
-<div class="swiper mySwiper text-center">
-    <h1 class="text-white">Tea</h1>
-    <div class="swiper-wrapper">
-        {% for item in menu_items %}
-            {% if item.item_category_id == 1 %}
-                <div class="swiper-slide">
-                    <div class="card" style="width: 20rem">
-                        <div class="img-container">
-                            <img
-                                    class="card-img-top"
-                                    src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
-                                    alt="Card image cap"
-                            />
-                        </div>
-                        <div class="card-block text-center">
-                            <h4 class="card-title">{{ item.item_name }}</h4>
-                            <p class="card-text">${{ item.price }}</p>
-                            <a
-                                    href="#"
-                                    data-name="{{ item.item_name }}"
-                                    data-price="{{ item.price }}"
-                                    class="add-to-cart btn btn-success"
-                            >Add<i class="fas fa-add mx-2 "></i></a
-                            >
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
-
-
-<!-- coffee -->
-<div class="swiper mySwiper text-center">
-    <h1 class="text-white">Coffee</h1>
-    <div class="swiper-wrapper">
-        {% for item in menu_items %}
-            {% if item.item_category_id == 2 %}
-                <div class="swiper-slide">
-                    <div class="card" style="width: 20rem">
-                        <div class="img-container">
-                            <img
-                                    class="card-img-top"
-                                    src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
-                                    alt="Card image cap"
-                            />
-                        </div>
-                        <div class="card-block text-center">
-                            <h4 class="card-title">{{ item.item_name }}</h4>
-                            <p class="card-text">${{ item.price }}</p>
-                            <a
-                                    href="#"
-                                    data-name="{{ item.item_name }}"
-                                    data-price="{{ item.price }}"
-                                    class="add-to-cart btn btn-success"
-                            >Add<i class="fas fa-add mx-2 "></i></a
-                            >
+{% endif %}
+{% for category in categories %}
+    <div class="swiper mySwiper text-center">
+        <h1 class="text-white">{{ category.type }}</h1>
+        <div class="swiper-wrapper">
+            {% for item in menu_items %}
+                {% if item.item_category_id == category.id %}
+                    <div class="swiper-slide">
+                        <div class="card" style="width: 20rem">
+                            <div class="img-container">
+                                <img
+                                        class="card-img-top"
+                                        src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
+                                        alt="Card image cap"
+                                />
+                            </div>
+                            <div class="card-block text-center">
+                                <h4 class="card-title">{{ item.item_name }}</h4>
+                                <p class="card-text">${{ item.price }}</p>
+                                {% if status == True %}
+                                    <a
+                                            href="#"
+                                            data-name="{{ item.item_name }}"
+                                            data-price="{{ item.price }}"
+                                            class="add-to-cart btn btn-success"
+                                    >Add<i class="fas fa-add mx-2 "></i></a
+                                    >
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
-
-<!-- Herbal Tea -->
-<div class="swiper mySwiper text-center">
-    <h1 class="text-white">Herbal Tea</h1>
-    <div class="swiper-wrapper">
-        {% for item in menu_items %}
-            {% if item.item_category_id == 3 %}
-                <div class="swiper-slide">
-                    <div class="card" style="width: 20rem">
-                        <div class="img-container">
-                            <img
-                                    class="card-img-top"
-                                    src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
-                                    alt="Card image cap"
-                            />
-                        </div>
-                        <div class="card-block text-center">
-                            <h4 class="card-title">{{ item.item_name }}</h4>
-                            <p class="card-text">${{ item.price }}</p>
-                            <a
-                                    href="#"
-                                    data-name="{{ item.item_name }}"
-                                    data-price="{{ item.price }}"
-                                    class="add-to-cart btn btn-success"
-                            >Add<i class="fas fa-add mx-2 "></i></a
-                            >
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
-
-<!-- Shakes -->
-<div class="swiper mySwiper text-center">
-    <h1 class="text-white">Foods</h1>
-    <div class="swiper-wrapper">
-        {% for item in menu_items %}
-            {% if item.item_category_id == 4 %}
-                <div class="swiper-slide">
-                    <div class="card" style="width: 20rem">
-                        <div class="img-container">
-                            <img
-                                    class="card-img-top"
-                                    src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
-                                    alt="Card image cap"
-                            />
-                        </div>
-                        <div class="card-block text-center">
-                            <h4 class="card-title">{{ item.item_name }}</h4>
-                            <p class="card-text">${{ item.price }}</p>
-                            <a
-                                    href="#"
-                                    data-name="{{ item.item_name }}"
-                                    data-price="{{ item.price }}"
-                                    class="add-to-cart btn btn-success"
-                            >Add<i class="fas fa-add mx-2 "></i></a
-                            >
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
-
-<!-- Foods -->
-<div class="swiper mySwiper text-center">
-    <h1 class="text-white">Foods</h1>
-    <div class="swiper-wrapper">
-        {% for item in menu_items %}
-            {% if item.item_category_id == 5 %}
-                <div class="swiper-slide">
-                    <div class="card" style="width: 20rem">
-                        <div class="img-container">
-                            <img
-                                    class="card-img-top"
-                                    src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
-                                    alt="Card image cap"
-                            />
-                        </div>
-                        <div class="card-block text-center">
-                            <h4 class="card-title">{{ item.item_name }}</h4>
-                            <p class="card-text">${{ item.price }}</p>
-                            <a
-                                    href="#"
-                                    data-name="{{ item.item_name }}"
-                                    data-price="{{ item.price }}"
-                                    class="add-to-cart btn btn-success"
-                            >Add<i class="fas fa-add mx-2 "></i></a
-                            >
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
-
-
+{% endfor %}
 <!-- Modal -->
-<div
-        class="modal fade"
-        id="cart"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
-                <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                >
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="show-cart table">
+{% if status == True %}
+    <div
+            class="modal fade"
+            id="cart"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                    <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="show-cart table">
 
-                </table>
-                <div>Total price: $<span class="total-cart"></span></div>
-            </div>
-            <div class="modal-footer">
-                <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                >
-                    Close
-                </button>
-                <button type="button" class="btn btn-success send-order">Order now</button>
+                    </table>
+                    <div>Total price: $<span class="total-cart"></span></div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-success send-order">Order now</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endif %}
 <!-- partial -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
 <script>
-
-
     var clicked;
     $(".send-order").click(function () {
         let ordersValue = cart
@@ -301,11 +162,19 @@
             data: json,
             dataType: "json",
             success: function (msg) {
-                alert('Your order was successfully send');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Your order was successfully sent',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            },
+            error: function (msg) {
+                alert(`Failed`);
             }
         });
     });
-
 </script>
 </body>
 </html>

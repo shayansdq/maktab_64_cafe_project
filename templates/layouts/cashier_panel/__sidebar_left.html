@@ -1,0 +1,69 @@
+<aside id="ms-side-nav" class="side-nav fixed ms-aside-scrollable ms-aside-left">
+    <!-- Logo -->
+    <div class="logo-sn ms-d-block-lg">
+        <a class="pl-0 ml-0 text-center" href="index.html">
+            <img src="{{ url_for('static',filename='img/large_logo.png') }}" alt="logo">
+        </a>
+    </div>
+    <!-- Navigation -->
+    <ul class="accordion ms-main-aside fs-14" id="side-nav-accordion">
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a href="{{ url_for('dashboard') }}"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
+            </a>
+        </li>
+        <!-- /Dashboard -->
+        <!-- product -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#product" aria-expanded="false"
+               aria-controls="product"> <span><i class="fa fa-archive fs-16"></i>Menus </span>
+            </a>
+            <ul id="product" class="collapse" aria-labelledby="product" data-parent="#side-nav-accordion">
+                <li><a href="{{ url_for('menu_item_adder') }}">Add Menu Item</a>
+                </li>
+                <li><a href="{{ url_for('cashier_menu') }}">Menu Items Detail</a>
+                </li>
+            </ul>
+        </li>
+        <!-- product end -->
+        <!-- orders -->
+<!--        <li class="menu-item">-->
+<!--            <a href="{{ url_for('cashier_order') }}"> <span><i class="fas fa-clipboard-list fs-16"></i>Orders</span>-->
+<!--            </a>-->
+<!--        </li>-->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#orders" aria-expanded="false"
+               aria-controls="tables"> <span><i class="fas fa-clipboard-list fs-16"></i>Orders</span>
+            </a>
+            <ul id="orders" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
+                <li><a id="cashier_order" href="{{ url_for('cashier_order') }}">Show orders</a>
+                </li>
+                <li><a id="add_order">Add new</a>
+                </li>
+            </ul>
+        </li>
+        <!-- orders end -->
+
+        <!-- Tables -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#tables" aria-expanded="false"
+               aria-controls="tables"> <span><i class="material-icons fs-16">tune</i>Tables</span>
+            </a>
+            <ul id="tables" class="collapse" aria-labelledby="tables" data-parent="#side-nav-accordion">
+<!--                <li><a href="{{ url_for('show_tables') }}">Tables & Receipt</a>-->
+                <li><a id="show-tables" href="{{ url_for('show_tables') }}">Tables & Receipt</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{ url_for('show_comments') }}"> <span><i class="material-icons fs-16">comment</i>Comments </span>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{ url_for('receipts') }}"> <span><i class="material-icons fs-16">receipt</i>Receipt</span>
+            </a>
+        </li>
+    </ul>
+</aside>

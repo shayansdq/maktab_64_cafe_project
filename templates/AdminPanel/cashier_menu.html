@@ -1,0 +1,190 @@
+{% extends "layouts/cashier_panel/_base.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/tables.css') }}">
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+            integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+{% endblock %}
+{% block before_body_start %}
+    <div id="preloader-wrap">
+        <div class="spinner spinner-8">
+            <div class="ms-circle1 ms-child"></div>
+            <div class="ms-circle2 ms-child"></div>
+            <div class="ms-circle3 ms-child"></div>
+            <div class="ms-circle4 ms-child"></div>
+            <div class="ms-circle5 ms-child"></div>
+            <div class="ms-circle6 ms-child"></div>
+            <div class="ms-circle7 ms-child"></div>
+            <div class="ms-circle8 ms-child"></div>
+            <div class="ms-circle9 ms-child"></div>
+            <div class="ms-circle10 ms-child"></div>
+            <div class="ms-circle11 ms-child"></div>
+            <div class="ms-circle12 ms-child"></div>
+        </div>
+    </div>
+    <!-- Overlays -->
+    <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+    <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity"
+         data-toggle="slideRight"></div>
+    {% include 'layouts/cashier_panel/__sidebar_left.html' %}
+    {% include 'layouts/cashier_panel/__sidebar_right.html' %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="content-wrapper cafe-                {#dataType: "json",#}floor">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Menu</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Menu</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    {% for category in categories %}
+        <div class="swiper mySwiper text-center">
+            <h1 class="text-white">{{ category.type }}</h1>
+            <div class="swiper-wrapper">
+                {% for item in menu_items %}
+                    {% if item.item_category_id == category.id %}
+                        <div class="swiper-slide">
+                            <div class="card" style="width: 20rem">
+                                <div class="img-container">
+                                    <img
+                                            class="card-img-top"
+                                            src="{{ url_for('static', filename='img/' + item.item_name + '.jpg') }}"
+                                            alt="Card image cap"
+                                    />
+                                </div>
+                                <div class="card-block text-center">
+                                    <h4 class="card-title" style="color: black">{{ item.item_name }}</h4>
+                                    <p class="card-text">${{ item.price }}</p>
+                                    {% if item.is_delete == False %}
+                                        <p class="card-text">Status : Available</p>
+                                    {% elif item.is_delete == True %}
+                                        <p class="card-text">Status : UnAvailable</p>
+                                    {% else %}
+                                        <p class="card-text">Status : UnKnown</p>
+                                    {% endif %}
+                                    {% if item.is_delete == False %}
+                                        <button type="button" data-id="{{ item.id }}"
+                                                class="btn Remove-Item btn-danger">
+                                            Remove Item
+                                        </button>
+                                    {% elif item.is_delete != False %}
+                                        <button type="button" data-id="{{ item.id }}" class="btn Add-Item btn-success">
+                                            Add Item
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    {% endfor %}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <script>
+                        (".Edit").attr("data-name")
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block before_body_end %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    <script>
+        var clicked;
+        $(".Remove-Item").click(function () {
+            var data_id = $(this).attr("data-id")
+            $.ajax({
+                type: "DELETE",
+                url: "{{url_for('cashier_menu')}}",
+                data: {"data-id": data_id},
+                success: function (msg) {
+                    alert('Your Item Was Successfully Removed !');
+                }
+            });
+        });
+    </script>
+    <script>
+        var clicked;
+        $(".Add-Item").click(function () {
+            var data_id = $(this).attr("data-id")
+            $.ajax({
+                type: "POST",
+                url: "{{url_for('cashier_menu')}}",
+                data: {"data-id": data_id},
+                success: function (msg) {
+                    alert('Your Item Was Successfully Added !');
+                }
+            });
+        });
+    </script>
+    {{ super() }}
+{% endblock %}
+
+{% block after_body %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+{% endblock %}

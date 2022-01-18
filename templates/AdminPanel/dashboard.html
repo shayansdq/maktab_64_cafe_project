@@ -1,0 +1,544 @@
+{% extends "layouts/cashier_panel/_base.html" %}
+
+{% block before_body_start %}
+    <div id="preloader-wrap">
+        <div class="spinner spinner-8">
+            <div class="ms-circle1 ms-child"></div>
+            <div class="ms-circle2 ms-child"></div>
+            <div class="ms-circle3 ms-child"></div>
+            <div class="ms-circle4 ms-child"></div>
+            <div class="ms-circle5 ms-child"></div>
+            <div class="ms-circle6 ms-child"></div>
+            <div class="ms-circle7 ms-child"></div>
+            <div class="ms-circle8 ms-child"></div>
+            <div class="ms-circle9 ms-child"></div>
+            <div class="ms-circle10 ms-child"></div>
+            <div class="ms-circle11 ms-child"></div>
+            <div class="ms-circle12 ms-child"></div>
+        </div>
+    </div>
+    <!-- Overlays -->
+    <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+    <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity"
+         data-toggle="slideRight"></div>
+    {% include 'layouts/cashier_panel/__sidebar_left.html' %}
+    {% include 'layouts/cashier_panel/__sidebar_right.html' %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="db-header-title">Welcome, {{ name }}</h1>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
+                <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 3.2%</span>
+                <div class="ms-card-body media">
+                    <div class="media-body">
+                        <span class="black-text"><strong>Menu Items</strong></span>
+                        <h2>{{ data2.menuitem | length }}</h2>
+                    </div>
+                </div>
+                <canvas id="line-chart"></canvas>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
+                <span class="ms-chart-label bg-red"><i class="material-icons">arrow_downward</i> 4.5%</span>
+                <div class="ms-card-body media">
+                    <div class="media-body">
+                        <span class="black-text"><strong>Tables</strong></span>
+                        <h2>{{ data2.table | length }}</h2>
+                    </div>
+                </div>
+                <canvas id="line-chart-2"></canvas>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
+                <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 12.5%</span>
+                <div class="ms-card-body media">
+                    <div class="media-body">
+                        <span class="black-text"><strong>Total Sales Amount</strong></span>
+                        <h2>{{ data2.total_sales_amount }}</h2>
+                    </div>
+                </div>
+                <canvas id="line-chart-3"></canvas>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
+                <span class="ms-chart-label bg-red"><i class="material-icons">arrow_upward</i> 9.5%</span>
+                <div class="ms-card-body media">
+                    <div class="media-body">
+                        <span class="black-text"><strong>Total Orders</strong></span>
+                        <h2>{{ data2.order | length }}</h2>
+                    </div>
+                </div>
+                <canvas id="line-chart-4"></canvas>
+            </div>
+        </div>
+        <!-- Recent Orders Requested -->
+        <div class="col-xl-6 col-md-12">
+            <div class="ms-panel">
+                <div class="ms-panel-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="align-self-center align-left">
+                            <h6>Recent Orders Requested</h6>
+                        </div>
+                        <button type="button" class="btn btn-primary" href="{{ url_for('cashier_menu') }}">View All
+                        </button>
+                    </div>
+                </div>
+                <div class="ms-panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Food Item</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Product ID</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in menu.menu_items[:6] %}
+                                <tr>
+                                    <td class="ms-table-f-w"><img src="../../static/img/{{ item.item_name }}.jpg"
+                                                                  alt="{{ item.item_name }}">{{ item.item_name }}
+                                    </td>
+                                    <td>${{ item.price }}</td>
+                                    <td>{{ item.id }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-12">
+            <div class="ms-panel">
+                <div class="ms-panel-header">
+                    <h6>Pie Chart</h6>
+                </div>
+                <div class="ms-panel-body">
+                    <canvas id="pie-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Recent Placed Orders< -->
+        <div class="col-12">
+            <div class="ms-panel">
+                <div class="ms-panel-header">
+                    <h6>Recently Placed Orders</h6>
+                </div>
+                <div class="ms-panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover thead-primary">
+                            <thead>
+                            <tr>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Order Menu Item Id</th>
+                                <th scope="col">Order Status</th>
+                                <th scope="col">Delivered Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in last_orders %}
+                                <tr>
+                                    <th scope="row">{{ order.id }}</th>
+                                    <td>{{ order.menu_item_id }}</td>
+                                    <td><span class="badge badge-primary">Pending</span></td>
+                                    <td>10:15</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Food Orders -->
+        <div class="col-md-12">
+            <div class="ms-panel">
+                <div class="ms-panel-header">
+                    <h6>Trending Orders</h6>
+                </div>
+                <div class="ms-panel-body">
+                    <div class="row">
+                        {% for most_item in data2.most_popular %}
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                                <div class="ms-card no-margin">
+                                    <div class="ms-card-img">
+                                        <img src="{{ url_for('static', filename='img/' + most_item[0] + '.jpg') }}"
+                                             alt="card_img">
+                                    </div>
+                                    <div class="ms-card-body">
+                                        <div class="ms-card-heading-title">
+                                            <h6>{{ most_item[0] }}</h6>
+                                            <span class="green-text"><strong>${{ most_item[1] }}</strong></span>
+                                        </div>
+                                        <div class="ms-card-heading-title">
+                                            <p>Orders <span class="red-text">{{ most_item[2] }}</span></p>
+                                            <p>Income <span class="red-text">$175</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END/Food Orders -->
+        <!-- Recent Orders Requested -->
+{#        <div class="col-xl-7 col-md-12">#}
+{#            <div class="ms-panel ms-panel-fh">#}
+{#                <div class="ms-panel-header">#}
+{#                    <div class="d-flex justify-content-between">#}
+{#                        <div class="ms-header-text">#}
+{#                            <h6>Order Timing Chart</h6>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <div class="ms-panel-body pt-0">#}
+{#                    <div class="d-flex justify-content-between ms-graph-meta">#}
+{#                        <ul class="ms-list-flex mt-3 mb-5">#}
+{#                            <li>#}
+{#                                <span>Total Orders</span>#}
+{#                                <h3 class="ms-count">703,49</h3>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <span>New Orders</span>#}
+{#                                <h3 class="ms-count">95,038</h3>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <span>Repeat Orders</span>#}
+{#                                <h3 class="ms-count">28,387</h3>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <span>Cancel Orders</span>#}
+{#                                <h3 class="ms-count">260</h3>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                    <canvas id="youtube-subscribers"></canvas>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+        <!-- Favourite Products -->
+{#        <div class="col-xl-5 col-md-12">#}
+{#            <div class="ms-panel ms-widget ms-crypto-widget">#}
+{#                <div class="ms-panel-header">#}
+{#                    <h6>Favourite Items</h6>#}
+{#                </div>#}
+{#                <div class="ms-panel-body p-0">#}
+{#                    <ul class="nav nav-tabs nav-justified has-gap px-4 pt-4" role="tablist">#}
+{#                        <li role="presentation" class="fs-12"><a href="#btc" aria-controls="btc" class="active show"#}
+{#                                                                 role="tab" data-toggle="tab"> Mon </a></li>#}
+{#                        <li role="presentation" class="fs-12"><a href="#xrp" aria-controls="xrp" role="tab"#}
+{#                                                                 data-toggle="tab"> Tue </a></li>#}
+{#                        <li role="presentation" class="fs-12"><a href="#ltc" aria-controls="ltc" role="tab"#}
+{#                                                                 data-toggle="tab"> Wed </a></li>#}
+{#                        <li role="presentation" class="fs-12"><a href="#eth" aria-controls="eth" role="tab"#}
+{#                                                                 data-toggle="tab"> Thu </a></li>#}
+{#                        <li role="presentation" class="fs-12"><a href="#zec" aria-controls="zec" role="tab"#}
+{#                                                                 data-toggle="tab"> Fri </a></li>#}
+{#                    </ul>#}
+{#                    <div class="tab-content">#}
+{#                        <div role="tabpanel" class="tab-pane active show fade in" id="btc">#}
+{#                            <div class="table-responsive">#}
+{#                                <table class="table table-hover thead-light">#}
+{#                                    <thead>#}
+{#                                    <tr>#}
+{#                                        <th scope="col">Restaurant Names</th>#}
+{#                                        <th scope="col">Qty</th>#}
+{#                                        <th scope="col">Orders</th>#}
+{#                                        <th scope="col">Profit</th>#}
+{#                                    </tr>#}
+{#                                    </thead>#}
+{#                                    <tbody>#}
+{#                                    <tr>#}
+{#                                        <td>Hunger House</td>#}
+{#                                        <td>8528</td>#}
+{#                                        <td class="ms-text-success">+17.24%</td>#}
+{#                                        <td>7.65%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Food Lounge</td>#}
+{#                                        <td>4867</td>#}
+{#                                        <td class="ms-text-danger">-12.24%</td>#}
+{#                                        <td>9.12%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Delizious</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Netherfood</td>#}
+{#                                        <td>1614</td>#}
+{#                                        <td class="ms-text-danger">-20.75%</td>#}
+{#                                        <td>12.25%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Rusmiz</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    </tbody>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div role="tabpanel" class="tab-pane fade" id="xrp">#}
+{#                            <div class="table-responsive">#}
+{#                                <table class="table table-hover thead-light">#}
+{#                                    <thead>#}
+{#                                    <tr>#}
+{#                                        <th scope="col">Restaurant Name</th>#}
+{#                                        <th scope="col">Qty</th>#}
+{#                                        <th scope="col">Orders</th>#}
+{#                                        <th scope="col">Profit</th>#}
+{#                                    </tr>#}
+{#                                    </thead>#}
+{#                                    <tbody>#}
+{#                                    <tr>#}
+{#                                        <td>Hunger House</td>#}
+{#                                        <td>8528</td>#}
+{#                                        <td class="ms-text-success">+17.24%</td>#}
+{#                                        <td>7.65%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Food Lounge</td>#}
+{#                                        <td>4867</td>#}
+{#                                        <td class="ms-text-danger">-12.24%</td>#}
+{#                                        <td>9.12%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Delizious</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Netherfood</td>#}
+{#                                        <td>1614</td>#}
+{#                                        <td class="ms-text-danger">-20.75%</td>#}
+{#                                        <td>12.25%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Rusmiz</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    </tbody>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div role="tabpanel" class="tab-pane fade" id="ltc">#}
+{#                            <div class="table-responsive">#}
+{#                                <table class="table table-hover thead-light">#}
+{#                                    <thead>#}
+{#                                    <tr>#}
+{#                                        <th scope="col">Restaurant Name</th>#}
+{#                                        <th scope="col">Qty</th>#}
+{#                                        <th scope="col">Orders</th>#}
+{#                                        <th scope="col">Profit</th>#}
+{#                                    </tr>#}
+{#                                    </thead>#}
+{#                                    <tbody>#}
+{#                                    <tr>#}
+{#                                        <td>Hunger House</td>#}
+{#                                        <td>8528</td>#}
+{#                                        <td class="ms-text-success">+17.24%</td>#}
+{#                                        <td>7.65%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Food Lounge</td>#}
+{#                                        <td>4867</td>#}
+{#                                        <td class="ms-text-danger">-12.24%</td>#}
+{#                                        <td>9.12%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Delizious</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Netherfood</td>#}
+{#                                        <td>1614</td>#}
+{#                                        <td class="ms-text-danger">-20.75%</td>#}
+{#                                        <td>12.25%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Rusmiz</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    </tbody>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div role="tabpanel" class="tab-pane fade" id="eth">#}
+{#                            <div class="table-responsive">#}
+{#                                <table class="table table-hover thead-light">#}
+{#                                    <thead>#}
+{#                                    <tr>#}
+{#                                        <th scope="col">Restaurant Name</th>#}
+{#                                        <th scope="col">Qty</th>#}
+{#                                        <th scope="col">Orders</th>#}
+{#                                        <th scope="col">Profit</th>#}
+{#                                    </tr>#}
+{#                                    </thead>#}
+{#                                    <tbody>#}
+{#                                    <tr>#}
+{#                                        <td>Hunger House</td>#}
+{#                                        <td>8528</td>#}
+{#                                        <td class="ms-text-success">+17.24%</td>#}
+{#                                        <td>7.65%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Food Lounge</td>#}
+{#                                        <td>4867</td>#}
+{#                                        <td class="ms-text-danger">-12.24%</td>#}
+{#                                        <td>9.12%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Delizious</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Netherfood</td>#}
+{#                                        <td>1614</td>#}
+{#                                        <td class="ms-text-danger">-20.75%</td>#}
+{#                                        <td>12.25%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Rusmiz</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    </tbody>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div role="tabpanel" class="tab-pane fade" id="zec">#}
+{#                            <div class="table-responsive">#}
+{#                                <table class="table table-hover thead-light">#}
+{#                                    <thead>#}
+{#                                    <tr>#}
+{#                                        <th scope="col">Restaurant Name</th>#}
+{#                                        <th scope="col">Qty</th>#}
+{#                                        <th scope="col">Orders</th>#}
+{#                                        <th scope="col">Profit</th>#}
+{#                                    </tr>#}
+{#                                    </thead>#}
+{#                                    <tbody>#}
+{#                                    <tr>#}
+{#                                        <td>Hunger House</td>#}
+{#                                        <td>8528</td>#}
+{#                                        <td class="ms-text-success">+17.24%</td>#}
+{#                                        <td>7.65%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Food Lounge</td>#}
+{#                                        <td>4867</td>#}
+{#                                        <td class="ms-text-danger">-12.24%</td>#}
+{#                                        <td>9.12%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Delizious</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Netherfood</td>#}
+{#                                        <td>1614</td>#}
+{#                                        <td class="ms-text-danger">-20.75%</td>#}
+{#                                        <td>12.25%</td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>Rusmiz</td>#}
+{#                                        <td>7538</td>#}
+{#                                        <td class="ms-text-success">+32.04%</td>#}
+{#                                        <td>14.29%</td>#}
+{#                                    </tr>#}
+{#                                    </tbody>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#            <!-- Favourite Products -->#}
+{#            <!-- Total Earnings -->#}
+{#            <div class="ms-panel">#}
+{#                <div class="ms-panel-header">#}
+{#                    <h6>Total Earnings</h6>#}
+{#                </div>#}
+{#                <div class="ms-panel-body p-0">#}
+{#                    <div class="ms-quick-stats">#}
+{#                        <div class="ms-stats-grid">#}
+{#                            <i class="fa fa-star"></i>#}
+{#                            <p class="ms-text-dark">$8,033</p>#}
+{#                            <span>Today</span>#}
+{#                        </div>#}
+{#                        <div class="ms-stats-grid">#}
+{#                            <i class="fa fa-university"></i>#}
+{#                            <p class="ms-text-dark">$3,039</p>#}
+{#                            <span>Yesterday</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+        <!-- Total Earnings -->
+
+        <!-- Recent Orders< -->
+
+
+    </div>
+{% endblock %}
+
+{% block before_body_end %}
+
+    {{ super() }}
+<script >
+    // $('#show-tables').click(function(){
+    //
+    // console.log('tables')
+    // $.get({
+    //     url: '/handler/?show_tables=true',
+    //     success: function(data){
+    //         $('.ms-content-wrapper').html(data)
+    //     }
+    // })
+    // })
+    // $('#cashier_order').click(function(){
+    //
+    // console.log('orders')
+    // $.get({
+    //     url: '/handler/?cashier_order=true',
+    //     success: function(data){
+    //         $('.ms-content-wrapper').html(data)
+    //     }
+    // })
+    // })
+</script>
+    <script src="../../static/AdminPanel/assets/js/Chart.bundle.min.js">
+    </script>
+    <script src="../../static/AdminPanel/assets/js/charts.js">
+    </script>
+{% endblock %}

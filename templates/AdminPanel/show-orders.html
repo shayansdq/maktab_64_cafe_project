@@ -1,0 +1,109 @@
+{% extends "layouts/cashier_panel/_base.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/tables.css') }}">
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+{% endblock %}
+{% block before_body_start %}
+    <div id="preloader-wrap">
+        <div class="spinner spinner-8">
+            <div class="ms-circle1 ms-child"></div>
+            <div class="ms-circle2 ms-child"></div>
+            <div class="ms-circle3 ms-child"></div>
+            <div class="ms-circle4 ms-child"></div>
+            <div class="ms-circle5 ms-child"></div>
+            <div class="ms-circle6 ms-child"></div>
+            <div class="ms-circle7 ms-child"></div>
+            <div class="ms-circle8 ms-child"></div>
+            <div class="ms-circle9 ms-child"></div>
+            <div class="ms-circle10 ms-child"></div>
+            <div class="ms-circle11 ms-child"></div>
+            <div class="ms-circle12 ms-child"></div>
+        </div>
+    </div>
+    <!-- Overlays -->
+    <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+    <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity"
+         data-toggle="slideRight"></div>
+    {% include 'layouts/cashier_panel/__sidebar_left.html' %}
+    {% include 'layouts/cashier_panel/__sidebar_right.html' %}
+{% endblock %}
+
+{% block main_content %}
+    <!-- Content Wrapper. Contains page content -->
+  <div class="ms-panel">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="ms-panel-header">
+              <h6>Datatable With Header and Stripes</h6>
+            </div>
+            <div class="ms-panel-body">
+              <div class="table-responsive">
+                <table id="data-table-2" class="table table-striped thead-primary w-100"></table>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block before_body_end %}
+<script>
+
+    $("button.btn-danger").click(function(){
+        var num = $(this).attr('id')
+        var idOfTable = $(this).attr('name')
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('slow')
+        $.ajax({
+              type : 'POST',
+          url : "{{url_for('change_table_status')}}",
+          data : {
+              'do':String(num),
+              'table_id':String(idOfTable)
+          },
+            success: function(data) {
+
+            $(target).html('Reserve')
+            $(target).attr('class','btn btn-success')
+            $(target).attr('id','1')
+            $(target).show('slow')
+        },
+        });
+     });
+    $("button.btn-success").click(function(){
+        var num = $(this).attr('id')
+        var idOfTable = $(this).attr('name')
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('slow')
+        $.ajax({
+          type : 'POST',
+          url : "{{url_for('change_table_status')}}",
+          data : {
+              'do':String(num),
+              'table_id':String(idOfTable)
+          },
+          success: function(data) {
+            $(target).html('Unreserve')
+            $(target).attr('class','btn btn-danger')
+            $(target).attr('id','0')
+            $(target).show('slow')
+        },
+        });
+     });
+
+</script>
+    {{ super() }}
+{% endblock %}
+
+{% block after_body %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+{% endblock %}

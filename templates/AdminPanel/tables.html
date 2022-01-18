@@ -1,0 +1,162 @@
+{% extends "layouts/cashier_panel/_base.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/tables.css') }}">
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+{% endblock %}
+{% block before_body_start %}
+    <div id="preloader-wrap">
+        <div class="spinner spinner-8">
+            <div class="ms-circle1 ms-child"></div>
+            <div class="ms-circle2 ms-child"></div>
+            <div class="ms-circle3 ms-child"></div>
+            <div class="ms-circle4 ms-child"></div>
+            <div class="ms-circle5 ms-child"></div>
+            <div class="ms-circle6 ms-child"></div>
+            <div class="ms-circle7 ms-child"></div>
+            <div class="ms-circle8 ms-child"></div>
+            <div class="ms-circle9 ms-child"></div>
+            <div class="ms-circle10 ms-child"></div>
+            <div class="ms-circle11 ms-child"></div>
+            <div class="ms-circle12 ms-child"></div>
+        </div>
+    </div>
+    <!-- Overlays -->
+    <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
+    <div class="ms-aside-overlay ms-overlay-right ms-toggler" data-target="#ms-recent-activity"
+         data-toggle="slideRight"></div>
+    {% include 'layouts/cashier_panel/__sidebar_left.html' %}
+    {% include 'layouts/cashier_panel/__sidebar_right.html' %}
+{% endblock %}
+
+{% block main_content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper cafe-floor">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tables</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Tables</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12 reciepts-tables">
+                        <!-- table loops should start from here -->
+                        {% for table in tables %}
+                            <div class="table-container">
+                                {% if table.reserved %}
+                                    <i title="Table Is Empty" class="fas fa-user-clock table-check"></i>
+                                {% endif %}
+                                {% if not table.reserved %}
+                                    <i title="Table Is Empty" class="fas fa-chair table-check empty-table"></i>
+                                {% endif %}
+                                <div class="reciept-table d-flex flex-column">
+                                    <h4>{{ table.id }}</h4>
+                                    {% if table.reserved %}
+                                        <button type="button" class="btn btn-warning" name="{{table.id}}" id="0">
+                                            Receipt
+                                        </button>
+                                    {% endif %}
+                                    {% if not table.reserved %}
+                                        <button type="button" class="btn btn-success" name="{{table.id}}" id="1">
+                                            Reserved
+                                        </button>
+                                    {% endif %}
+                                </div>
+                                <div class="table-chair chair-one"></div>
+                                <div class="table-chair chair-two"></div>
+                                <div class="table-chair chair-three"></div>
+                                <div class="table-chair chair-four"></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- end table loop -->
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block before_body_end %}
+<script>
+
+
+
+    $("button.btn-warning").click(function(){
+        var num = $(this).attr('id')
+        var idOfTable = $(this).attr('name')
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('slow')
+        $.ajax({
+              type : 'POST',
+          url : "{{url_for('change_table_status')}}",
+          data : {
+              'do':String(num),
+              'table_id':String(idOfTable)
+          },
+            success: function(data) {
+
+            $(target).html('Reserve')
+            $(target).attr('class','btn btn-success')
+            $(target).attr('id','1')
+            $(target).show('slow')
+        },
+        });
+     });
+    $("button.btn-success").click(function(){
+        var num = $(this).attr('id')
+        var idOfTable = $(this).attr('name')
+        var target = `button[name="${idOfTable}"]`
+        $(target).hide('fast')
+        $.ajax({
+          type : 'POST',
+          url : "{{url_for('change_table_status')}}",
+          data : {
+              'do':String(num),
+              'table_id':String(idOfTable)
+          },
+          success: function(data) {
+            $(target).html('Receipt')
+            $(target).attr('class','btn btn-warning')
+            $(target).attr('id','0')
+            $(target).show('fast')
+        },
+        });
+     });
+
+</script>
+    {{ super() }}
+{% endblock %}
+
+{% block after_body %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+{% endblock %}

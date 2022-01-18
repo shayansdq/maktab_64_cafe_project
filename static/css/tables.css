@@ -1,0 +1,163 @@
+.reciepts-tables {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 60px;
+    transition: .5s;
+}
+
+.table-container:hover {
+    transform: scale(1.1, 1.1);
+    cursor: pointer;
+}
+
+.reciept-table {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+            to right,
+            #d6ae7b,
+            #eacda3
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    font-weight: 600;
+    box-shadow: 5px 5px 5px black;
+    z-index: 1;
+}
+
+.table-chair {
+    position: absolute;
+    box-shadow: 5px 5px 5px #333;
+    background-image: url(../img/chair-texture.jpg);
+    background-size: 40px;
+}
+
+.table-chair:hover {
+    transform: scale(1.5, 1.5);
+}
+
+.chair-one {
+    border-right: 5px solid #d6ae7b;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    right: -30px;
+}
+
+.chair-two {
+    border-left: 5px solid #d6ae7b;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    left: -30px;
+}
+
+.chair-three {
+    border-top: 5px solid #d6ae7b;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    top: -30px;
+}
+
+.chair-four {
+    border-bottom: 5px solid #d6ae7b;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    bottom: -30px;
+}
+
+.table-menu {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 60px;
+    background: #cb356b; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+            to right,
+            #bd3f32,
+            #cb356b
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+            to right,
+            #bd3f32,
+            #cb356b
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    color: #fff;
+    font-size: 5px;
+    list-style: none;
+    transform: rotate(30deg);
+    z-index: 10;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.table-menu:hover {
+    transform: rotate(0deg);
+}
+
+.table-menu > p {
+    margin: 1px auto;
+}
+
+.table-menu > p:first-child {
+    font-size: 10px;
+}
+
+.reciept-table h4 {
+    margin: 5px;
+}
+
+.table-check {
+    z-index: 2;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    color: rgb(10, 180, 10);
+    font-size: 50px;
+    text-shadow: 5px 5px 15px #fff;
+    cursor: pointer
+}
+
+.empty-table {
+    z-index: 2;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    color: rgb(175, 98, 10);
+    font-size: 50px;
+    text-shadow: 5px 5px 15px #fff;
+    cursor: pointer
+}
+
+main.body-content {
+    background-image: url(../img/tiles.jpg);
+    color: #fff;
+}
+

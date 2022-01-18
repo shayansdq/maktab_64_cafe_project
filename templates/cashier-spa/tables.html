@@ -1,0 +1,66 @@
+<div class="content-wrapper cafe-floor">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tables</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Tables</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12 reciepts-tables">
+                        <!-- table loops should start from here -->
+                        {% for table in tables %}
+                            <div class="table-container">
+                                {% if table.reserved %}
+                                    <i title="Table Is Empty" class="fas fa-user-clock table-check"></i>
+                                {% endif %}
+                                {% if not table.reserved %}
+                                    <i title="Table Is Empty" class="fas fa-chair table-check empty-table"></i>
+                                {% endif %}
+                                <div class="reciept-table d-flex flex-column">
+                                    <h4>{{ table.id }}</h4>
+                                    {% if table.reserved %}
+                                        <button type="button" class="btn btn-danger" name="{{table.id}}" id="0">
+                                            Unreserved
+                                        </button>
+                                    {% endif %}
+                                    {% if not table.reserved %}
+                                        <button type="button" class="btn btn-success" name="{{table.id}}" id="1">
+                                            Reserved
+                                        </button>
+                                    {% endif %}
+                                </div>
+                                <div class="table-chair chair-one"></div>
+                                <div class="table-chair chair-two"></div>
+                                <div class="table-chair chair-three"></div>
+                                <div class="table-chair chair-four"></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- end table loop -->
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>

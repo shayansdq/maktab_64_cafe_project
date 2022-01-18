@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by pooyaj13</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="{{url_for('static',filename='AdminPanel/assets/css/receipts_panel_style.css')}}">
+
+</head>
+<body>
+
+<table id="example" class="table table-striped table-bordered " cellspacing="0" width="100%" style="background-color: #f3864f; border-radius: 10px">
+	<thead>
+		<tr>
+			<th>Table Id</th>
+			<th>Date and time</th>
+			<th>Pay Status</th>
+			<th>Total Price</th>
+			<th>Final Price</th>
+			<th>Detail</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for receipt in receipts %}
+		<tr>
+			<td>{{  receipt.id }}</td>
+			<td>{{ receipt.time_stamp }}</td>
+			<td>{{ receipt.pay_status }}</td>
+			<td>{{ receipt.total_price }}</td>
+			<td >{{ receipt.final_price }}</td>
+			<td ><a  href="#open-modal" onclick="buildOrder({{ receipt.id }})">More</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+<div id="open-modal" class="modal-window">
+    <div class="table_order_container">
+        <a href="#" title="Close" class="modal-close">Close</a>
+      <table id="order_content" style="width: 100% "></table>
+    </div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js'></script>
+<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js'></script>
+<script src='https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js'></script>
+<script  src="{{url_for('static',filename='AdminPanel/assets/js/receipts_scripts.js')}}"></script>
+
+</body>
+</html>
+
