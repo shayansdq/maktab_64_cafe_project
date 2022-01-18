@@ -6,7 +6,7 @@
     data: {
       labels: ["Breakfast", "Lunch", "Dinner", "Drinks", "Dessert",'Coffee',"Shake","Tea"],
       datasets: [{
-        label: "Population (millions)",
+        label: "sales",
         backgroundColor: ["#ff0018", "#f7b11b","#ff6c60","#8663e1","#08bf6f"],
         data: [2478,5267,734,784,433]
       }]
@@ -14,7 +14,7 @@
     options: {
       title: {
         display: true,
-        text: 'Predicted Resturant Ratings (millions) in 2050'
+        text: 'Sales amount in terms of'
       }
     }
   });
