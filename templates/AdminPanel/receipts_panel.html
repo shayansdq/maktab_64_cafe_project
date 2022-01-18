@@ -32,16 +32,16 @@
 			<td>{{ receipt.pay_status }}</td>
 			<td>{{ receipt.total_price }}</td>
 			<td >{{ receipt.final_price }}</td>
-			<td ><a  href="#open-modal">More</a></td>
+			<td ><a  href="#open-modal" onclick="buildOrder({{ receipt.id }})">More</a></td>
 		</tr>
 	{% endfor %}
 	</tbody>
 </table>
 
 <div id="open-modal" class="modal-window">
-  <div>
-    <a href="#" title="Close" class="modal-close">Close</a>
-	  order table
+    <div class="table_order_container">
+        <a href="#" title="Close" class="modal-close">Close</a>
+      <table id="order_content" style="width: 100% "></table>
     </div>
 </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>

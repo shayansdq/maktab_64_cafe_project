@@ -117,5 +117,12 @@ def showerror(error):
     return render_template("page error 404.html"), 404
 
 
+app.add_url_rule('/orderbyrid', 'order_bt_receipts_id', order_of_receipt, methods=["POST"])
+
+@app.errorhandler(404)
+def showerror(error):
+    return render_template("page error 404.html"), 404
+
+
 if __name__ == '__main__':
     app.run()

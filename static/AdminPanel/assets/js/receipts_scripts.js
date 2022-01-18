@@ -18,4 +18,44 @@ $(document).ready(function () {
         ]
     });
 });
-console.log("hi")
+var myArray = [
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'},
+    {'receipt_id':'11', 'table_id':'13','status':'paid','total_price':'1000','final_price':'900'}
+]
+
+function buildOrder(x){
+    var table = document.getElementById('order_content')
+    table.innerHTML =`<thead>
+    <tr style="border: 1px solid black">
+      <th style="border: 1px solid black">&nbsp; Food</th>
+      <th style="border: 1px solid black">&nbsp; count</th>
+
+    </tr>
+    </thead>
+    `
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://127.0.0.1:5000/orderbyrid", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+    receipt_id: x
+    }));
+    console.log(xhr.responseText)
+    var lst = JSON.parse(xhr.response);
+    for (var i = 0; i < lst.length; i++){
+
+        var row = `<tr style="border: 1px solid black">
+                        <td style="border: 1px solid black">&nbsp; ${lst[i]['name']}</td>
+                        <td style="border: 1px solid black">&nbsp; ${lst[i]['count']}</td>
+                        
+                   </tr>`
+        table.innerHTML += row
+    }
+}

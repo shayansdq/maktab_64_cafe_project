@@ -233,3 +233,18 @@ def show_comments():
         if request.method == "GET":
             comments = Comments.query.all()
             return render_template("AdminPanel/comments_panel.html", comments=comments)
+
+
+def order_of_receipt():
+    user_id = request.cookies.get("aetvbhuoaetv")
+    if Cashier.get_by_id(user_id):
+        print(request.json['receipt_id'])
+        orders = Order.query.filter_by(receipt_id=int(request.json['receipt_id'])).all()
+        print(orders)
+        x = []
+
+        for i in orders:
+            x.append({'name':i.menu_item_id, 'count':i.item_count})
+        print(x)
+        print(type(json.dumps(x)))
+        return json.dumps(x)
