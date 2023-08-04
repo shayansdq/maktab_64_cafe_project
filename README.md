@@ -1,20 +1,29 @@
-# Cafe Dark
+# Cafe Menu - Order System with Flask and PostgreSQL
 
-## Powered By Flask
+Welcome to the Cafe Menu project! This web application allows customers to view the cafe menu, place orders, and select a chair to reserve. The menu items are categorized into meals for easy navigation.
 
-### Techs :
+![Cafe Menu](screenshot/menu.png)
 
-- Python
-- Flask
-- Postgresql
-- Jinja2
-- Html
-- Css
+## Getting Started
 
+These instructions will help you set up the project locally for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+- Docker: Make sure you have Docker installed on your system. You can download it from [here](https://www.docker.com/get-started).
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/shayansdq/maktab_64_cafe_project.git
+cd maktab_64_cafe_project
+ ```
 ## Run :
 
 ```
-python app.py 
+docker-compose up --build
 ```
 
 ### As You See That's So Easy To Run :)
@@ -37,18 +46,15 @@ python app.py
 
 ![annual_sales](screenshot/reservation.png)
 
-### 5.Menu
 
-![annual_sales](screenshot/menu.png)
-
-### 6.Cart
+### 5.Cart
 
 ![annual_sales](screenshot/cart.png)
 
-### 7.Order List
+### 6.Order List
 
 ![annual_sales](screenshot/order_list_1.png)
 
-### 8.Responsive
+### 7.Responsive
 
 ![annual_sales](screenshot/responsive.png)
